@@ -39,8 +39,8 @@ The `User` class is the main class of the library. It allows to get informations
 - `is_subscribed` (*bool*): The *status* of the user if it is **subscribed** or not.
 
 If `is_subscribed` is `True`:
-    - `subscription_begin` (*datetime object*): The **beginning date** of the **subscription**.
-    - `subscription_end` (*datetime object*): The **end date** of the **subscription**.
+- `subscription_begin` (*datetime object*): The **beginning date** of the **subscription**.
+- `subscription_end` (*datetime object*): The **end date** of the **subscription**.
 
 - `pity_in` (*datetime object*): The **date** when the next **pity** will be.
 - `vortex_stade` (*int*): The current user **floor** of the **vortex**.
@@ -63,12 +63,12 @@ The `Challenges` class is the class which lists the different challenges of the 
 - `end_date` (*datetime object*): The **end date** of the weekly **challenges**.
 
 Attributes for `first`, `second` and `third`:
-    - `name` (*str*): The **name** of the challenge.
-    - `score_gain` (*int*): The **score gain** of the challenge.
-    - `powder_gain` (*int*): The **Poudrecreatrice gain** of the challenge.
-    If a `username` is provided:
-        - `progress` (*str*): The **progress** of the challenge. (ex: `0/10`)
-        - `achieved_date` (*datetime object*): The **date** when the challenge was achieved. (Returns `None` if not achieved)
+- `name` (*str*): The **name** of the challenge.
+- `score_gain` (*int*): The **score gain** of the challenge.
+- `powder_gain` (*int*): The **Poudrecreatrice gain** of the challenge.
+If a `username` is provided:
+- `progress` (*str*): The **progress** of the challenge. (ex: `0/10`)
+- `achieved_date` (*datetime object*): The **date** when the challenge was achieved. (Returns `None` if not achieved)
 
 
 ### _UserReputation
@@ -82,9 +82,9 @@ The `_UserReputation` class is the class which lists the different reputation of
 - `fifth` (*_ReputationClan Class*): See the different attributes of the reputation below.
 
 Attributes for `first`, `second`, `third`, `fourth` and `fifth`:
-    - `name` (*str*): The **name** of the reputation.
-    - `level_name` (*str*): The **level name** of the reputation.
-    - `progress` (*str*): The **progress** of the reputation. (ex: `0/10`)
+- `name` (*str*): The **name** of the reputation.
+- `level_name` (*str*): The **level name** of the reputation.
+- `progress` (*str*): The **progress** of the reputation. (ex: `0/10`)
 
 
 ### Vortex
@@ -103,15 +103,16 @@ The `Event` class is the class which lists the curent(s) **Event(s)**.
 
 #### Attributes
 - `got_events` (*bool*): Tells if there is an **Event** or not.
+
 If `got_events` is `True`:
-    - `names` (*str list*): The **name(s)** of the current **Event(s)**.
-    - `pack_names` (*str list*): The **pack name(s)** of the current **Event(s)**.
-    - `monney_costs` (*int list*): The **money cost(s)** of the current **Event(s)**.
-    - `dust_costs` (*int list*): The **dust cost(s)** of the current **Event(s)**.
-    - `is_onetimes` (*bool list*): Tells if the current **Event(s)** are **one time** or not.
-    - `begin_dates` (*datetime list*): The **beginning date(s)** of the current **Event(s)**.
-    - `end_dates` (*datetime list*): The **end date(s)** of the current **Event(s)**.
-    - `actives` (*bool list*): Tells if the current **Event(s)** are **active** or not.
+- `names` (*str list*): The **name(s)** of the current **Event(s)**.
+- `pack_names` (*str list*): The **pack name(s)** of the current **Event(s)**.
+- `monney_costs` (*int list*): The **money cost(s)** of the current **Event(s)**.
+- `dust_costs` (*int list*): The **dust cost(s)** of the current **Event(s)**.
+- `is_onetimes` (*bool list*): Tells if the current **Event(s)** are **one time** or not.
+- `begin_dates` (*datetime list*): The **beginning date(s)** of the current **Event(s)**.
+- `end_dates` (*datetime list*): The **end date(s)** of the current **Event(s)**.
+- `actives` (*bool list*): Tells if the current **Event(s)** are **active** or not.
 
 
 ### Insomniaque
@@ -124,6 +125,7 @@ The `Insomniaque` class is a special class for the achievement "*L'insomniaque*"
 - `description` (*str*): The **description** of the achievement.
 - `reward_score` (*int*): The **reward score** of the achievement.
 - `done` (*bool*): The **status** of the achievement if it has been **achieved or not**.
+
 If `done` is `False`:
-    - `progress_done` (*str list*): The **progress done** of the achievement. (ex: `0h, 1h, 12h, 13h`)
-    - `progress_todo` (*str list*): The **progress to do** of the achievement. (ex: `5h, 6h, 7h, 23h`)
+- `progress_done` (*str list*): The **progress done** of the achievement. (ex: `0h, 1h, 12h, 13h`)
+- `progress_todo` (*str list*): The **progress to do** of the achievement. (ex: `5h, 6h, 7h, 23h`)
