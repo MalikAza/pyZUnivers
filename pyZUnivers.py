@@ -215,6 +215,10 @@ class _UserLeaderboards:
             self.tradeless = _Leaderboard(datas[8])
         except IndexError:
             self.tradeless = False
+        try:
+            self.constellations = _Leaderboard(datas[9])
+        except IndexError:
+            self.constellations = False
 
 class User():
     """arg: discord username (ex: ZeratoR#1337)

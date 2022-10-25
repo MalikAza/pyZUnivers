@@ -158,6 +158,7 @@ The `_UserLeaderboards` is the class which lists the different leaderboards of t
 - `inventory_unique_normal` (*_Leaderboard Class*): See the different attributes of the leaderboard below.
 - `reputation` (*_Leaderboard Class*): See the different attributes of the leaderboard below.
 - `tradeless` (*_Leaderboard Class | False*): See the different attributes of the leaderboard below. ⚠️ This attribute can return `False` instead of a `_Leaderboard Class` if `User.tradeless` is `True`. ⚠️
+- `constellations` (*_Leaderboard Class | False*): See the different attributes of the leaderboard below. ⚠️ This attribute can return `False` instead of a `_Leaderboard Class` if the user made any constellations. ⚠️
 
 Attributes for `achievement`, `challenge`, `globals`, `inventory`, `inventory_unique`, `inventory_unique_golden`, `inventory_unique_normal`, `reputation` & `tradeless`:
 - `position` (*int*): The **position** of the user in the leaderboard.
