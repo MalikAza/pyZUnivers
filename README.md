@@ -13,18 +13,17 @@ You will mainly use the `User` class which needs a discord username as argument.
 
 ## Documentation
 ### User
-The `User` class is the main class of the library. It allows to get informations about a user.
+The `User` is the main class of the library. It allows to get informations about a user.
 
 #### Arguments
-- `username`: The **discord username** of the user. (ex: `ZeratoR#1337`)
+- `username` (*str*): The **discord username** of the user. (ex: `ZeratoR#1337`)
+- `challenge` (*bool*): Boolean to have access to the challenge attribute if is `True`. *(Makes an additional API request)*
+- `reputation` (*bool*): Boolean to have access to the reputation attribute if is `True`. *(Makes an additional API request)*
+- `journa` (*bool*): Boolean to have access to the journa attribute if is `True`. *(Makes an additional API request)*
+- `pity_andor_vortex` (*bool*): If `True` give access to => `pity_in`, `vortex_stade` & `vortex_trys` attributes. *(Makes an additional API request)*
 #### Attributes
 - `url` (*str*): The **url** of the user. (ex: `https://zunivers.zerator.com/joueur/ZeratoR%231337/`)
 - `name` (*str*): The **name** of the user. (ex: `ZeratoR#1337`)
-- `position` (*int*): The **position** of the user.
-- `score` (*int*): The **score** of the user.
-- `score_item` (*int*): The score of the user obtained by the **cards**.
-- `score_achievement` (*int*): The score of the user obtained by the **achievements**.
-- `score_challenge` (*int*): The score of the user obtained by the **challenges**.
 - `monnaie` (*int*): The amount of **ZUMonnaie** of the user.
 - `powder` (*int*): The amount of **Poudrecreatrice** of the user.
 - `crystal` (*int*): The amount of **Cristaldhistoire** of the user.
@@ -33,7 +32,7 @@ The `User` class is the main class of the library. It allows to get informations
 - `card_numbers` (*int*): The number of **cards** of the user.
 - `unique_cards` (*int*): The number of **unique cards** of the user.
 - `unique_gold_cards` (*int*): The number of **unique gold cards** of the user.
-- `lucky_numbers` (*int*): The number of **tickets** the user has used.
+- `ticket_numbers` (*int*): The number of **tickets** the user has used.
 - `achievement_numbers` (*int*): The number of **achievements** of the user.
 - `tradeless` (*bool*): The *status* of the user if it has **traded** or not.
 - `is_subscribed` (*bool*): The *status* of the user if it is **subscribed** or not.
@@ -42,19 +41,28 @@ If `is_subscribed` is `True`:
 - `subscription_begin` (*datetime object*): The **beginning date** of the **subscription**.
 - `subscription_end` (*datetime object*): The **end date** of the **subscription**.
 
-- `pity_in` (*datetime object*): The **date** when the next **pity** will be.
+If `pity_andor_vortex` is `True`:
+- `pity_in` (*int*): The **number** of invocations until the **pity** strikes.
 - `vortex_stade` (*int*): The current user **floor** of the **vortex**.
 - `vortex_trys` (*int*): The number of **trys** the user has done in the **vortex**.
-- `journa` (*bool*): The **status** of the user if it has made his daily **!journa**.
+
+If `journa` is `True`:
+- `journa` (*bool*): The **status** of the user if it has made his daily **journa** command.
+
+If `challenge` is `True`:
 - `challenge` (*Challenges Class*): See the documentation of the `Challenges` class.
+
+If `reputation` is `True`:
 - `reputation` (*_UserReputation Class*): See the documentation of the `_UserReputation` class.
+
+- `leaderboards` (*_UserLeaderboards Class*): See the documentation of the `_UserLeaderboards` class.
 
 
 ### Challenges
-The `Challenges` class is the class which lists the different challenges of the user.
+The `Challenges` is the class which lists the different challenges of the user.
 
 #### Arguments
-- `username` (*Optional*): The **discord username** of the user. (ex: `ZeratoR#1337`)
+- `username` (*Optional[str]*): The **discord username** of the user. (ex: `ZeratoR#1337`)
 #### Attributes
 - `first` (*_ChallengeAtrb Class*): See the different attributes of the challenges below.
 - `second` (*_ChallengeAtrb Class*): See the different attributes of the challenges below.
@@ -72,7 +80,7 @@ If a `username` is provided:
 
 
 ### _UserReputation
-The `_UserReputation` class is the class which lists the different reputation of the user.
+The `_UserReputation` is the class which lists the different reputation of the user.
 
 #### Attributes
 - `first` (*_ReputationClan Class*): See the different attributes of the reputation below.
@@ -88,7 +96,7 @@ Attributes for `first`, `second`, `third`, `fourth` and `fifth`:
 
 
 ### Vortex
-The `Vortex` class is the class of the current **Vortex**.
+The `Vortex` is the class of the current **Vortex**.
 
 #### Attributes
 - `name` (*str*): The **name** of the current **Vortex**.
@@ -99,7 +107,7 @@ The `Vortex` class is the class of the current **Vortex**.
 
 
 ### Event
-The `Event` class is the class which lists the curent(s) **Event(s)**.
+The `Event` is the class which lists the curent(s) **Event(s)**.
 
 #### Attributes
 - `got_events` (*bool*): Tells if there is an **Event** or not.
@@ -116,10 +124,10 @@ If `got_events` is `True`:
 
 
 ### Insomniaque
-The `Insomniaque` class is a special class for the achievement "*L'insomniaque*".
+The `Insomniaque` is a special class for the achievement "*L'insomniaque*".
 
 #### Arguments
-- `username`: The **discord username** of the user. (ex: `ZeratoR#1337`)
+- `username` (*str*): The **discord username** of the user. (ex: `ZeratoR#1337`)
 #### Attributes
 - `name` (*str*): The **name** of the achievement.
 - `description` (*str*): The **description** of the achievement.
@@ -129,3 +137,52 @@ The `Insomniaque` class is a special class for the achievement "*L'insomniaque*"
 If `done` is `False`:
 - `progress_done` (*str list*): The **progress done** of the achievement. (ex: `0h, 1h, 12h, 13h`)
 - `progress_todo` (*str list*): The **progress to do** of the achievement. (ex: `5h, 6h, 7h, 23h`)
+
+
+### _UserLeaderboards
+The `_UserLeaderboards` is the class which lists the different leaderboards of the user.
+
+#### Attributes
+- `achievement` (*_Leaderboard Class*): See the different attributes of the leaderboard below.
+- `challenge` (*_Leaderboard Class*): See the different attributes of the leaderboard below.
+- `globals` (*_Leaderboard Class*): See the different attributes of the leaderboard below.
+- `inventory` (*_Leaderboard Class*): See the different attributes of the leaderboard below.
+- `inventory_unique` (*_Leaderboard Class*): See the different attributes of the leaderboard below.
+- `inventory_unique_golden` (*_Leaderboard Class*): See the different attributes of the leaderboard below.
+- `inventory_unique_normal` (*_Leaderboard Class*): See the different attributes of the leaderboard below.
+- `reputation` (*_Leaderboard Class*): See the different attributes of the leaderboard below.
+- `tradeless` (*_Leaderboard Class | False*): See the different attributes of the leaderboard below. ⚠️ This attribute can return `False` instead of a `_Leaderboard Class` if `User.tradeless` is `True`. ⚠️
+
+Attributes for `achievement`, `challenge`, `globals`, `inventory`, `inventory_unique`, `inventory_unique_golden`, `inventory_unique_normal`, `reputation` & `tradeless`:
+- `position` (*int*): The **position** of the user in the leaderboard.
+- `score` (*int*): The **score** of the user in the leaderboard.
+
+
+### user_journa
+The `user_journa` is the method which return a **boolean** to tell if the user have done its daily `journa` command.
+
+#### Arguments
+- `username` (*str*): The **discord username** of the user. (ex: `ZeratoR#1337`)
+
+#### Return
+Return a `Boolean`. The **status** of the user if it has made his daily **journa** command.
+
+
+### user_pity
+The `user_pity` is the method which return an **int** to tell in how many **invocations** the **pity** will strikes.
+
+#### Arguments
+- `username` (*str*): The **discord username** of the user. (ex: `ZeratoR#1337`)
+
+#### Return
+Return an **int** to tell in how many **invocations** the **pity** will strikes.
+
+
+### user_vortex_stats
+The `user_vortex_stats` is the method which return the current user **floor** of the **vortex** and the number of **trys** the user has done in the **vortex**.
+
+#### Arguments
+- `username` (*str*): The **discord username** of the user. (ex: `ZeratoR#1337`)
+
+#### Return
+Return two int => The current user **floor** of the **vortex** and the number of **trys** the user has done in the **vortex**.

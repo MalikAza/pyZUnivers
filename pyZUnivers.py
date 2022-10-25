@@ -7,11 +7,54 @@ joueur_url = "https://zunivers.zerator.com/joueur/"
 full_date_format = "%Y-%m-%dT%H:%M:%S"
 vortex_date_format = "%Y-%m-%d"
 
+### Methods ###
+
 def _get_datas(url):
     with requests.get(url) as r:
         datas = r.json()
 
     return datas
+
+def user_journa(username):
+    """arg: discord username (ex: ZeratoR#1337)
+    return: bool"""
+    full_user = urllib.parse.quote(str(username))
+    activity_datas = _get_datas(f"{base_url}user/{full_user}/activity") # api req
+    last_loot_count = activity_datas["lootInfos"][364]["count"]
+
+    if last_loot_count == 0:
+        return False
+    else:
+        return True
+
+def user_pity(username):
+    """arg: discord username (ex: ZeratoR#1337)
+    return: str object"""
+    full_user = urllib.parse.quote(str(username))
+    user_overview_datas = _get_datas(f"{base_url}user/{full_user}/overview") # api req
+
+    return int(str(user_overview_datas["invokeBeforePity"])[:-1])
+
+def user_vortex_stats(username):
+    """arg: discord username (ex: ZeratoR#1337)
+    return: 2 int => vortex_stade, vortex_trys"""
+    full_user = urllib.parse.quote(str(username))
+    user_overview_datas = _get_datas(f"{base_url}user/{full_user}/overview") # api req
+    vortex_stats = user_overview_datas["towerStat"]
+
+    if vortex_stats:
+        if vortex_stats["maxFloorIndex"] == 0: vortex_stade = 1
+        else:
+            if not vortex_stats["maxFloorIndex"]: vortex_stade = 0
+            else: vortex_stade = vortex_stats["maxFloorIndex"] + 1
+        vortex_trys = vortex_stats["towerLogCount"]
+    else:
+        vortex_stade = 0
+        vortex_trys = 0
+
+    return vortex_stade, vortex_trys
+
+### Classes ###
 
 class Insomniaque():
     """arg: discord username (ex: ZeratoR#1337)
@@ -148,73 +191,110 @@ class Vortex:
         self.begin_date = datetime.strptime(datas_season["beginDate"], vortex_date_format)
         self.end_date = datetime.strptime(datas_season["endDate"], vortex_date_format)
 
+class _Leaderboard:
+    """attributs: position, score"""
+
+    def __init__(self, datas):
+        self.position = datas["position"]
+        self.score = datas["score"]
+
+class _UserLeaderboards:
+    """attributs: achievement, challenge, globals, inventory, inventory_unique, inventory_unique_golden,
+                inventory_unique_normal, reputation, tradeless"""
+
+    def __init__(self, datas):
+        self.achievement = _Leaderboard(datas[0])
+        self.challenge = _Leaderboard(datas[1])
+        self.globals = _Leaderboard(datas[2])
+        self.inventory = _Leaderboard(datas[3])
+        self.inventory_unique = _Leaderboard(datas[4])
+        self.inventory_unique_golden = _Leaderboard(datas[5])
+        self.inventory_unique_normal = _Leaderboard(datas[6])
+        self.reputation = _Leaderboard(datas[7])
+        try:
+            self.tradeless = _Leaderboard(datas[8])
+        except IndexError:
+            self.tradeless = False
+
 class User():
     """arg: discord username (ex: ZeratoR#1337)
+            challenge: bool, default=False
+            reputation: bool, default=False
+            journa: bool, default=False
+            pity_andor_vortex: bool, default=False
 
-    attributs: url, name, position, score, score_item, score_achievement, score_challenge, monnaie, powder, crystal,
-    rank, active, card_numbers, unique_cards, unique_gold_cards, lucky_numbers, achievement_numbers, tradeless,
-    is_subscribed, subscription_begin, subscription_end,
-    pity_in, vortex_stade, vortex_trys, challenge, reputation, journa"""
+    attributs: url, name, monnaie, powder, crystal, rank, active, card_numbers, unique_cards, unique_gold_cards,
+            ticket_numbers, achievement_numbers, tradeless, is_subscribed, subscription_begin, subscription_begin_since,
+            subscription_end, subscription_end_to, is_subscribed, pity_in, vortex_stade, vortex_trys, journa,
+            challenge, reputation, leaderboards"""
 
-    def __init__(self, username):
+    def __init__(self, username : discord.User,
+                    challenge : bool = False,
+                    reputation : bool = False,
+                    journa : bool = False,
+                    pity_andor_vortex : bool = False):
+
         full_user = urllib.parse.quote(str(username))
-    ### datas ###
-        user_datas = _get_datas(f"{base_url}user/{full_user}")
-        challenge_datas = _get_datas(f"{base_url}challenge/{full_user}")
-        reputation_datas = _get_datas(f"{base_url}tower/{full_user}")
-        activity_datas = _get_datas(f"{base_url}user/{full_user}/activity")
+        user_datas = _get_datas(f"{base_url}user/{full_user}") # api req : basic informations
+
     ### miscellaneous indexes ###
         user = user_datas["user"]
         total_card_numbers = str(user_datas["itemCount"])
         total_achievement_numbers = str(user_datas["achievementCount"])
         trades = user_datas["tradeCount"]
         subscription = user_datas["subscription"]
-        days_before_pity = int(str(user_datas["invokeBeforePity"])[:-1])
-        vortex_stats = user_datas["towerStat"]
-        last_loot_count = activity_datas["lootInfos"][364]["count"]
+
     ### attributes ###
         self.url = f"{joueur_url}{full_user}"
         self.name = user["discordUserName"]
-        self.position = user["position"]
-        self.score = user["score"]
-        self.score_item = user["scoreItem"]
-        self.score_achievement = user["scoreAchievement"]
-        self.score_challenge = user["scoreChallenge"]
         self.monnaie = user["balance"]
         self.powder = user["loreDust"]
         self.crystal = user["loreFragment"]
         self.rank = user["rank"]["name"]
         self.active = user["isActive"]
-
         self.card_numbers = user_datas["inventoryCount"]
         self.unique_cards = f'{str(user_datas["inventoryUniqueCount"])}/{total_card_numbers}'
         self.unique_gold_cards = f'{str(user_datas["inventoryUniqueGoldenCount"])}/{total_card_numbers}'
-        self.lucky_numbers = user_datas["luckyCount"]
+        self.ticket_numbers = user_datas["luckyCount"]
         self.achievement_numbers = f'{str(user_datas["achievementLogCount"])}/{total_achievement_numbers}'
+        # (no)tradeless
         if trades == 0:
             self.tradeless = True
         else:
             self.tradeless = False
+        # sub
         if subscription:
             self.is_subscribed = True
             self.subscription_begin = datetime.strptime(subscription["beginDate"], full_date_format)
             self.subscription_end = datetime.strptime(subscription["endDate"], full_date_format)
         else:
             self.is_subscribed = False
-        self.pity_in = (datetime.now() + timedelta(days=days_before_pity))
-        if vortex_stats:
-            if vortex_stats["maxFloorIndex"]:
-                self.vortex_stade = vortex_stats["maxFloorIndex"] + 1
+
+    ### args exceptions ###
+
+        # pity and or vortex #
+        if pity_andor_vortex:
+            ### datas ###
+            user_overview_datas = _get_datas(f"{base_url}user/{full_user}/overview") # api req : pity + vortex_stade & vortex_trys
+            ### miscellaneous indexes ###
+            vortex_stats = user_overview_datas["towerStat"]
+            ### attributes ###
+            self.pity_in = int(str(user_overview_datas["invokeBeforePity"])[:-1])
+            # vortex_stade & vortex_trys
+            if vortex_stats:
+                if vortex_stats["maxFloorIndex"] == 0: self.vortex_stade = 1
+                else:
+                    if not vortex_stats["maxFloorIndex"]: self.vortex_stade = 0
+                    else: self.vortex_stade = vortex_stats["maxFloorIndex"] + 1
+                self.vortex_trys = vortex_stats["towerLogCount"]
             else:
                 self.vortex_stade = 0
-            self.vortex_trys = vortex_stats["towerLogCount"]
-        else:
-            self.vortex_stade = 0
-            self.vortex_trys = 0
-        ### sub-classes ###
-        self.challenge = Challenges(username)
-        self.reputation = _UserReputation(reputation_datas)
-        if last_loot_count == 0:
-            self.journa = False
-        else:
-            self.journa = True
+                self.vortex_trys = 0
+
+        # journa
+        if journa: self.journa = user_journa(username)
+
+    ### sub-classes ###
+        if challenge: self.challenge = Challenges(username) # api req inside
+        if reputation: self.reputation = UserReputation(username) # api req inside
+        self.leaderboards = _UserLeaderboards(user_datas["leaderboards"])
