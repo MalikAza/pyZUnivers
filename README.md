@@ -50,12 +50,12 @@ If `journa` is `True`:
 - `journa` (*bool*): The **status** of the user if it has made his daily **journa** command.
 
 If `challenge` is `True`:
-- `challenge` (*Challenges Class*): See the documentation of the `Challenges` class.
+- `challenge` (*Challenges Class*): See the documentation of the [`Challenges`](https://github.com/MalikAza/pyZUnivers#challenges) class.
 
 If `reputation` is `True`:
-- `reputation` (*_UserReputation Class*): See the documentation of the `_UserReputation` class.
+- `reputation` (*_UserReputation Class*): See the documentation of the [`_UserReputation`](https://github.com/MalikAza/pyZUnivers#_userreputation) class.
 
-- `leaderboards` (*_UserLeaderboards Class*): See the documentation of the `_UserLeaderboards` class.
+- `leaderboards` (*_UserLeaderboards Class*): See the documentation of the [`_UserLeaderboards`](https://github.com/MalikAza/pyZUnivers#_userleaderboards) class.
 
 ___
 
@@ -129,7 +129,7 @@ If `got_events` is `True`:
 ___
 
 ### Insomniaque
-The `Insomniaque` is a special class for the achievement "*L'insomniaque*".
+The `Insomniaque` is a special class for the achievement ["*L'insomniaque*"](https://zunivers.zerator.com/succes/l-insomniaque).
 
 #### Arguments
 - `username` (*str*): The **discord username** of the user. (ex: `ZeratoR#1337`)
