@@ -57,6 +57,7 @@ If `reputation` is `True`:
 
 - `leaderboards` (*_UserLeaderboards Class*): See the documentation of the `_UserLeaderboards` class.
 
+___
 
 ### Challenges
 The `Challenges` is the class which lists the different challenges of the user.
@@ -78,6 +79,7 @@ If a `username` is provided:
 - `progress` (*str*): The **progress** of the challenge. (ex: `0/10`)
 - `achieved_date` (*datetime object*): The **date** when the challenge was achieved. (Returns `None` if not achieved)
 
+___
 
 ### _UserReputation
 The `_UserReputation` is the class which lists the different reputation of the user.
@@ -94,6 +96,7 @@ Attributes for `first`, `second`, `third`, `fourth` and `fifth`:
 - `level_name` (*str*): The **level name** of the reputation.
 - `progress` (*str*): The **progress** of the reputation. (ex: `0/10`)
 
+___
 
 ### Vortex
 The `Vortex` is the class of the current **Vortex**.
@@ -105,6 +108,7 @@ The `Vortex` is the class of the current **Vortex**.
 - `begin_date` (*datetime object*): The **beginning date** of the current **Vortex**.
 - `end_date` (*datetime object*): The **end date** of the current **Vortex**.
 
+___
 
 ### Event
 The `Event` is the class which lists the curent(s) **Event(s)**.
@@ -122,6 +126,7 @@ If `got_events` is `True`:
 - `end_dates` (*datetime list*): The **end date(s)** of the current **Event(s)**.
 - `actives` (*bool list*): Tells if the current **Event(s)** are **active** or not.
 
+___
 
 ### Insomniaque
 The `Insomniaque` is a special class for the achievement "*L'insomniaque*".
@@ -138,6 +143,7 @@ If `done` is `False`:
 - `progress_done` (*str list*): The **progress done** of the achievement. (ex: `0h, 1h, 12h, 13h`)
 - `progress_todo` (*str list*): The **progress to do** of the achievement. (ex: `5h, 6h, 7h, 23h`)
 
+___
 
 ### _UserLeaderboards
 The `_UserLeaderboards` is the class which lists the different leaderboards of the user.
@@ -157,6 +163,7 @@ Attributes for `achievement`, `challenge`, `globals`, `inventory`, `inventory_un
 - `position` (*int*): The **position** of the user in the leaderboard.
 - `score` (*int*): The **score** of the user in the leaderboard.
 
+___
 
 ### user_journa
 The `user_journa` is the method which return a **boolean** to tell if the user have done its daily `journa` command.
@@ -167,6 +174,7 @@ The `user_journa` is the method which return a **boolean** to tell if the user h
 #### Return
 Return a `Boolean`. The **status** of the user if it has made his daily **journa** command.
 
+___
 
 ### user_pity
 The `user_pity` is the method which return an **int** to tell in how many **invocations** the **pity** will strikes.
@@ -177,6 +185,7 @@ The `user_pity` is the method which return an **int** to tell in how many **invo
 #### Return
 Return an **int** to tell in how many **invocations** the **pity** will strikes.
 
+___
 
 ### user_vortex_stats
 The `user_vortex_stats` is the method which return the current user **floor** of the **vortex** and the number of **trys** the user has done in the **vortex**.
