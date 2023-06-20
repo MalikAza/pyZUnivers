@@ -16,10 +16,10 @@ def _get_datas(url):
     return datas
 
 def user_journa(username):
-    """arg: discord username (ex: ZeratoR#1337)
+    """arg: discord username (ex: zerator)
     return: bool"""
     full_user = urllib.parse.quote(str(username))
-    activity_datas = _get_datas(f"{base_url}user/{full_user}/activity") # api req
+    activity_datas = _get_datas(f"{base_url}loot/{full_user}?year=0") # api req
     last_loot_count = activity_datas["lootInfos"][364]["count"]
 
     if last_loot_count == 0:
