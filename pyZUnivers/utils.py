@@ -2,6 +2,7 @@ import requests
 
 API_BASE_URL = "https://zunivers-api.zerator.com/public"
 PLAYER_BASE_URL = "https://zunivers.zerator.com/joueur"
+FULL_DATE_FORMAT = "%Y-%m-%dT%H:%M:%S"
 
 class ZUniversAPIError(Exception):
     def __init__(self, url) -> None:

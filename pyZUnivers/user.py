@@ -1,6 +1,7 @@
 import urllib.parse
 from .banners import UserBanner
 from .leaderboards import UserLeaderboards
+from .subscription import Subscription
 from .utils import (
     PLAYER_BASE_URL,
     API_BASE_URL,
@@ -67,3 +68,51 @@ class User:
     @property
     def leaderboards(self) -> UserLeaderboards:
         return UserLeaderboards(self.__leaderboards)
+    
+    @property
+    def cards(self) -> int:
+        return self.__user['inventoryCount']
+    
+    @property
+    def unique_cards(self) -> str:
+        return f"{self.__user['inventoryUniqueCount']}/{self.__user['itemCount']}"
+    
+    @property
+    def unique_golden_cards(self) -> str:
+        return f"{self.__user['inventoryUniqueGoldenCount']}/{self.__user['itemCount']}"
+    
+    @property
+    def unique_constellation_cards(self) -> str:
+        return f"{self.__user['inventoryUniqueUpgradableCount']}/{self.__user['upgradableItemCount']}"
+    
+    @property
+    def unique_golden_constellation_cards(self) -> str:
+        return f"{self.__user['inventoryUniqueGoldenUpgradableCount']}/{self.__user['upgradableItemCount']}"
+    
+    @property
+    def tickets(self) -> int:
+        return self.__user['luckyCount']
+    
+    @property
+    def achievements(self) -> str:
+        return f"{self.__user['achievementLogCount']}/{self.__user['achievementCount']}"
+    
+    @property
+    def subscription(self):
+        sub = self.__user['subscription']
+
+        if not sub: return False
+        return Subscription(sub)
+    
+    @property
+    def tradeless(self):
+        if self.__user['tradeCount'] == 0: return True
+        return False
+    
+    @property
+    def today_trades(self) -> str:
+        return f"{self.__user['tradeCountToday']}/{self.__user['tradeLimit']}"
+    
+    @property
+    def subscription_bonus(self) -> str:
+        return f"{self.__user['subscriptionBonusCount']}/{self.__user['subscriptionBonusLimit']}"
