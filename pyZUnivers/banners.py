@@ -1,5 +1,5 @@
-class Banner:
-    def __init__(self, payload = None) -> None:
+class UserBanner:
+    def __init__(self, payload) -> None:
         self.__payload = payload
         self.__item = payload['banner']
     
