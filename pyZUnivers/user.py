@@ -71,48 +71,48 @@ class User:
     
     @property
     def cards(self) -> int:
-        return self.__user['inventoryCount']
+        return self.__base_infos['inventoryCount']
     
     @property
     def unique_cards(self) -> str:
-        return f"{self.__user['inventoryUniqueCount']}/{self.__user['itemCount']}"
+        return f"{self.__base_infos['inventoryUniqueCount']}/{self.__base_infos['itemCount']}"
     
     @property
     def unique_golden_cards(self) -> str:
-        return f"{self.__user['inventoryUniqueGoldenCount']}/{self.__user['itemCount']}"
+        return f"{self.__base_infos['inventoryUniqueGoldenCount']}/{self.__base_infos['itemCount']}"
     
     @property
     def unique_constellation_cards(self) -> str:
-        return f"{self.__user['inventoryUniqueUpgradableCount']}/{self.__user['upgradableItemCount']}"
+        return f"{self.__base_infos['inventoryUniqueUpgradableCount']}/{self.__base_infos['upgradableItemCount']}"
     
     @property
     def unique_golden_constellation_cards(self) -> str:
-        return f"{self.__user['inventoryUniqueGoldenUpgradableCount']}/{self.__user['upgradableItemCount']}"
+        return f"{self.__base_infos['inventoryUniqueGoldenUpgradableCount']}/{self.__base_infos['upgradableItemCount']}"
     
     @property
     def tickets(self) -> int:
-        return self.__user['luckyCount']
+        return self.__base_infos['luckyCount']
     
     @property
     def achievements(self) -> str:
-        return f"{self.__user['achievementLogCount']}/{self.__user['achievementCount']}"
+        return f"{self.__base_infos['achievementLogCount']}/{self.__base_infos['achievementCount']}"
     
     @property
     def subscription(self):
-        sub = self.__user['subscription']
+        sub = self.__base_infos['subscription']
 
         if not sub: return False
         return Subscription(sub)
     
     @property
     def tradeless(self):
-        if self.__user['tradeCount'] == 0: return True
+        if self.__base_infos['tradeCount'] == 0: return True
         return False
     
     @property
     def today_trades(self) -> str:
-        return f"{self.__user['tradeCountToday']}/{self.__user['tradeLimit']}"
+        return f"{self.__base_infos['tradeCountToday']}/{self.__base_infos['tradeLimit']}"
     
     @property
     def subscription_bonus(self) -> str:
-        return f"{self.__user['subscriptionBonusCount']}/{self.__user['subscriptionBonusLimit']}"
+        return f"{self.__base_infos['subscriptionBonusCount']}/{self.__base_infos['subscriptionBonusLimit']}"

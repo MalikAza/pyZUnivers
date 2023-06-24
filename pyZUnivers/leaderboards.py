@@ -1,3 +1,5 @@
+from typing import Union
+
 class _LeaderBoardData:
 
     def __init__(self, datas) -> None:
@@ -31,47 +33,49 @@ class UserLeaderboards:
             setattr(self, f'__{leaderboard["type"]}', leaderboard)
 
     @property
-    def globals(self):
+    def globals(self) -> _LeaderBoard:
         return _LeaderBoard(getattr(self, '__GLOBAL'))
     
     @property
-    def tradeless(self):
-        tradeless = getattr(self, '__TRADELESS')
-
-        if not tradeless: return False
-        return _LeaderBoard(tradeless)
+    def tradeless(self) -> Union[False, _LeaderBoard]:
+        try:
+            tradeless = getattr(self, '__TRADELESS')
+            return _LeaderBoard(tradeless)
+        except AttributeError:
+            return False
     
     @property
-    def inventory_unique(self):
+    def inventory_unique(self) -> _LeaderBoard:
         return _LeaderBoard(getattr(self, '__INVENTORY_UNIQUE'))
     
     @property
-    def inventory_unique_normal(self):
+    def inventory_unique_normal(self) -> _LeaderBoard:
         return _LeaderBoard(getattr(self, '__INVENTORY_UNIQUE_NORMAL'))
     
     @property
-    def challenge(self):
+    def challenge(self) -> _LeaderBoard:
         return _LeaderBoard(getattr(self, '__CHALLENGE'))
     
     @property
-    def inventory_unique_golden(self):
+    def inventory_unique_golden(self) -> _LeaderBoard:
         return _LeaderBoard(getattr(self, '__INVENTORY_UNIQUE_GOLDEN'))
     
     @property
-    def inventory(self):
+    def inventory(self) -> _LeaderBoard:
         return _LeaderBoard(getattr(self, '__INVENTORY'))
     
     @property
-    def constellations(self):
-        constellation = getattr(self, '__UPGRADE')
-
-        if not constellation: return False
-        return _LeaderBoard(constellation)
+    def constellations(self) -> Union[False, _LeaderBoard]:
+        try:
+            constellation = getattr(self, '__UPGRADE')
+            return _LeaderBoard(constellation)
+        except AttributeError:
+            return False
     
     @property
-    def achievement(self):
+    def achievement(self) -> _LeaderBoard:
         return _LeaderBoard(getattr(self, '__ACHIEVEMENT'))
     
     @property
-    def reputation(self):
+    def reputation(self) -> _LeaderBoard:
         return _LeaderBoard(getattr(self, '__REPUTATION'))
