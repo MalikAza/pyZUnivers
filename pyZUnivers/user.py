@@ -2,6 +2,7 @@ import urllib.parse
 from .banners import UserBanner
 from .leaderboards import UserLeaderboards
 from .subscription import Subscription
+from .overview import UserOverview
 from .utils import (
     PLAYER_BASE_URL,
     API_BASE_URL,
@@ -116,3 +117,6 @@ class User:
     @property
     def subscription_bonus(self) -> str:
         return f"{self.__base_infos['subscriptionBonusCount']}/{self.__base_infos['subscriptionBonusLimit']}"
+    
+    def get_overview(self) -> UserOverview:
+        return UserOverview(self.name)
