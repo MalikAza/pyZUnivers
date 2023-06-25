@@ -4,6 +4,7 @@ from .leaderboards import UserLeaderboards
 from .subscription import Subscription
 from .overview import UserOverview
 from .loot_infos import UserLootInfos
+from .challenges import Challenges
 from .utils import (
     PLAYER_BASE_URL,
     API_BASE_URL,
@@ -124,3 +125,6 @@ class User:
     
     def get_loot_infos(self) -> UserLootInfos:
         return UserLootInfos(self.name)
+    
+    def get_challenge(self) -> Challenges:
+        return Challenges(self.name)
