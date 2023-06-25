@@ -1,6 +1,7 @@
 import unittest
 import pyZUnivers
 from typing import List, Union
+from datetime import datetime
 from pyZUnivers.overview import UserOverview
 from pyZUnivers.pins import UserPin
 from pyZUnivers.pack import Pack
@@ -40,3 +41,21 @@ class UserOverviewTest(unittest.TestCase):
             self.assertIsInstance(pin.is_goldable, bool)
             self.assertIsInstance(pin.is_upgradable, bool)
             self.assertIsInstance(pin.is_golden, bool)
+
+    def test_invocations_before_pity(self) -> None:
+        self.assertIsInstance(self.overview_powaza.invocations_before_pity, int)
+
+    def test_vortex_name(self) -> None:
+        self.assertIsInstance(self.overview_powaza.vortex_name, str)
+
+    def test_vortex_start_date(self) -> None:
+        self.assertIsInstance(self.overview_powaza.vortex_start_date, datetime)
+
+    def test_vortex_end_date(self) -> None:
+        self.assertIsInstance(self.overview_powaza.vortex_end_date, datetime)
+
+    def test_vortex_floor(self) -> None:
+        self.assertIsInstance(self.overview_powaza.vortex_floor, int)
+
+    def test_vortex_tries(self) -> None:
+        self.assertIsInstance(self.overview_powaza.vortex_tries, int)
