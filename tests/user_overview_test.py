@@ -10,8 +10,7 @@ class UserOverviewTest(unittest.TestCase):
 
     def __init__(self, methodName: str = "runTest") -> None:
         super().__init__(methodName)
-        self.powaza = pyZUnivers.User('powaza')
-        self.overview_powaza = self.powaza.get_overview()
+        self.overview_powaza = pyZUnivers.get_user_overview('powaza')
 
     def test_overview(self) -> None:
         self.assertIsInstance(self.overview_powaza, UserOverview)

@@ -3,6 +3,7 @@ from .banners import UserBanner
 from .leaderboards import UserLeaderboards
 from .subscription import Subscription
 from .overview import UserOverview
+from .loot_infos import UserLootInfos
 from .utils import (
     PLAYER_BASE_URL,
     API_BASE_URL,
@@ -120,3 +121,6 @@ class User:
     
     def get_overview(self) -> UserOverview:
         return UserOverview(self.name)
+    
+    def get_loot_infos(self) -> UserLootInfos:
+        return UserLootInfos(self.name)
