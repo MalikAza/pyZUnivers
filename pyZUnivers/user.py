@@ -5,6 +5,7 @@ from .subscription import Subscription
 from .overview import UserOverview
 from .loot_infos import UserLootInfos
 from .challenges import Challenges
+from .reputation import UserReputation
 from .utils import (
     PLAYER_BASE_URL,
     API_BASE_URL,
@@ -128,3 +129,6 @@ class User:
     
     def get_challenge(self) -> Challenges:
         return Challenges(self.name)
+    
+    def get_reputation(self) -> UserReputation:
+        return UserReputation(self.name)
