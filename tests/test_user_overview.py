@@ -2,7 +2,6 @@ import unittest
 import pyZUnivers
 from typing import List, Union
 from datetime import datetime
-from pyZUnivers.overview import UserOverview
 from pyZUnivers.pins import UserPin
 from pyZUnivers.pack import Pack
 
@@ -10,10 +9,10 @@ class UserOverviewTest(unittest.TestCase):
 
     def __init__(self, methodName: str = "runTest") -> None:
         super().__init__(methodName)
-        self.overview_powaza = pyZUnivers.get_user_overview('powaza')
+        self.overview_powaza = pyZUnivers.UserOverview('powaza')
 
     def test_overview(self) -> None:
-        self.assertIsInstance(self.overview_powaza, UserOverview)
+        self.assertIsInstance(self.overview_powaza, pyZUnivers.UserOverview)
 
     def test_pins(self) -> None:
         self.assertIsInstance(self.overview_powaza.pins, List)

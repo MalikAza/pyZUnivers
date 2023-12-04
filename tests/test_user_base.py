@@ -48,10 +48,7 @@ class UserBaseTest(unittest.TestCase):
 
     def test_is_active(self) -> None:
         self.assertEqual(self.powaza.is_active, True)
-        # self.assertEqual(self.powi_aza.is_active, False)
-        # is actually True because of needing the discord username update
-        # &/or to trade for making it tradefull
-        # TODO : uncomment
+        self.assertEqual(self.powi_aza.is_active, False)
 
     def test_leaderboards(self) -> None:
         self.assertIsInstance(self.powaza.leaderboards, UserLeaderboards)

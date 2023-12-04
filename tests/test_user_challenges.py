@@ -1,17 +1,17 @@
 import unittest
 import pyZUnivers
 from typing import Union
-from pyZUnivers.challenges import _ChallengeAtrb, Challenges
+from pyZUnivers.challenges import _ChallengeAtrb
 from datetime import datetime
 
 class UserChallengesTest(unittest.TestCase):
 
     def __init__(self, methodName: str = "runTest") -> None:
         super().__init__(methodName)
-        self.__powaza_challenges = pyZUnivers.get_challenges('powaza')
+        self.__powaza_challenges = pyZUnivers.Challenges('powaza')
 
     def test_is_Challenge(self) -> None:
-        self.assertIsInstance(self.__powaza_challenges, Challenges)
+        self.assertIsInstance(self.__powaza_challenges, pyZUnivers.Challenges)
 
     def test_begin_date(self) -> None:
         self.assertIsInstance(self.__powaza_challenges.begin_date, datetime)
