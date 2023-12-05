@@ -28,6 +28,13 @@ class User:
         self.__user = self.__base_infos['user']
         self.__leaderboards = self.__base_infos['leaderboards']
 
+    # TODO: get_yearly
+    # @staticmethod
+    # def get_yearly(username: str):
+    #     username = username.removesuffix('#0')
+
+    #     parsed_username = urllib.parse.quote(username)
+
     @staticmethod
     def get_advent_calendar(username: str):
         username = username.removesuffix('#0')
