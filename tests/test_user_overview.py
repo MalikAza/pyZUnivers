@@ -46,8 +46,8 @@ class UserOverviewTest(unittest.TestCase):
     def test_vortex_name(self) -> None:
         self.assertIsInstance(self.overview_powaza.vortex_name, str)
 
-    def test_vortex_start_date(self) -> None:
-        self.assertIsInstance(self.overview_powaza.vortex_start_date, datetime)
+    def test_vortex_begin_date(self) -> None:
+        self.assertIsInstance(self.overview_powaza.vortex_begin_date, datetime)
 
     def test_vortex_end_date(self) -> None:
         self.assertIsInstance(self.overview_powaza.vortex_end_date, datetime)
