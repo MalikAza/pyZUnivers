@@ -1,6 +1,9 @@
+from api_responses import Ascension as AscensionType
+
 import requests
 from typing import List, Dict, TypedDict
 from datetime import datetime
+import urllib.parse
 
 API_BASE_URL = "https://zunivers-api.zerator.com/public"
 PLAYER_BASE_URL = "https://zunivers.zerator.com/joueur"
@@ -66,3 +69,20 @@ def is_advent_calendar() -> bool:
     day, month = [int(x) for x in datetime.now().strftime("%d-%m").split("-")]
     if month == 12 and 1 <= day <= 25: return True
     return False
+
+def get_ascension_leaderboard(*usernames: str):
+    usernames = list(map(lambda x: '&discordUserName=' + urllib.parse.quote(x.removesuffix('#0')), usernames))
+    url = f"{API_BASE_URL}/tower/leaderboard?seasonOffset=0"
+    for username in usernames: url += username
+
+    datas: AscensionType = get_datas(url)
+    users = datas["users"]
+    for user in users:
+        if not user["maxFloorIndex"]: user['maxFloorIndex'] = 0
+        user["maxFloorIndex"] += 1
+
+    return sorted(
+        users,
+        key=lambda x: (x["maxFloorIndex"], -x["towerLogCount"]),
+        reverse=True
+    )
