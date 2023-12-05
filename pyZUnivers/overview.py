@@ -30,7 +30,7 @@ class UserOverview:
         return self.__vortex_stats['towerName']
     
     @property
-    def vortex_start_date(self) -> datetime:
+    def vortex_begin_date(self) -> datetime:
         return datetime.strptime(self.__vortex_stats['towerSeasonBeginDate'], DATE_FORMAT)
 
     @property

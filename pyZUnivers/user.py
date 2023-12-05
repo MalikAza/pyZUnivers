@@ -1,4 +1,6 @@
 import urllib.parse
+from datetime import datetime
+
 from .banners import UserBanner
 from .leaderboards import UserLeaderboards
 from .subscription import Subscription
@@ -6,10 +8,13 @@ from .overview import UserOverview
 from .loot_infos import UserLootInfos
 from .challenges import Challenges
 from .reputation import UserReputation
+from .insomniaque import Insomniaque
 from .utils import (
     PLAYER_BASE_URL,
     API_BASE_URL,
-    get_datas
+    get_datas, 
+    is_advent_calendar,
+    Checker
 )
 
 class User:
@@ -20,6 +25,56 @@ class User:
         self.__base_infos = get_datas(f"{API_BASE_URL}/user/{self.__parsed_name}")
         self.__user = self.__base_infos['user']
         self.__leaderboards = self.__base_infos['leaderboards']
+
+    @staticmethod
+    def get_advent_calendar(username: str):
+        username = username.removesuffix('#0')
+
+        parsed_username = urllib.parse.quote(username)
+        calendar_datas = get_datas(f"{API_BASE_URL}calendar/{parsed_username}")
+        calendar = calendar_datas["calendars"]
+        calendar.sort(key=lambda x: x["index"])
+
+        if len(calendar) == 0: return False
+
+        index_date = int(datetime.now().strftime("%d")) - 1
+        today_calendar = calendar[index_date]
+
+        return today_calendar["openedDate"] != None
+
+    @staticmethod
+    def get_journa(username: str) -> bool:
+        username = username.removesuffix('#0')
+
+        parsed_username = urllib.parse.quote(username)
+        loot_datas = get_datas(f"{API_BASE_URL}/loot/{parsed_username}")
+
+        return loot_datas["lootInfos"][364]["count"] != 0
+
+    @staticmethod
+    def get_checker(username: str) -> Checker:
+        username = username.removesuffix('#0')
+
+        parsed_username = urllib.parse.quote(username)
+        loot_datas = get_datas(f"{API_BASE_URL}/loot/{parsed_username}")
+
+        loot_infos = loot_datas["lootInfos"]
+        # journa
+        last_loot_count = loot_infos[364]["count"]
+        journa = last_loot_count != 0
+        # bonus
+        last_weekly_loot = loot_infos[-7:]
+        bonus = False
+        for i in last_weekly_loot[::-1]:
+            if i['count'] >= 2000:
+                bonus = True
+                break
+        # advent
+        if is_advent_calendar():
+            advent = User.get_advent_calendar(username)
+        else: advent = None
+        
+        return {"journa": journa, "bonus": bonus, "advent": advent} 
 
     @property
     def url(self) -> str:
@@ -132,3 +187,6 @@ class User:
     
     def get_reputation(self) -> UserReputation:
         return UserReputation(self.name)
+
+    def get_insomniaque(self) -> Insomniaque:
+        return Insomniaque(self.name)
