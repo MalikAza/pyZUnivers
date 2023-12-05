@@ -40,7 +40,7 @@ class User:
         username = username.removesuffix('#0')
 
         parsed_username = urllib.parse.quote(username)
-        calendar_datas = get_datas(f"{API_BASE_URL}calendar/{parsed_username}")
+        calendar_datas = get_datas(f"{API_BASE_URL}/calendar/{parsed_username}")
         calendar = calendar_datas["calendars"]
         calendar.sort(key=lambda x: x["index"])
 
@@ -56,7 +56,7 @@ class User:
         username = username.removesuffix('#0')
 
         parsed_username = urllib.parse.quote(username)
-        calendar_datas: AdventCalendarType = get_datas(f"{API_BASE_URL}calendar/{parsed_username}")
+        calendar_datas: AdventCalendarType = get_datas(f"{API_BASE_URL}/calendar/{parsed_username}")
         calendar = calendar_datas['calendars']
         calendar.sort(key=lambda x: x["index"])
 
@@ -110,6 +110,10 @@ class User:
         else: advent = None
         
         return {"journa": journa, "bonus": bonus, "advent": advent} 
+
+    @staticmethod
+    def get_insomniaque(username: str) -> Insomniaque:
+        return Insomniaque(username)
 
     @property
     def url(self) -> str:
@@ -222,6 +226,3 @@ class User:
     
     def get_reputation(self) -> UserReputation:
         return UserReputation(self.name)
-
-    def get_insomniaque(self) -> Insomniaque:
-        return Insomniaque(self.name)

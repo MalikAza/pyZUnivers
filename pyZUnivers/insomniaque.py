@@ -10,8 +10,7 @@ from .utils import (
 class Insomniaque:
 
     def __init__(self, username: str) -> None:
-        self.name = username.removesuffix('#0')
-        self.__parsed_name = urllib.parse.quote(self.name)
+        self.__parsed_name = urllib.parse.quote(username.removesuffix('#0'))
         datas : List[Achievement] = get_datas(f"{API_BASE_URL}/achievement/{self.__parsed_name}/8e260bf0-f945-44b2-a9d9-92bf839ee917")
         self.__datas = datas[2]
 
