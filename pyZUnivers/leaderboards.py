@@ -37,7 +37,7 @@ class UserLeaderboards:
         return _LeaderBoard(getattr(self, '__GLOBAL'))
     
     @property
-    def tradeless(self) -> Union[False, _LeaderBoard]:
+    def tradeless(self) -> Union[bool, _LeaderBoard]:
         try:
             tradeless = getattr(self, '__TRADELESS')
             return _LeaderBoard(tradeless)
@@ -65,7 +65,7 @@ class UserLeaderboards:
         return _LeaderBoard(getattr(self, '__INVENTORY'))
     
     @property
-    def constellations(self) -> Union[False, _LeaderBoard]:
+    def constellations(self) -> Union[bool, _LeaderBoard]:
         try:
             constellation = getattr(self, '__UPGRADE')
             return _LeaderBoard(constellation)

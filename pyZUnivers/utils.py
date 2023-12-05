@@ -1,4 +1,4 @@
-from api_responses import Ascension as AscensionType
+from .api_responses import Ascension as AscensionType
 
 import requests
 from typing import List, Dict, TypedDict
@@ -12,22 +12,7 @@ DATE_TIME_FORMAT = "%Y-%m-%dT%H:%M:%S"
 FULL_DATE_TIME_FORMAT = f"{DATE_TIME_FORMAT}.%f"
 DISCORD_DATE_FORMAT = "%d/%m/%Y %H:%M"
 
-class AdventScore(TypedDict):
-    "1*": int
-    "2*": int
-    "ticket": int
-    "dust": int
-    "fragment": int
-    "balance": int
-    "1*+": int
-    "3*": int
-    "banner": int
-    "2*+": int
-    "3*+": int
-    "4*": int
-    "4*+": int
-
-ADVENT_INDEX: AdventScore = {
+ADVENT_INDEX = {
     "1*": 1,
     "2*": 2,
     "ticket": 3,

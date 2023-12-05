@@ -1,4 +1,4 @@
-from api_responses import Event as EventType
+from .api_responses import Event as EventType
 
 from datetime import datetime
 from typing import List
@@ -47,9 +47,9 @@ class Event:
 
 class Events:
     def __init__(self) -> None:
-        self.__datas: List[EventType]|[] = get_datas(f"{API_BASE_URL}/event/current")
+        self.__datas: List[EventType]|List = get_datas(f"{API_BASE_URL}/event/current")
     
-    def get(self) -> List[Event]|[]:
+    def get(self) -> List[Event]|List:
         tmp = []
         for event_payload in self.__datas:
             tmp.append(Event(event_payload))
