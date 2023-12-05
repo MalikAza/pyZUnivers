@@ -9,12 +9,14 @@ from .loot_infos import UserLootInfos
 from .challenges import Challenges
 from .reputation import UserReputation
 from .insomniaque import Insomniaque
+from .api_responses import AdventCalendar as AdventCalendarType
 from .utils import (
     PLAYER_BASE_URL,
     API_BASE_URL,
     get_datas, 
     is_advent_calendar,
-    Checker
+    Checker, 
+    ADVENT_INDEX
 )
 
 class User:
@@ -41,6 +43,32 @@ class User:
         today_calendar = calendar[index_date]
 
         return today_calendar["openedDate"] != None
+
+    @staticmethod
+    def get_advent_score(username: str) -> int:
+        username = username.removesuffix('#0')
+
+        parsed_username = urllib.parse.quote(username)
+        calendar_datas: AdventCalendarType = get_datas(f"{API_BASE_URL}calendar/{parsed_username}")
+        calendar = calendar_datas['calendars']
+        calendar.sort(key=lambda x: x["index"])
+
+        index_date = int(datetime.now().strftime("%d"))
+        calendar_till_today = calendar[:index_date]
+
+        score = 0
+        for calendar in calendar_till_today:
+            if calendar['itemMetadata']:
+                rarity = f'{calendar["itemMetadata"]["item"]["rarity"]}*'
+                if calendar['itemMetadata']['isGolden']: rarity += '+'
+                score += ADVENT_INDEX[rarity]
+            if calendar['banner']: score += ADVENT_INDEX['banner']
+            if calendar['loreDust']: score += ADVENT_INDEX['dust']
+            if calendar['loreFragment']: score += ADVENT_INDEX['fragment']
+            if calendar['balance']: score += ADVENT_INDEX['balance']
+            if calendar['luckyType']: score += ADVENT_INDEX['ticket']
+
+        return score
 
     @staticmethod
     def get_journa(username: str) -> bool:

@@ -9,6 +9,36 @@ DATE_TIME_FORMAT = "%Y-%m-%dT%H:%M:%S"
 FULL_DATE_TIME_FORMAT = f"{DATE_TIME_FORMAT}.%f"
 DISCORD_DATE_FORMAT = "%d/%m/%Y %H:%M"
 
+class AdventScore(TypedDict):
+    "1*": int
+    "2*": int
+    "ticket": int
+    "dust": int
+    "fragment": int
+    "balance": int
+    "1*+": int
+    "3*": int
+    "banner": int
+    "2*+": int
+    "3*+": int
+    "4*": int
+    "4*+": int
+
+ADVENT_INDEX: AdventScore = {
+    "1*": 1,
+    "2*": 2,
+    "ticket": 3,
+    "dust": 4,
+    "fragment": 5,
+    "balance": 6,
+    "1*+": 7,
+    "3*": 8,
+    "banner": 9,
+    "2*+": 10,
+    "3*+": 11,
+    "4*": 12,
+    "4*+": 13
+}
 class Checker(TypedDict):
     journa: bool
     bonus: bool
