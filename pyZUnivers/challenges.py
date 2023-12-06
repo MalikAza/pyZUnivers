@@ -41,7 +41,7 @@ class _ChallengeAtrb:
 class Challenges:
 
     def __init__(self, username : str = None) -> None:
-        self.name = username.replace('#0', '') if username and username.endswith('#0') else username
+        self.name = username.removesuffix('#0')
         self.__parsed_name = urllib.parse.quote(self.name) if username else ""
         self.__infos: List[ChallengeType] = get_datas(f'{API_BASE_URL}/challenge/{self.__parsed_name}')
 

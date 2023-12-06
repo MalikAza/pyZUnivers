@@ -27,7 +27,7 @@ class _ReputationClan:
 class UserReputation:
 
     def __init__(self, username: str) -> None:
-        self.name = username.replace('#0', '') if username.endswith('#0') else username
+        self.name = username.removesuffix('#0')
         self.__parsed_name = urllib.parse.quote(self.name)
         datas: Tower = get_datas(f"{API_BASE_URL}/tower/{self.__parsed_name}")
         self.__infos = datas['reputations']

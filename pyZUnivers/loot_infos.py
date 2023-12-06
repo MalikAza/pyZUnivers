@@ -10,7 +10,7 @@ from .utils import (
 class UserLootInfos:
 
     def __init__(self, username: str) -> None:
-        self.name = username.replace('#0', '') if username.endswith('#0') else username
+        self.name = username.removesuffix('#0')
         self.__parsed_name = urllib.parse.quote(self.name)
         datas: LootInfos = get_datas(f"{API_BASE_URL}/loot/{self.__parsed_name}")
         self.__infos = datas['lootInfos']
