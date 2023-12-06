@@ -1,6 +1,6 @@
 from typing import TypedDict, List
 
-from items import ItemMetaData
+from .items import ItemMetaData
 
 class Calendar(TypedDict):
     index: int

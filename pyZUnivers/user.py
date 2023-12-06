@@ -20,6 +20,96 @@ from .utils import (
 )
 
 class User:
+    """ZUniver player various informations
+    
+    All methods (static or not) make an additional API request"""
+
+    name: str
+    """Discord / ZUnivers player username"""
+
+    url: str
+    """URL to ZUnivers player page"""
+
+    id: str
+    """ZUnivers player identification"""
+
+    discord_id: str
+    """Discord user identification"""
+
+    discord_avatar: str
+    """URL to Discord user avatar"""
+
+    balance: int
+    """a.k.a.: ZUMonnaie"""
+
+    lore_dust: int
+    """a.k.a.: Poudre créatrice"""
+
+    lore_fragment: int
+    """a.k.a.: Cristal d'histoire"""
+
+    upgrade_dust: int
+    """a.k.a.: Eclat d'étoile"""
+
+    rank: int
+    """ZUnivers rank name"""
+
+    banner: UserBanner
+    """"""
+
+    is_active: bool
+    """Is True if the ZUniver player have done
+    a command the last 30 days, either False."""
+
+    leaderboards: UserLeaderboards
+    """"""
+
+    cards: int
+    """Number of cards the player owns"""
+
+    unique_cards: str
+    """Number of unique cards the player owns
+
+    format: `unique_cards`/`possible_unique_cards`"""
+
+    unique_golden_cards: str
+    """Number of unique golden cards the player owns
+
+    format: `unique_golden_cards`/`possible_unique_golden_cards`"""
+
+    unique_constellation_cards: str
+    """Number of unique constellation cards the player owns
+
+    format: `unique_constellation_cards`/`possible_unique_constellation_cards`"""
+
+    unique_golden_constellation_cards: str
+    """Number of unique golden constellation cards the player owns
+
+    format: `unique_golden_constellation_cards`/`possible_unique_golden_constellation_cards`"""
+
+    tickets: int
+    """Number of tickets the player have scratched"""
+
+    achievements: str
+    """Number of achievement the player have done
+    
+    format: `achievements_done`/`achievements_possible`"""
+
+    subscription: bool|Subscription
+    """Informations about the player ZUnivers subscription"""
+
+    tradeless: bool
+    """Is True if the player has never made a trade, either False"""
+
+    today_trades: str
+    """Number of trades the player have made today
+    
+    format: `trades_made_today`/`trade_possible_today`"""
+
+    subscription_bonus: str
+    """Number of player subscription bonus
+    
+    format: `subscription_bonus_obtained`/`subscription_bonus_possible`"""
 
     def __init__(self, username : str) -> None:
         self.name = username.replace('#0', '') if username.endswith('#0') else username
@@ -30,6 +120,10 @@ class User:
 
     @staticmethod
     def get_yearly(username: str):
+        """
+        Returns the number of days left for the user to complete a yearful
+        looting or False if it's complete.
+        """
         username = username.removesuffix('#0')
 
         parsed_username = urllib.parse.quote(username)
@@ -46,6 +140,10 @@ class User:
 
     @staticmethod
     def get_advent_calendar(username: str):
+        """
+        Checks if a user has opened their advent calendar for the
+        current day.
+        """
         username = username.removesuffix('#0')
 
         parsed_username = urllib.parse.quote(username)
@@ -62,6 +160,10 @@ class User:
 
     @staticmethod
     def get_advent_score(username: str) -> int:
+        """
+        Calculates the advent score for a given username by retrieving
+        calendar data and calculating the score based on various criteria.
+        """
         username = username.removesuffix('#0')
 
         parsed_username = urllib.parse.quote(username)
@@ -88,6 +190,10 @@ class User:
 
     @staticmethod
     def get_journa(username: str) -> bool:
+        """
+        Returns a boolean indicating whether the user
+        have done the journa command or not.
+        """
         username = username.removesuffix('#0')
 
         parsed_username = urllib.parse.quote(username)
@@ -97,6 +203,10 @@ class User:
 
     @staticmethod
     def get_checker(username: str) -> Checker:
+        """
+        Returns a dictionary of boolean containing information
+        about user journa, bonus and advent calendar.
+        """
         username = username.removesuffix('#0')
 
         parsed_username = urllib.parse.quote(username)
@@ -118,11 +228,23 @@ class User:
             advent = User.get_advent_calendar(username)
         else: advent = None
         
-        return {"journa": journa, "bonus": bonus, "advent": advent} 
+        return {"journa": journa, "bonus": bonus, "advent": advent}
 
     @staticmethod
     def get_insomniaque(username: str) -> Insomniaque:
         return Insomniaque(username)
+
+    def get_overview(self) -> UserOverview:
+        return UserOverview(self.name)
+    
+    def get_loot_infos(self) -> UserLootInfos:
+        return UserLootInfos(self.name)
+    
+    def get_challenge(self) -> Challenges:
+        return Challenges(self.name)
+    
+    def get_reputation(self) -> UserReputation:
+        return UserReputation(self.name)
 
     @property
     def url(self) -> str:
@@ -205,14 +327,14 @@ class User:
         return f"{self.__base_infos['achievementLogCount']}/{self.__base_infos['achievementCount']}"
     
     @property
-    def subscription(self):
+    def subscription(self) -> bool|Subscription:
         sub = self.__base_infos['subscription']
 
         if not sub: return False
         return Subscription(sub)
     
     @property
-    def tradeless(self):
+    def tradeless(self) -> bool:
         if self.__base_infos['tradeCount'] == 0: return True
         return False
     
@@ -223,15 +345,3 @@ class User:
     @property
     def subscription_bonus(self) -> str:
         return f"{self.__base_infos['subscriptionBonusCount']}/{self.__base_infos['subscriptionBonusLimit']}"
-    
-    def get_overview(self) -> UserOverview:
-        return UserOverview(self.name)
-    
-    def get_loot_infos(self) -> UserLootInfos:
-        return UserLootInfos(self.name)
-    
-    def get_challenge(self) -> Challenges:
-        return Challenges(self.name)
-    
-    def get_reputation(self) -> UserReputation:
-        return UserReputation(self.name)
