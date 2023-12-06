@@ -1,6 +1,8 @@
 import urllib.parse
 from typing import List
 from datetime import datetime
+
+from api_responses import Overview
 from .pins import UserPin
 from .utils import (
     get_datas,
@@ -13,7 +15,7 @@ class UserOverview:
     def __init__(self, username: str) -> None:
         self.name = username.replace('#0', '') if username.endswith('#0') else username
         self.__parsed_name = urllib.parse.quote(self.name)
-        self.__infos = get_datas(f"{API_BASE_URL}/user/{self.__parsed_name}/overview")
+        self.__infos: Overview = get_datas(f"{API_BASE_URL}/user/{self.__parsed_name}/overview")
         self.__pins = self.__infos['pins']
         self.__vortex_stats = self.__infos['towerStat']
 

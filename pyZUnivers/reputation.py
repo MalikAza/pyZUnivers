@@ -1,4 +1,6 @@
 import urllib.parse
+
+from api_responses import Tower
 from .utils import (
     API_BASE_URL,
     get_datas
@@ -27,7 +29,8 @@ class UserReputation:
     def __init__(self, username: str) -> None:
         self.name = username.replace('#0', '') if username.endswith('#0') else username
         self.__parsed_name = urllib.parse.quote(self.name)
-        self.__infos = get_datas(f"{API_BASE_URL}/tower/{self.__parsed_name}")['reputations']
+        datas: Tower = get_datas(f"{API_BASE_URL}/tower/{self.__parsed_name}")
+        self.__infos = datas['reputations']
 
     @property
     def first(self) -> _ReputationClan:

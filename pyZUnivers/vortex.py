@@ -1,4 +1,6 @@
 from datetime import datetime
+
+from .api_responses import Season
 from .utils import (
     get_datas,
     API_BASE_URL,
@@ -51,7 +53,7 @@ class _FloorsDropRates:
 class Vortex:
 
     def __init__(self) -> None:
-        self.__season = get_datas(f'{API_BASE_URL}/tower/season')
+        self.__season: Season = get_datas(f'{API_BASE_URL}/tower/season')
         self.__tower = self.__season['tower']
 
     @property

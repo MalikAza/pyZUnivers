@@ -9,7 +9,7 @@ from .loot_infos import UserLootInfos
 from .challenges import Challenges
 from .reputation import UserReputation
 from .insomniaque import Insomniaque
-from .api_responses import AdventCalendar as AdventCalendarType, LootInfos
+from .api_responses import AdventCalendar as AdventCalendarType, LootInfos, Base
 from .utils import (
     PLAYER_BASE_URL,
     API_BASE_URL,
@@ -24,7 +24,7 @@ class User:
     def __init__(self, username : str) -> None:
         self.name = username.replace('#0', '') if username.endswith('#0') else username
         self.__parsed_name = urllib.parse.quote(self.name)
-        self.__base_infos = get_datas(f"{API_BASE_URL}/user/{self.__parsed_name}")
+        self.__base_infos: Base = get_datas(f"{API_BASE_URL}/user/{self.__parsed_name}")
         self.__user = self.__base_infos['user']
         self.__leaderboards = self.__base_infos['leaderboards']
 
