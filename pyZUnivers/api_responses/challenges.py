@@ -13,7 +13,7 @@ class ChallengeProgress(TypedDict):
     max: int
     items: None|str
 
-class Challenges(TypedDict):
+class Challenge(TypedDict):
     id: str
     beginDate: str
     endDate: str

@@ -9,7 +9,7 @@ from .loot_infos import UserLootInfos
 from .challenges import Challenges
 from .reputation import UserReputation
 from .insomniaque import Insomniaque
-from .api_responses import AdventCalendar as AdventCalendarType
+from .api_responses import AdventCalendar as AdventCalendarType, LootInfos
 from .utils import (
     PLAYER_BASE_URL,
     API_BASE_URL,
@@ -33,7 +33,7 @@ class User:
         username = username.removesuffix('#0')
 
         parsed_username = urllib.parse.quote(username)
-        loot_datas = get_datas(f"{API_BASE_URL}/loot/{parsed_username}")
+        loot_datas: LootInfos = get_datas(f"{API_BASE_URL}/loot/{parsed_username}")
         loot_infos = loot_datas["lootInfos"]
 
         for index, item in enumerate(loot_infos[::-1]):
@@ -49,7 +49,7 @@ class User:
         username = username.removesuffix('#0')
 
         parsed_username = urllib.parse.quote(username)
-        calendar_datas = get_datas(f"{API_BASE_URL}/calendar/{parsed_username}")
+        calendar_datas: AdventCalendarType = get_datas(f"{API_BASE_URL}/calendar/{parsed_username}")
         calendar = calendar_datas["calendars"]
         calendar.sort(key=lambda x: x["index"])
 
@@ -91,7 +91,7 @@ class User:
         username = username.removesuffix('#0')
 
         parsed_username = urllib.parse.quote(username)
-        loot_datas = get_datas(f"{API_BASE_URL}/loot/{parsed_username}")
+        loot_datas: LootInfos = get_datas(f"{API_BASE_URL}/loot/{parsed_username}")
 
         return loot_datas["lootInfos"][364]["count"] != 0
 
@@ -100,7 +100,7 @@ class User:
         username = username.removesuffix('#0')
 
         parsed_username = urllib.parse.quote(username)
-        loot_datas = get_datas(f"{API_BASE_URL}/loot/{parsed_username}")
+        loot_datas: LootInfos = get_datas(f"{API_BASE_URL}/loot/{parsed_username}")
 
         loot_infos = loot_datas["lootInfos"]
         # journa

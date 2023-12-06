@@ -2,7 +2,7 @@ import urllib.parse
 from datetime import datetime
 from typing import List
 
-from .api_responses import Challenges as ChallengesType
+from .api_responses import Challenge as ChallengeType
 from .utils import (
     API_BASE_URL,
     FULL_DATE_TIME_FORMAT,
@@ -43,7 +43,7 @@ class Challenges:
     def __init__(self, username : str = None) -> None:
         self.name = username.replace('#0', '') if username and username.endswith('#0') else username
         self.__parsed_name = urllib.parse.quote(self.name) if username else ""
-        self.__infos: List[ChallengesType] = get_datas(f'{API_BASE_URL}/challenge/{self.__parsed_name}')
+        self.__infos: List[ChallengeType] = get_datas(f'{API_BASE_URL}/challenge/{self.__parsed_name}')
 
     @property
     def first(self) -> _ChallengeAtrb:
