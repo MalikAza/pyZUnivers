@@ -2,7 +2,6 @@ from typing import TypedDict, List
 
 from .items import Inventory, BestInventoryLog
 from .towers import TowerStat, Reputation
-from .leaderboards import LeaderboardObject
 
 class Rank(TypedDict):
     id: str
@@ -63,6 +62,24 @@ class Tower(TypedDict):
 class Subscription:
     beginDate: str
     endDate: str
+
+class DataTotal(TypedDict):
+    total: int
+
+class DataUpgrade(DataTotal):
+    maxed: int
+
+class DataAchievement(TypedDict):
+    achievementCount: int
+
+class DataInventory(DataTotal):
+    totalDistinct: int
+
+class LeaderboardObject(TypedDict):
+    position: int
+    score: int
+    type: str
+    data: None|DataInventory|DataTotal|DataAchievement|DataUpgrade
 
 class Base(TypedDict):
     user: User

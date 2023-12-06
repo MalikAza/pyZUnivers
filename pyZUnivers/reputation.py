@@ -1,6 +1,6 @@
 import urllib.parse
 
-from api_responses import Tower
+from .api_responses import Tower
 from .utils import (
     API_BASE_URL,
     get_datas
