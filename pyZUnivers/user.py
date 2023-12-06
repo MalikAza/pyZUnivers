@@ -28,12 +28,21 @@ class User:
         self.__user = self.__base_infos['user']
         self.__leaderboards = self.__base_infos['leaderboards']
 
-    # TODO: get_yearly
-    # @staticmethod
-    # def get_yearly(username: str):
-    #     username = username.removesuffix('#0')
+    @staticmethod
+    def get_yearly(username: str):
+        username = username.removesuffix('#0')
 
-    #     parsed_username = urllib.parse.quote(username)
+        parsed_username = urllib.parse.quote(username)
+        loot_datas = get_datas(f"{API_BASE_URL}loot/{parsed_username}")
+        loot_infos = loot_datas["lootInfos"]
+
+        for index, item in enumerate(loot_infos[::-1]):
+            if item["count"] == 0:
+                days_left = 365 - (index+1)
+                return days_left
+                break
+        else:
+            return False
 
     @staticmethod
     def get_advent_calendar(username: str):
