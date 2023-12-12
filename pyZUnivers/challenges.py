@@ -25,6 +25,7 @@ class _ChallengeAtrb:
 
         if achieved:
             self.achieved_date = datetime.strptime(achieved['date'], FULL_DATE_TIME_FORMAT)
+            self.progress = '✅'
 
     @property
     def name(self) -> str:
