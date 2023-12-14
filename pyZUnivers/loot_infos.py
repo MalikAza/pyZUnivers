@@ -1,5 +1,6 @@
 import urllib.parse
 from datetime import datetime, timedelta
+import pytz
 
 from .api_responses import LootInfos
 from .utils import (
@@ -23,7 +24,7 @@ class UserLootInfos:
             if i['count'] >= 2000:
                 self.bonus = True
 
-                now = datetime.now().date()
+                now = datetime.now(pytz.timezone('Europe/Paris')).date()
                 when_days = timedelta(days=n)
                 self.bonus_when = now + when_days
 

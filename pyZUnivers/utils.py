@@ -3,6 +3,7 @@ from .api_responses import Ascension as AscensionType
 import requests
 from typing import List, Dict, TypedDict
 from datetime import datetime
+import pytz
 import urllib.parse
 
 API_BASE_URL = "https://zunivers-api.zerator.com/public"
@@ -51,7 +52,7 @@ def get_datas(url) -> List | Dict:
     return datas
 
 def is_advent_calendar() -> bool:
-    day, month = [int(x) for x in datetime.now().strftime("%d-%m").split("-")]
+    day, month = [int(x) for x in datetime.now(pytz.timezone('Europe/Paris')).strftime("%d-%m").split("-")]
     if month == 12 and 1 <= day <= 25: return True
     return False
 

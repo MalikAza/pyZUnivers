@@ -1,5 +1,6 @@
 import urllib.parse
 from datetime import datetime
+import pytz
 
 from .banners import UserBanner
 from .leaderboards import UserLeaderboards
@@ -153,7 +154,7 @@ class User:
 
         if len(calendar) == 0: return False
 
-        index_date = int(datetime.now().strftime("%d")) - 1
+        index_date = int(datetime.now(pytz.timezone('Europe/Paris')).strftime("%d")) - 1
         today_calendar = calendar[index_date]
 
         return today_calendar["openedDate"] != None
@@ -171,7 +172,7 @@ class User:
         calendar = calendar_datas['calendars']
         calendar.sort(key=lambda x: x["index"])
 
-        index_date = int(datetime.now().strftime("%d"))
+        index_date = int(datetime.now(pytz.timezone('Europe/Paris')).strftime("%d"))
         calendar_till_today = calendar[:index_date]
 
         score = 0
