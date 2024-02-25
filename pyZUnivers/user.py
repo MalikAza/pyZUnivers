@@ -208,28 +208,14 @@ class User:
         Returns a dictionary of boolean containing information
         about user journa, bonus and advent calendar.
         """
-        username = username.removesuffix('#0')
+        loot_infos = UserLootInfos(username)
 
-        parsed_username = urllib.parse.quote(username)
-        loot_datas: LootInfos = get_datas(f"{API_BASE_URL}/loot/{parsed_username}")
-
-        loot_infos = loot_datas["lootInfos"]
-        # journa
-        last_loot_count = loot_infos[364]["count"]
-        journa = last_loot_count != 0
-        # bonus
-        last_weekly_loot = loot_infos[-7:]
-        bonus = False
-        for i in last_weekly_loot[::-1]:
-            if i['count'] >= 2000:
-                bonus = True
-                break
         # advent
         if is_advent_calendar():
             advent = User.get_advent_calendar(username)
         else: advent = None
         
-        return {"journa": journa, "bonus": bonus, "advent": advent}
+        return {"journa": loot_infos.journa, "bonus": loot_infos.bonus, "advent": advent}
 
     @staticmethod
     def get_insomniaque(username: str) -> Insomniaque:

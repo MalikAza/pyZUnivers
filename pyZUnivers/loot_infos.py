@@ -14,24 +14,32 @@ class UserLootInfos:
         self.name = username.removesuffix('#0')
         self.__parsed_name = urllib.parse.quote(self.name)
         datas: LootInfos = get_datas(f"{API_BASE_URL}/loot/{self.__parsed_name}")
-        self.__infos = datas['lootInfos']
-        self.__last_loot_count = self.__infos[-1]['count']
-        self.__last_weekly_loot = self.__infos[-7:]
+        loot_infos = datas['lootInfos']
+        self.__last_loot_count = loot_infos[-1]['count']
 
         # ===== bonus & bonus_when ===== #
-        n = 7
-        for i in self.__last_weekly_loot[::-1]:
-            if i['count'] >= 2000:
-                self.bonus = True
-
-                now = datetime.now(pytz.timezone('Europe/Paris')).date()
-                when_days = timedelta(days=n)
-                self.bonus_when = now + when_days
-
+        last_loots = loot_infos[::-1]
+        for index, loot in enumerate(last_loots):
+            if loot['count'] >= 2000:
+                bonus_index = index
                 break
-            n -= 1
-        else:
-            self.bonus = False
+
+        last_bonus = last_loots[:bonus_index]
+        self.__journa_count = 0
+        for loot in last_bonus:
+            if loot['count'] == 0: continue
+            self.__journa_count += 1
+
+    @property
+    def bonus(self) -> bool:
+        return not self.__journa_count == 7
+
+    @property
+    def bonus_when(self) -> '_Date':
+        now = datetime.now(pytz.timezone('Europe/Paris')).date()
+        when_days = timedelta(days=7-self.__journa_count)
+
+        return now + when_days
 
     @property
     def journa(self) -> bool:
