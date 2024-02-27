@@ -10,7 +10,11 @@ from .utils import (
 
 CATEGORY_BASE_URL = f"{API_BASE_URL}/achievement"
 LOOT_CATEGORY_ID = "8e260bf0-f945-44b2-a9d9-92bf839ee917"
-YEARLY_ACHIEVEMENT_ID = "5f2d1288-e3f4-4313-b2ad-d944fbf8e6c7"
+YEARLY_ACHIEVEMENT_IDS = [
+    'a43f9fdc-1b05-402e-aae1-8d4fa0592327',
+    '60c91e97-df2f-420d-a5db-1225e6f73703',
+    '5f2d1288-e3f4-4313-b2ad-d944fbf8e6c7'
+]
 
 class _YearError(Exception):
 
@@ -25,23 +29,26 @@ class Achievements:
     def __get_category(self, category_id: str) -> List[Achievement]:
         return get_datas(f"{CATEGORY_BASE_URL}/{self.__parsed_name}/{category_id}")
 
-    def get_yearly(self, year: int) -> Union[bool, '_Date']:
+    def get_yearly(self, year: int) -> bool|int:
         if 0 > year > 3:
-            raise _YearError
+            raise _YearError()
         
         category: List[Achievement] = self.__get_category(LOOT_CATEGORY_ID)
-        achievement = [x for x in category if x["achievement"]["id"] == YEARLY_ACHIEVEMENT_ID][0]
+        achievement = [x for x in category if x["achievement"]["id"] == YEARLY_ACHIEVEMENT_IDS[year-1]][0]
 
+        # achievement unlocked
+        progress = achievement['progress']
+        if not progress: return False
+
+        # achievement locked
         progress_items = achievement["progress"]["items"]
-        done = 0
-        for progress in progress_items:
-            if progress["done"]: done += 1
-            elif '/365' in progress['name']:
-                todo = progress['name']
-                todo = todo.replace('◇ ', '')
-                current = int(todo.split('/')[0])
-                days_todo = 365 - current
 
-        if done >= year:
-            return False
+        undone = 0
+        for item in progress_items:
+            if not item['done']: undone += 1
+            if '/365' in item['name']:
+                current = int(item['name'].replace('◇ ', '').split('/')[0])
+
+        days_todo = 365 - current + (365*(undone-1))
+
         return days_todo
