@@ -10,6 +10,7 @@ from .loot_infos import UserLootInfos
 from .challenges import Challenges
 from .reputation import UserReputation
 from .insomniaque import Insomniaque
+from .achievements import Achievements
 from .api_responses import AdventCalendar as AdventCalendarType, LootInfos, Base
 from .utils import (
     PLAYER_BASE_URL,
@@ -120,24 +121,12 @@ class User:
         self.__leaderboards = self.__base_infos['leaderboards']
 
     @staticmethod
-    def get_yearly(username: str):
+    def get_yearly(username: str, year: int):
         """
         Returns the number of days left for the user to complete a yearful
         looting or False if it's complete.
         """
-        username = username.removesuffix('#0')
-
-        parsed_username = urllib.parse.quote(username)
-        loot_datas: LootInfos = get_datas(f"{API_BASE_URL}/loot/{parsed_username}")
-        loot_infos = loot_datas["lootInfos"]
-
-        for index, item in enumerate(loot_infos[::-1]):
-            if item["count"] == 0:
-                days_left = 365 - (index+1)
-                return days_left
-                break
-        else:
-            return False
+        return Achievements(username).get_yearly(year)
 
     @staticmethod
     def get_advent_calendar(username: str):

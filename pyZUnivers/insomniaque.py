@@ -7,7 +7,7 @@ from .utils import (
     API_BASE_URL
 )
 
-class Insomniaque:
+class Insomniaque: # TODO: Refacto with achievements.py
 
     def __init__(self, username: str) -> None:
         self.__parsed_name = urllib.parse.quote(username.removesuffix('#0'))

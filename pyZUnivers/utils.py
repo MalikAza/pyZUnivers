@@ -51,6 +51,12 @@ def get_datas(url) -> List | Dict:
 
     return datas
 
+def parse_username(username: str) -> tuple[str, str]:
+    username.removesuffix('#0')
+    parsed_name = urllib.parse.quote(username) if username else ""
+
+    return (username, parsed_name)
+
 def is_advent_calendar() -> bool:
     day, month = [int(x) for x in datetime.now(pytz.timezone('Europe/Paris')).strftime("%d-%m").split("-")]
     if month == 12 and 1 <= day <= 25: return True
