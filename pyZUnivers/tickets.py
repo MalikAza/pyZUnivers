@@ -39,7 +39,7 @@ class AutoGratting:
             'userBanner': self.userBanner
         }
 
-    def gratting(self, ticket_type: Literal['LR', 'RO', 'ZR']) -> Result:
+    async def gratting(self, ticket_type: Literal['LR', 'RO', 'ZR']) -> Result:
         datas: TicketCounts = get_datas(f"{self.base_url}/{self.ticket_code}/count")
         tickets_counters = datas['counts']
 
