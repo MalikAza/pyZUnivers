@@ -2,3 +2,13 @@
 
 # pyZUnivers
 ZUnivers API python wrapper
+## Installation
+Copy the `pyZUnivers` folder inside your Python `site-packages` folder.
+And don't forget to install dependencies:
+```bash
+pip install requirements.txt
+```
+or
+```bash
+pip3 install requirements.txt
+```
