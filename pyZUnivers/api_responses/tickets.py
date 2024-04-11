@@ -23,3 +23,7 @@ class GrattingResult(TypedDict):
     quantity: int|None
     ticketId: str|None
     userBanner: str|None
+
+class ExpiredLinkOrNoTicket(TypedDict):
+    code: str
+    message: str

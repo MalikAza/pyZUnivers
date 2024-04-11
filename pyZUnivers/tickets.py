@@ -1,5 +1,5 @@
 from typing import Literal, TypedDict, List
-from .api_responses.tickets import TicketCounts, Ticket, GrattingResult
+from .api_responses.tickets import TicketCounts, Ticket, GrattingResult, ExpiredLinkOrNoTicket
 from .api_responses.items import InventoryObject
 from .utils import (
     get_datas,
@@ -39,10 +39,13 @@ class AutoGratting:
             'userBanner': self.userBanner
         }
 
-    async def gratting(self, ticket_type: Literal['LR', 'RO', 'ZR']) -> Result:
-        datas: TicketCounts = get_datas(f"{self.base_url}/{self.ticket_code}/count")
-        tickets_counters = datas['counts']
+    async def gratting(self, ticket_type: Literal['LR', 'RO', 'ZR'] = 'LR') -> Result|str:
+        datas: TicketCounts|ExpiredLinkOrNoTicket = get_datas(f"{self.base_url}/{self.ticket_code}/count")
 
+        if all(key in datas for key in ExpiredLinkOrNoTicket.__annotations__.keys()):
+            return datas['message']
+
+        tickets_counters = datas['counts']
         match ticket_type:
             case 'LR':
                 count = tickets_counters['LUCKY_RAYOU']
@@ -53,7 +56,9 @@ class AutoGratting:
             case 'ZR':
                 count = tickets_counters['ZERA_3000']
                 ticket_type = 'ZERA_3000'
-        
+
+        if count == 0: return 'Aucun ticket de ce type trouvé.'
+
         while count > 0:
             ticket: Ticket = get_datas(f"{self.base_url}/{self.ticket_code}?type={ticket_type}")
             ticket_id = ticket['id']

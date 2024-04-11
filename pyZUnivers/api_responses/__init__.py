@@ -6,4 +6,4 @@ from .challenges import Challenge
 from .loots import LootInfos
 from .users import Overview, Tower, Base
 from .towers import Season
-from .tickets import TicketCounts, Ticket, GrattingResult
+from .tickets import TicketCounts, Ticket, GrattingResult, ExpiredLinkOrNoTicket
