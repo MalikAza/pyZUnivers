@@ -1,4 +1,5 @@
 from .api_responses import Ascension as AscensionType
+from .api_responses.items import UserInvetoryObject
 
 import requests
 from typing import List, Dict, TypedDict
@@ -89,3 +90,11 @@ def get_ascension_leaderboard(*usernames: str):
         key=lambda x: (x["maxFloorIndex"], -x["towerLogCount"]),
         reverse=True
     )
+
+def get_inventory(username: str, search: str = None): # TODO: Add filters
+    base_url = f"{API_BASE_URL}/inventory/{parse_username(username)[-1]}"
+    if search: base_url += f'?search={search}'
+
+    result: List[UserInvetoryObject] = get_datas(base_url)
+
+    return result

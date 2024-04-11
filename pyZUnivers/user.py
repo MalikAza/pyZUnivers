@@ -1,6 +1,7 @@
 import urllib.parse
 from datetime import datetime
 import pytz
+from typing import List
 
 from .banners import UserBanner
 from .leaderboards import UserLeaderboards
@@ -12,13 +13,15 @@ from .reputation import UserReputation
 from .insomniaque import Insomniaque
 from .achievements import Achievements
 from .api_responses import AdventCalendar as AdventCalendarType, LootInfos, Base
+from .api_responses.items import UserInvetoryObject
 from .utils import (
     PLAYER_BASE_URL,
     API_BASE_URL,
     get_datas, 
     is_advent_calendar,
     Checker, 
-    ADVENT_INDEX
+    ADVENT_INDEX,
+    get_inventory
 )
 
 class User:
@@ -321,3 +324,6 @@ class User:
     @property
     def subscription_bonus(self) -> str:
         return f"{self.__base_infos['subscriptionBonusCount']}/{self.__base_infos['subscriptionBonusLimit']}"
+    
+    def get_inventory(self, search: str = None) -> List[UserInvetoryObject]:
+        return get_inventory(self.__parsed_name, search)
