@@ -28,6 +28,7 @@ class AutoGratting:
         self.loreFragment = 0
         self.luckyLink = []
         self.userBanner = False
+        self.nbr_ticket_scratched = 0
 
     def __result(self) -> Result:
         return {
@@ -36,7 +37,8 @@ class AutoGratting:
             'loreDust': self.loreDust,
             'loreFragment': self.loreFragment,
             'luckyLink': self.luckyLink,
-            'userBanner': self.userBanner
+            'userBanner': self.userBanner,
+            'nbrTicketScratched': self.nbr_ticket_scratched
         }
 
     async def gratting(self, ticket_type: Literal['LR', 'RO', 'ZR'] = 'LR') -> Result|str:
@@ -59,6 +61,7 @@ class AutoGratting:
 
         if count == 0: return 'Aucun ticket de ce type trouvé.'
 
+        self.nbr_ticket_scratched = count
         while count > 0:
             ticket: Ticket = get_datas(f"{self.base_url}/{self.ticket_code}?type={ticket_type}")
             ticket_id = ticket['id']
@@ -75,6 +78,7 @@ class AutoGratting:
                 self.inventories.append(result['inventories'][0])
             elif result['luckyLink'] and result['quantity']:
                 count += 1
+                self.nbr_ticket_scratched += 1
             elif result['luckyLink']:
                 self.luckyLink.append(result['luckyLink'])
             elif result['userBanner']:
