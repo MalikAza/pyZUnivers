@@ -14,6 +14,7 @@ class Result(TypedDict):
     loreFragment: int
     luckyLink: List[str]
     userBanner: bool
+    nbrTicketScratched: int
 
 class AutoGratting:
 
