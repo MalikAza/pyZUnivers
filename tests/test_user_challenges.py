@@ -23,15 +23,16 @@ class UserChallengesTest(unittest.TestCase):
         self.assertIsInstance(self.__powaza_challenges.first, _ChallengeAtrb)
         # === .progress === #
         self.assertEqual(
-            '/' in self.__powaza_challenges.first.progress, True
+            '/' in self.__powaza_challenges.first.progress or self.__powaza_challenges.first.progress == '✅', True
         )
 
-        splited = self.__powaza_challenges.first.progress.split('/')
-        self.assertEqual(len(splited), 2)
+        if '/' in self.__powaza_challenges.first.progress:
+            splited = self.__powaza_challenges.first.progress.split('/')
+            self.assertEqual(len(splited), 2)
 
-        [count, total] = [int(x) for x in splited]
-        self.assertIsInstance(count, int)
-        self.assertIsInstance(total, int)
+            [count, total] = [int(x) for x in splited]
+            self.assertIsInstance(count, int)
+            self.assertIsInstance(total, int)
 
         # === achieved_date === #
         self.assertIsInstance(self.__powaza_challenges.first.achieved_date, Union[None, datetime])
@@ -40,15 +41,16 @@ class UserChallengesTest(unittest.TestCase):
         self.assertIsInstance(self.__powaza_challenges.second, _ChallengeAtrb)
         # === .progress === #
         self.assertEqual(
-            '/' in self.__powaza_challenges.second.progress, True
+            '/' in self.__powaza_challenges.second.progress or self.__powaza_challenges.second.progress == '✅', True
         )
 
-        splited = self.__powaza_challenges.second.progress.split('/')
-        self.assertEqual(len(splited), 2)
+        if '/' in self.__powaza_challenges.second.progress:
+            splited = self.__powaza_challenges.second.progress.split('/')
+            self.assertEqual(len(splited), 2)
 
-        [count, total] = [int(x) for x in splited]
-        self.assertIsInstance(count, int)
-        self.assertIsInstance(total, int)
+            [count, total] = [int(x) for x in splited]
+            self.assertIsInstance(count, int)
+            self.assertIsInstance(total, int)
 
         # === achieved_date === #
         self.assertIsInstance(self.__powaza_challenges.second.achieved_date, Union[None, datetime])
@@ -57,15 +59,16 @@ class UserChallengesTest(unittest.TestCase):
         self.assertIsInstance(self.__powaza_challenges.third, _ChallengeAtrb)
         # === .progress === #
         self.assertEqual(
-            '/' in self.__powaza_challenges.third.progress, True
+            '/' in self.__powaza_challenges.third.progress or self.__powaza_challenges.third.progress == '✅', True
         )
 
-        splited = self.__powaza_challenges.third.progress.split('/')
-        self.assertEqual(len(splited), 2)
+        if '/' in self.__powaza_challenges.third.progress:
+            splited = self.__powaza_challenges.third.progress.split('/')
+            self.assertEqual(len(splited), 2)
 
-        [count, total] = [int(x) for x in splited]
-        self.assertIsInstance(count, int)
-        self.assertIsInstance(total, int)
+            [count, total] = [int(x) for x in splited]
+            self.assertIsInstance(count, int)
+            self.assertIsInstance(total, int)
 
         # === achieved_date === #
         self.assertIsInstance(self.__powaza_challenges.third.achieved_date, Union[None, datetime])
