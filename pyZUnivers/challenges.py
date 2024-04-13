@@ -43,7 +43,7 @@ class _ChallengeAtrb:
 class Challenges:
 
     def __init__(self, username : str = None) -> None:
-        self.name, self.__parsed_name = parse_username(username)
+        self.name, self.__parsed_name = parse_username(username) if username else ('', '')
         self.__infos: List[ChallengeType] = get_datas(f'{API_BASE_URL}/challenge/{self.__parsed_name}')
 
     @property
