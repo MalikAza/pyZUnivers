@@ -21,7 +21,8 @@ from .utils import (
     is_advent_calendar,
     Checker, 
     ADVENT_INDEX,
-    get_inventory
+    get_inventory,
+    parse_username
 )
 
 class User:
@@ -117,8 +118,7 @@ class User:
     format: `subscription_bonus_obtained`/`subscription_bonus_possible`"""
 
     def __init__(self, username : str) -> None:
-        self.name = username.removesuffix('#0')
-        self.__parsed_name = urllib.parse.quote(self.name)
+        self.name, self.__parsed_name = parse_username(username)
         self.__base_infos: Base = get_datas(f"{API_BASE_URL}/user/{self.__parsed_name}")
         self.__user = self.__base_infos['user']
         self.__leaderboards = self.__base_infos['leaderboards']
@@ -137,9 +137,8 @@ class User:
         Checks if a user has opened their advent calendar for the
         current day.
         """
-        username = username.removesuffix('#0')
+        username, parsed_username = parse_username(username)
 
-        parsed_username = urllib.parse.quote(username)
         calendar_datas: AdventCalendarType = get_datas(f"{API_BASE_URL}/calendar/{parsed_username}")
         calendar = calendar_datas["calendars"]
         calendar.sort(key=lambda x: x["index"])
@@ -157,9 +156,8 @@ class User:
         Calculates the advent score for a given username by retrieving
         calendar data and calculating the score based on various criteria.
         """
-        username = username.removesuffix('#0')
+        username, parsed_username = parse_username(username)
 
-        parsed_username = urllib.parse.quote(username)
         calendar_datas: AdventCalendarType = get_datas(f"{API_BASE_URL}/calendar/{parsed_username}")
         calendar = calendar_datas['calendars']
         calendar.sort(key=lambda x: x["index"])
@@ -187,9 +185,8 @@ class User:
         Returns a boolean indicating whether the user
         have done the journa command or not.
         """
-        username = username.removesuffix('#0')
+        username, parsed_username = parse_username(username)
 
-        parsed_username = urllib.parse.quote(username)
         loot_datas: LootInfos = get_datas(f"{API_BASE_URL}/loot/{parsed_username}")
 
         return loot_datas["lootInfos"][364]["count"] != 0

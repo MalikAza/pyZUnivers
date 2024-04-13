@@ -6,13 +6,13 @@ from .api_responses import LootInfos
 from .utils import (
     get_datas,
     API_BASE_URL,
+    parse_username
 )
 
 class UserLootInfos:
 
     def __init__(self, username: str) -> None:
-        self.name = username.removesuffix('#0')
-        self.__parsed_name = urllib.parse.quote(self.name)
+        self.name, self.__parsed_name = parse_username(username)
         datas: LootInfos = get_datas(f"{API_BASE_URL}/loot/{self.__parsed_name}")
         self.loot_infos = datas['lootInfos']
         self.__last_loot_count = self.loot_infos[-1]['count']

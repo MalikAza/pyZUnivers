@@ -7,14 +7,14 @@ from .pins import UserPin
 from .utils import (
     get_datas,
     API_BASE_URL,
-    DATE_FORMAT
+    DATE_FORMAT,
+    parse_username
 )
 
 class UserOverview:
 
     def __init__(self, username: str) -> None:
-        self.name = username.removesuffix('#0')
-        self.__parsed_name = urllib.parse.quote(self.name)
+        self.name, self.__parsed_name = parse_username(username)
         self.__infos: Overview = get_datas(f"{API_BASE_URL}/user/{self.__parsed_name}/overview")
         self.__pins = self.__infos['pins']
         self.__vortex_stats = self.__infos['towerStat']

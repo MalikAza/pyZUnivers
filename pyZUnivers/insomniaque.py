@@ -4,13 +4,14 @@ from typing import List
 from .api_responses import Achievement
 from .utils import (
     get_datas, 
-    API_BASE_URL
+    API_BASE_URL,
+    parse_username
 )
 
 class Insomniaque: # TODO: Refacto with achievements.py
 
     def __init__(self, username: str) -> None:
-        self.__parsed_name = urllib.parse.quote(username.removesuffix('#0'))
+        _, self.__parsed_name = parse_username(username)
         datas : List[Achievement] = get_datas(f"{API_BASE_URL}/achievement/{self.__parsed_name}/8e260bf0-f945-44b2-a9d9-92bf839ee917")
         self.__datas = datas[2]
 

@@ -7,7 +7,8 @@ from .utils import (
     API_BASE_URL,
     FULL_DATE_TIME_FORMAT,
     DATE_TIME_FORMAT,
-    get_datas
+    get_datas,
+    parse_username
 )
 
 class _ChallengeAtrb:
@@ -42,8 +43,7 @@ class _ChallengeAtrb:
 class Challenges:
 
     def __init__(self, username : str = None) -> None:
-        self.name = username.removesuffix('#0')
-        self.__parsed_name = urllib.parse.quote(self.name) if username else ""
+        self.name, self.__parsed_name = parse_username(username)
         self.__infos: List[ChallengeType] = get_datas(f'{API_BASE_URL}/challenge/{self.__parsed_name}')
 
     @property
