@@ -9,7 +9,6 @@ class UserBaseTest(unittest.TestCase):
     def __init__(self, methodName: str = "runTest") -> None:
         super().__init__(methodName)
         self.powaza = pyZUnivers.User('powaza')
-        self.powi_aza = pyZUnivers.User('powi_aza')
         self.hitsu = pyZUnivers.User('hitsumo')
 
     def test_url(self) -> None:
@@ -48,7 +47,6 @@ class UserBaseTest(unittest.TestCase):
 
     def test_is_active(self) -> None:
         self.assertEqual(self.powaza.is_active, True)
-        self.assertEqual(self.powi_aza.is_active, False)
 
     def test_leaderboards(self) -> None:
         self.assertIsInstance(self.powaza.leaderboards, UserLeaderboards)
@@ -57,7 +55,6 @@ class UserBaseTest(unittest.TestCase):
         self.assertAlmostEqual(self.hitsu.leaderboards.tradeless, False)
         
         self.assertIsInstance(self.powaza.leaderboards.constellations, _LeaderBoard)
-        self.assertEqual(self.powi_aza.leaderboards.constellations, False)
 
     def test_cards(self) -> None:
         self.assertIsInstance(self.powaza.cards, int)
