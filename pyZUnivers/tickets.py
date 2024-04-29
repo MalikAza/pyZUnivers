@@ -54,8 +54,8 @@ class AutoGratting:
                 count = tickets_counters['LUCKY_RAYOU']
                 ticket_type = 'LUCKY_RAYOU'
             case 'RO':
-                count = tickets_counters['RAYOU_OFFICIEL']
-                ticket_type = 'RAYOU_OFFICIEL'
+                count = tickets_counters['RAYOU_OFFICIAL']
+                ticket_type = 'RAYOU_OFFICIAL'
             case 'ZR':
                 count = tickets_counters['ZERA_3000']
                 ticket_type = 'ZERA_3000'

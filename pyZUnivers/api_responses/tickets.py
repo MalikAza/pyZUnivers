@@ -4,7 +4,7 @@ from typing import TypedDict, List
 class TicketCountsObject(TypedDict):
     ZERA_3000: int
     LUCKY_RAYOU: int
-    RAYOU_OFFICIEL: int
+    RAYOU_OFFICIAL: int
 
 class TicketCounts(TypedDict):
     counts: TicketCountsObject
