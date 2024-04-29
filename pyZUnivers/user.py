@@ -203,8 +203,14 @@ class User:
         if is_advent_calendar():
             advent = User.get_advent_calendar(username)
         else: advent = None
+
+        now = datetime.now(pytz.timezone('Europe/Paris')).strftime('%Y-%m-%d')
+
+        bonus = loot_infos.bonus
+        if not loot_infos.journa and loot_infos.bonus_when.strftime('%Y-%m-%d') == now:
+            bonus = False
         
-        return {"journa": loot_infos.journa, "bonus": loot_infos.bonus, "advent": advent}
+        return {"journa": loot_infos.journa, "bonus": bonus, "advent": advent}
 
     @staticmethod
     def get_insomniaque(username: str) -> Insomniaque:

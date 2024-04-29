@@ -1,5 +1,5 @@
 import urllib.parse
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 import pytz
 
 from .api_responses import LootInfos
@@ -16,10 +16,13 @@ class UserLootInfos:
         datas: LootInfos = get_datas(f"{API_BASE_URL}/loot/{self.__parsed_name}")
         self.loot_infos = datas['lootInfos']
         self.__last_loot_count = self.loot_infos[-1]['count']
+        self.__last_date_looted = None
 
     def __get_journa_count(self) -> int:
         last_loots = self.loot_infos[::-1]
         for index, loot in enumerate(last_loots):
+            if loot['count'] > 0 and not self.__last_date_looted:
+                self.__last_date_looted = datetime.strptime(loot['date'], "%Y-%m-%d").date()
             if loot['count'] >= 2000:
                 bonus_index = index
                 break
@@ -37,11 +40,10 @@ class UserLootInfos:
         return not self.__get_journa_count() >= 7
 
     @property
-    def bonus_when(self) -> '_Date':
-        now = datetime.now(pytz.timezone('Europe/Paris')).date()
+    def bonus_when(self) -> date:
         when_days = timedelta(days=7-self.__get_journa_count())
 
-        return now + when_days
+        return self.__last_date_looted + when_days
 
     @property
     def journa(self) -> bool:
