@@ -7,4 +7,10 @@ from .vortex import Vortex
 from .events import Events
 from .achievements import Achievements
 from .tickets import AutoGratting
-from .utils import ZUniversAPIError, DISCORD_DATE_FORMAT, is_advent_calendar, get_ascension_leaderboard, get_inventory
+from .utils import (
+    ZUniversAPIError,
+    DISCORD_DATE_FORMAT,
+    is_advent_calendar,
+    get_ascension_leaderboard,
+    get_inventory
+)
