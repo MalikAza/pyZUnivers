@@ -45,6 +45,6 @@ class BestInventoryLog(__ItemMoreInfos):
     source: str
     deltaQuantity: int
 
-class UserInvetoryObject(InventoryObject):
+class UserInventoryObject(InventoryObject):
     isFusion: bool
     isFusionComponent: bool

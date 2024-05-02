@@ -1,5 +1,5 @@
 from .api_responses import Ascension as AscensionType
-from .api_responses.items import UserInvetoryObject
+from .api_responses.items import UserInventoryObject
 
 import requests
 from typing import List, Dict, TypedDict
@@ -103,6 +103,12 @@ def get_inventory(username: str, search: str = None): # TODO: Add filters
     base_url = f"{API_BASE_URL}/inventory/{parse_username(username)[-1]}"
     if search: base_url += f'?search={search}'
 
-    result: List[UserInvetoryObject] = get_datas(base_url)
+    result: List[UserInventoryObject] = get_datas(base_url)
 
     return result
+
+def best_inventory(username: str, limit: int = 10):
+    inventory = get_inventory(username)
+    inventory = sorted(inventory, key=lambda x: x["quantity"], reverse=True)
+
+    return inventory[:limit]
