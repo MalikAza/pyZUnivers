@@ -107,8 +107,13 @@ def get_inventory(username: str, search: str = None): # TODO: Add filters
 
     return result
 
-def best_inventory(username: str, limit: int = 10):
+def best_inventory(username: str, limit: int = 10) -> List[UserInventoryObject]:
     inventory = get_inventory(username)
-    inventory = sorted(inventory, key=lambda x: x["quantity"], reverse=True)
+
+    def sorted_callback(x: UserInventoryObject) -> int:
+        if x["isGolden"]: return x["item"]["scoreGolden"]
+        return x["item"]["score"]
+    
+    inventory = sorted(inventory, key=sorted_callback, reverse=True)
 
     return inventory[:limit]

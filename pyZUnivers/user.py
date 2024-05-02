@@ -22,7 +22,8 @@ from .utils import (
     Checker, 
     ADVENT_INDEX,
     get_inventory,
-    parse_username
+    parse_username,
+    best_inventory
 )
 
 class User:
@@ -330,3 +331,6 @@ class User:
     
     def get_inventory(self, search: str = None) -> List[UserInventoryObject]:
         return get_inventory(self.__parsed_name, search)
+    
+    def best_inventory(self, limit: int = 10) -> List[UserInventoryObject]:
+        return best_inventory(self.__parsed_name, limit=limit)

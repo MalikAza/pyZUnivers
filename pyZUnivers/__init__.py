@@ -12,5 +12,6 @@ from .utils import (
     DISCORD_DATE_FORMAT,
     is_advent_calendar,
     get_ascension_leaderboard,
-    get_inventory
+    get_inventory,
+    best_inventory
 )
