@@ -117,3 +117,9 @@ def best_inventory(username: str, limit: int = 10) -> List[UserInventoryObject]:
     inventory = sorted(inventory, key=sorted_callback, reverse=True)
 
     return inventory[:limit]
+
+def get_correct_datetime_format(date: str) -> str:
+    """
+    Checks if payload beginDate and endDate are in format %Y-%m-%dT%H:%M:%S.%f or %Y-%m-%dT%H:%M:%S
+    """
+    return FULL_DATE_TIME_FORMAT if "." in date else DATE_TIME_FORMAT

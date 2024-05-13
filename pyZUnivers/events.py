@@ -5,7 +5,7 @@ from typing import List
 from .utils import (
     get_datas,
     API_BASE_URL, 
-    FULL_DATE_TIME_FORMAT
+    get_correct_datetime_format
 )
 
 class Event:
@@ -34,11 +34,13 @@ class Event:
     
     @property
     def begin_date(self) -> datetime:
-        return datetime.strptime(self.__datas['beginDate'], FULL_DATE_TIME_FORMAT)
+        datetime_format = get_correct_datetime_format(self.__datas['beginDate'])
+        return datetime.strptime(self.__datas['beginDate'], datetime_format)
     
     @property
     def end_date(self) -> datetime:
-        return datetime.strptime(self.__datas['endDate'], FULL_DATE_TIME_FORMAT)
+        datetime_format = get_correct_datetime_format(self.__datas['endDate'])
+        return datetime.strptime(self.__datas['endDate'], datetime_format)
     
     @property
     def is_active(self):

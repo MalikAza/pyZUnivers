@@ -1,12 +1,10 @@
-import urllib.parse
 from datetime import datetime
 from typing import List
 
 from .api_responses import Challenge as ChallengeType
 from .utils import (
     API_BASE_URL,
-    FULL_DATE_TIME_FORMAT,
-    DATE_TIME_FORMAT,
+    get_correct_datetime_format,
     get_datas,
     parse_username
 )
@@ -25,7 +23,8 @@ class _ChallengeAtrb:
             self.progress = f'{progress["current"]}/{progress["max"]}'
 
         if achieved:
-            self.achieved_date = datetime.strptime(achieved['date'], FULL_DATE_TIME_FORMAT)
+            achieved_date_format = get_correct_datetime_format(achieved['date'])
+            self.achieved_date = datetime.strptime(achieved['date'], achieved_date_format)
             self.progress = '✅'
 
     @property
@@ -60,8 +59,10 @@ class Challenges:
     
     @property
     def begin_date(self) -> datetime:
-        return datetime.strptime(self.__infos[0]['beginDate'], DATE_TIME_FORMAT)
+        datetime_format = get_correct_datetime_format(self.__infos[0]['beginDate'])
+        return datetime.strptime(self.__infos[0]['beginDate'], datetime_format)
     
     @property
     def end_date(self) -> datetime:
-        return datetime.strptime(self.__infos[0]['endDate'], DATE_TIME_FORMAT)
+        datetime_format = get_correct_datetime_format(self.__infos[0]['endDate'])
+        return datetime.strptime(self.__infos[0]['endDate'], datetime_format)
