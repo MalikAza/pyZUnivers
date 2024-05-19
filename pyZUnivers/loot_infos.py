@@ -1,6 +1,4 @@
-import urllib.parse
 from datetime import datetime, timedelta, date
-import pytz
 
 from .api_responses import LootInfos
 from .utils import (

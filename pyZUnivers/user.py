@@ -1,4 +1,3 @@
-import urllib.parse
 from datetime import datetime
 import pytz
 from typing import List

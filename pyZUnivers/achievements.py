@@ -1,6 +1,4 @@
-from typing import List, Union
-import pytz
-from datetime import datetime, timedelta
+from typing import List
 from .api_responses.achievements import Achievement
 from .utils import (
     API_BASE_URL,

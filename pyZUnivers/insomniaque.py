@@ -1,4 +1,3 @@
-import urllib.parse
 from typing import List
 
 from .api_responses import Achievement
