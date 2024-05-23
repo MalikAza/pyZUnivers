@@ -14,6 +14,7 @@ Welcome to pyZUnivers's documentation!
    vortex
    user
    tickets
+   subscription
 
 Indices and tables
 ==================
