@@ -5,10 +5,10 @@ class Pack:
     Reflects a cards pack.
 
     Attributes:
-        id: str
-        name: str
-        year: Union[None, int]
-        slug: str
+        id (str): The id of the pack.
+        name (str): The name of the pack.
+        year (Union[None, int]): The year of the pack. (4 digits, ex: 2021)
+        slug (str): The slug of the pack.
     """
 
     def __init__(self, payload) -> None:
