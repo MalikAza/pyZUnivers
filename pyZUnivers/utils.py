@@ -38,6 +38,14 @@ VORTEX_CHANNEL_ID = 824253593892290561
 ON_PARLE_DE_ZUNIVERS_CHANNEL_ID = 785965752628543558
 
 class Checker(TypedDict):
+    """
+    Represents a checker object with boolean properties.
+
+    Attributes:
+        journa (bool): Indicates if the journa property is True or False.
+        bonus (bool): Indicates if the bonus property is True or False.
+        advent (bool): Indicates if the advent property is True or False.
+    """
     journa: bool
     bonus: bool
     advent: bool

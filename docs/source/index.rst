@@ -12,6 +12,7 @@ Welcome to pyZUnivers's documentation!
 
    utils
    vortex
+   user
 
 Indices and tables
 ==================
