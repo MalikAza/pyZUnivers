@@ -24,6 +24,7 @@ Welcome to pyZUnivers's documentation!
    insomniaque
    events
    challenges
+   banners
 
 Indices and tables
 ==================
