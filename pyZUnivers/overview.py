@@ -11,6 +11,19 @@ from .utils import (
 )
 
 class UserOverview:
+    """
+    Reflects a user/overview.
+
+    Attributes:
+        name (str): The name of the user.
+        pins (List[UserPin]): The pins of the user.
+        invocations_before_pity (int): The invocations before pity of the user. (number of cards before a guaranteed rarity four)
+        vortex_name (str): The name of the vortex.
+        vortex_begin_date (datetime): The begin date of the vortex.
+        vortex_end_date (datetime): The end date of the vortex.
+        vortex_floor (int): The floor of the user in the vortex.
+        vortex_tries (int): The total tries of the user in the vortex.
+    """
 
     def __init__(self, username: str) -> None:
         self.name, self.__parsed_name = parse_username(username)

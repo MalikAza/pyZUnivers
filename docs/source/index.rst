@@ -18,6 +18,7 @@ Welcome to pyZUnivers's documentation!
    reputation
    pins
    pack
+   overview
 
 Indices and tables
 ==================
