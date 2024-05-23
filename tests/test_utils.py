@@ -64,3 +64,29 @@ class PostDatasTest(unittest.TestCase):
         url = "https://example.com/api"
         with self.assertRaises(Exception):
             utils.post_datas(url)
+
+class ParseUsernameTest(unittest.TestCase):
+
+    def test_parse_username_with_valid_username(self):
+        username = "john#123"
+        expected_result = ("john#123", "john%23123")
+
+        result = utils.parse_username(username)
+
+        self.assertEqual(result, expected_result)
+
+    def test_parse_username_with_empty_username(self):
+        username = ""
+        expected_result = ("", "")
+
+        result = utils.parse_username(username)
+
+        self.assertEqual(result, expected_result)
+
+    def test_parse_username_with_none_username(self):
+        username = None
+        expected_result = (None, "")
+
+        result = utils.parse_username(username)
+
+        self.assertEqual(result, expected_result)

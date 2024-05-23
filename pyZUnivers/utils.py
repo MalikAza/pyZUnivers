@@ -71,7 +71,7 @@ def post_datas(url) -> List | Dict:
     return datas
 
 def parse_username(username: str) -> tuple[str, str]:
-    username.removesuffix('#0')
+    if username: username.removesuffix('#0')
     parsed_name = urllib.parse.quote(username) if username else ""
 
     return (username, parsed_name)
