@@ -23,6 +23,7 @@ Welcome to pyZUnivers's documentation!
    leaderboards
    insomniaque
    events
+   challenges
 
 Indices and tables
 ==================

@@ -10,6 +10,16 @@ from .utils import (
 )
 
 class _ChallengeAtrb:
+    """
+    A challenge's informations.
+
+    Attributes:
+        name (str): The name of the challenge.
+        score_gain (int): The score gain of the challenge.
+        lore_dust_gain (int): The lore dust gain of the challenge.
+        progress (str): The progress of the challenge.
+        achieved_date (datetime): The achieved date of the challenge.
+    """
 
     def __init__(self, payload) -> None:
         self.__challenge_item = payload['challenge']
@@ -40,6 +50,17 @@ class _ChallengeAtrb:
         return self.__challenge_item['rewardLoreDust']
 
 class Challenges:
+    """
+    User's informations about current challenges.
+
+    Attributes:
+        name (str): The name of the user.
+        first (Challenge): The first challenge.
+        second (Challenge): The second challenge.
+        third (Challenge): The third challenge.
+        begin_date (datetime): The begin date of the challenges.
+        end_date (datetime): The end date of the challenges.
+    """
 
     def __init__(self, username : str = None) -> None:
         self.name, self.__parsed_name = parse_username(username) if username else ('', '')
