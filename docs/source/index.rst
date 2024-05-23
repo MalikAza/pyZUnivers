@@ -15,6 +15,7 @@ Welcome to pyZUnivers's documentation!
    user
    tickets
    subscription
+   reputation
 
 Indices and tables
 ==================
