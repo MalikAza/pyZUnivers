@@ -20,6 +20,7 @@ Welcome to pyZUnivers's documentation!
    pack
    overview
    loot_infos
+   leaderboards
 
 Indices and tables
 ==================

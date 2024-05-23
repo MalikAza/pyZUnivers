@@ -1,6 +1,15 @@
 from typing import Union
 
 class _LeaderBoardData:
+    """
+    Data of the user in the leaderboard.
+
+    Attributes:
+        total (int): The total of cards the user have for this leaderboard.
+        total_distinct (int): The total of distinct cards the user have for this leaderboard.
+        maxed (int): The total of maxed upgraded cards the user have for this leaderboard.
+        achievement_count (int): The achievement count of the user in the leaderboard.
+    """
 
     def __init__(self, datas) -> None:
         for key in datas: # Can't unpack, so don't change this logic
@@ -18,6 +27,14 @@ class _LeaderBoardData:
                     self.achievement_count = datas[key]
 
 class _LeaderBoard:
+    """
+    Reflects a leaderboard.
+
+    Attributes:
+        position (int): The position of the user in the leaderboard.
+        score (int): The score of the user in the leaderboard.
+        data (_LeaderBoardData): The data of the user in the leaderboard.
+    """
 
     def __init__(self, payload) -> None:
         self.position = payload['position']
@@ -26,6 +43,21 @@ class _LeaderBoard:
             self.data = _LeaderBoardData(payload['data'])
 
 class UserLeaderboards:
+    """
+    Differents leaderboards of a user.
+
+    Attributes:
+        globals (_LeaderBoard): The global leaderboard of the user.
+        tradeless (Union[bool, _LeaderBoard]): The tradeless leaderboard of the user.
+        inventory_unique (_LeaderBoard): The inventory unique leaderboard of the user.
+        inventory_unique_normal (_LeaderBoard): The inventory unique normal leaderboard of the user.
+        challenge (_LeaderBoard): The challenge leaderboard of the user.
+        inventory_unique_golden (_LeaderBoard): The inventory unique golden leaderboard of the user.
+        inventory (_LeaderBoard): The inventory leaderboard of the user.
+        constellations (Union[bool, _LeaderBoard]): The constellations leaderboard of the user.
+        achievement (_LeaderBoard): The achievement leaderboard of the user.
+        reputation (_LeaderBoard): The reputation leaderboard of the user.
+    """
 
     def __init__(self, payload) -> None:
         self.__payload = payload
