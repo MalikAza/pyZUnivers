@@ -90,3 +90,23 @@ class ParseUsernameTest(unittest.TestCase):
         result = utils.parse_username(username)
 
         self.assertEqual(result, expected_result)
+        
+class IsAdventCalendarTest(unittest.TestCase):
+
+    def test_is_advent_calendar_on_december(self):
+        with patch('pyZUnivers.utils.datetime') as mock_datetime:
+            mock_datetime.now.return_value.strftime.return_value = "01-12"
+            result = utils.is_advent_calendar()
+            self.assertTrue(result)
+
+    def test_is_advent_calendar_on_january(self):
+        with patch('pyZUnivers.utils.datetime') as mock_datetime:
+            mock_datetime.now.return_value.strftime.return_value = "01-01"
+            result = utils.is_advent_calendar()
+            self.assertFalse(result)
+
+    def test_is_advent_calendar_on_other_month(self):
+        with patch('pyZUnivers.utils.datetime') as mock_datetime:
+            mock_datetime.now.return_value.strftime.return_value = "01-07"
+            result = utils.is_advent_calendar()
+            self.assertFalse(result)
