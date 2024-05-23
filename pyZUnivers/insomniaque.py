@@ -8,6 +8,17 @@ from .utils import (
 )
 
 class Insomniaque: # TODO: Refacto with achievements.py
+    """
+    Insomniaque achievement.
+
+    Attributes:
+        name (str): The name of the achievement.
+        description (str): The description of the achievement.
+        reward_score (int): The reward score of the achievement.
+        done (bool): If the achievement is done.
+        progress_done (list): The progress done.
+        progress_todo (list): The progress to do.
+    """
 
     def __init__(self, username: str) -> None:
         _, self.__parsed_name = parse_username(username)

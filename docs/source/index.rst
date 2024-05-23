@@ -21,6 +21,7 @@ Welcome to pyZUnivers's documentation!
    overview
    loot_infos
    leaderboards
+   insomniaque
 
 Indices and tables
 ==================
