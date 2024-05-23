@@ -51,6 +51,19 @@ class ZUniversAPIError(Exception):
         return f'{self.message} EndPoint: {self.url}'
 
 def get_datas(url) -> List | Dict:
+    """
+    Fetches data from the specified URL and returns it as a list or dictionary.
+
+    Args:
+        url (str): The URL to fetch data from.
+
+    Returns:
+        Union[List, Dict]: The fetched data as a list or dictionary.
+
+    Raises:
+        ZUniversAPIError: If there is an error decoding the JSON response.
+
+    """
     with requests.get(url) as resp:
         try:
             datas = resp.json()
@@ -61,6 +74,20 @@ def get_datas(url) -> List | Dict:
     return datas
 
 def post_datas(url) -> List | Dict:
+    """
+    Sends a POST request to the specified URL and returns the response data.
+
+    Args:
+        url (str): The URL to send the POST request to.
+
+    Returns:
+        Union[List, Dict]: The response data as a list or dictionary.
+
+    Raises:
+        ZUniversAPIError: If there is an error decoding the response data as JSON.
+        Exception: If there is any other exception during the request.
+
+    """
     with requests.post(url) as resp:
         try:
             datas = resp.json()
@@ -71,17 +98,41 @@ def post_datas(url) -> List | Dict:
     return datas
 
 def parse_username(username: str) -> tuple[str, str]:
+    """
+    Parses the given username and returns a tuple containing the original username and the parsed name.
+
+    Args:
+        username (str): The username to be parsed.
+
+    Returns:
+        tuple[str, str]: A tuple containing the original username and the parsed name.
+    """
     if username: username.removesuffix('#0')
     parsed_name = urllib.parse.quote(username) if username else ""
 
     return (username, parsed_name)
 
 def is_advent_calendar() -> bool:
+    """
+    Check if the current date is within the Advent calendar period.
+
+    Returns:
+        bool: True if the current date is between December 1st and December 25th (inclusive), False otherwise.
+    """
     day, month = [int(x) for x in datetime.now(pytz.timezone('Europe/Paris')).strftime("%d-%m").split("-")]
     if month == 12 and 1 <= day <= 25: return True
     return False
 
 def get_ascension_leaderboard(*usernames: str):
+    """
+    Retrieves the ascension leaderboard for the given usernames.
+
+    Args:
+        *usernames (str): Variable number of usernames to retrieve the leaderboard for.
+
+    Returns:
+        list: A sorted list of users in the ascension leaderboard, sorted by maxFloorIndex and towerLogCount.
+    """
     if len(usernames) == 1 and isinstance(usernames[0], list): usernames = usernames[0]
     usernames = ['&discordUserName=' + parse_username(username)[-1] for username in usernames]
     url = f"{API_BASE_URL}/tower/leaderboard?seasonOffset=0"
@@ -99,7 +150,17 @@ def get_ascension_leaderboard(*usernames: str):
         reverse=True
     )
 
-def get_inventory(username: str, search: str = None): # TODO: Add filters
+def get_inventory(username: str, search: str = None) -> List[UserInventoryObject]:
+    """
+    Retrieve the inventory of a user.
+
+    Args:
+        username (str): The username of the user.
+        search (str, optional): The search query to filter the inventory. Defaults to None.
+
+    Returns:
+        List[UserInventoryObject]: A list of UserInventoryObject representing the user's inventory.
+    """
     base_url = f"{API_BASE_URL}/inventory/{parse_username(username)[-1]}"
     if search: base_url += f'?search={search}'
 
@@ -108,6 +169,17 @@ def get_inventory(username: str, search: str = None): # TODO: Add filters
     return result
 
 def best_inventory(username: str, limit: int = 10) -> List[UserInventoryObject]:
+    """
+    Retrieves the best inventory items for a given username.
+
+    Args:
+        username (str): The username for which to retrieve the inventory.
+        limit (int, optional): The maximum number of items to return. Defaults to 10.
+
+    Returns:
+        List[UserInventoryObject]: A list of the best inventory items, sorted by score.
+
+    """
     inventory = get_inventory(username)
 
     def sorted_callback(x: UserInventoryObject) -> int:
@@ -120,6 +192,12 @@ def best_inventory(username: str, limit: int = 10) -> List[UserInventoryObject]:
 
 def get_correct_datetime_format(date: str) -> str:
     """
-    Checks if payload beginDate and endDate are in format %Y-%m-%dT%H:%M:%S.%f or %Y-%m-%dT%H:%M:%S
+    Checks if the given date string is in the format %Y-%m-%dT%H:%M:%S.%f or %Y-%m-%dT%H:%M:%S.
+    
+    Parameters:
+        date (str): The date string to be checked.
+        
+    Returns:
+        str: The appropriate datetime format string based on the presence of milliseconds.
     """
     return FULL_DATE_TIME_FORMAT if "." in date else DATE_TIME_FORMAT

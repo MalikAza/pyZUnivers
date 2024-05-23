@@ -6,3 +6,21 @@ __pycache__
 dist
 
 zutest.py
+
+# Sphinx documentation
+docs/build/
+docs/source/_build/
+docs/source/_static/
+docs/source/_templates/
+docs/source/generated/
+*.pyc
+*.pyo
+*.pyd
+**/__pycache__
+*.pyc
+*.pyo
+*.pyd
+**/__pycache__
+*.swp
+*.bak
+*.orig
