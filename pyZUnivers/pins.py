@@ -2,7 +2,31 @@ from .pack import Pack
 from typing import Union, List
 
 class UserPin:
+    """
+    Represents a user card that has been pinned.
 
+    Attributes:
+        id (str): The id of the pin.
+        name (str): The name of the pin.
+        type (str): The type of the pin.
+        rarity (int): The rarity of the pin.
+        identifier (int): The identifier of the pin.
+        description (str): The description of the pin.
+        reference (str): The reference of the pin.
+        pack (Pack): The pack of the pin.
+        image_urls (List[str]): The image urls of the pin.
+        score (int): The score of the pin.
+        score_golden (int): The score of the golden pin.
+        is_recyclable (bool): Whether the pin is recyclable.
+        is_tradable (bool): Whether the pin is tradable.
+        is_counting (bool): Whether the pin is counting.
+        is_craftable (bool): Whether the pin is craftable.
+        is_invocable (bool): Whether the pin is invocable.
+        is_goldable (bool): Whether the pin is goldable.
+        is_upgradable (bool): Whether the pin is upgradable.
+        is_golden (bool): Whether the pin is golden.
+    """
+    
     def __init__(self, payload) -> None:
         self.__payload = payload['inventory']
         self.__item = self.__payload['item']

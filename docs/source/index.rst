@@ -16,6 +16,7 @@ Welcome to pyZUnivers's documentation!
    tickets
    subscription
    reputation
+   pins
 
 Indices and tables
 ==================
