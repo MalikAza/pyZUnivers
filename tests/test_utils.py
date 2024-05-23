@@ -379,3 +379,21 @@ class BestInventoryTest(unittest.TestCase):
         ]
 
         self.assertEqual(result, expected)
+        
+class GetCorrectDatetimeFormatTest(unittest.TestCase):
+
+    def test_get_correct_datetime_format_with_microseconds(self):
+        date = "2022-01-01T12:34:56.789"
+        expected_result = "%Y-%m-%dT%H:%M:%S.%f"
+
+        result = utils.get_correct_datetime_format(date)
+
+        self.assertEqual(result, expected_result)
+
+    def test_get_correct_datetime_format_without_microseconds(self):
+        date = "2022-01-01T12:34:56"
+        expected_result = "%Y-%m-%dT%H:%M:%S"
+
+        result = utils.get_correct_datetime_format(date)
+
+        self.assertEqual(result, expected_result)
