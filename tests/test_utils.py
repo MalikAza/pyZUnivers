@@ -110,3 +110,79 @@ class IsAdventCalendarTest(unittest.TestCase):
             mock_datetime.now.return_value.strftime.return_value = "01-07"
             result = utils.is_advent_calendar()
             self.assertFalse(result)
+            
+class GetAscensionLeaderboardTest(unittest.TestCase):
+
+    @patch('pyZUnivers.utils.get_datas')
+    def test_get_ascension_leaderboard_with_single_username(self, mock_get_datas):
+        mock_response = {
+            "users": [
+                {
+                    "maxFloorIndex": 5,
+                    "towerLogCount": 18
+                }
+            ]
+        }
+        mock_get_datas.return_value = mock_response
+
+        usernames = ["john#123"]
+        result = utils.get_ascension_leaderboard(*usernames)
+        expected = [
+            {
+                "maxFloorIndex": 6,
+                "towerLogCount": 18
+            }
+        ]
+
+        self.assertEqual(result, expected)
+
+    @patch('pyZUnivers.utils.get_datas')
+    def test_get_ascension_leaderboard_with_multiple_usernames(self, mock_get_datas):
+        mock_response = {
+            "users": [
+                {
+                    "maxFloorIndex": 5,
+                    "towerLogCount": 18
+                },
+                {
+                    "maxFloorIndex": 4,
+                    "towerLogCount": 10
+                },
+                {
+                    "maxFloorIndex": 5,
+                    "towerLogCount": 6
+                }
+            ]
+        }
+        mock_get_datas.return_value = mock_response
+
+        usernames = ["john#123", "jane#456", "doe#789"]
+        result = utils.get_ascension_leaderboard(*usernames)
+        expected = [
+            {
+                "maxFloorIndex": 6,
+                "towerLogCount": 6
+            },
+            {
+                "maxFloorIndex": 6,
+                "towerLogCount": 18
+            },
+            {
+                "maxFloorIndex": 5,
+                "towerLogCount": 10
+            }
+        ]
+
+        self.assertEqual(result, expected)
+
+    @patch('pyZUnivers.utils.get_datas')
+    def test_get_ascension_leaderboard_with_empty_usernames(self, mock_get_datas):
+        mock_response = {
+            "users": []
+        }
+        mock_get_datas.return_value = mock_response
+
+        usernames = []
+        result = utils.get_ascension_leaderboard(*usernames)
+
+        self.assertEqual(result, mock_response["users"])

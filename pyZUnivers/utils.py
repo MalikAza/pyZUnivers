@@ -83,7 +83,7 @@ def is_advent_calendar() -> bool:
 
 def get_ascension_leaderboard(*usernames: str):
     if len(usernames) == 1 and isinstance(usernames[0], list): usernames = usernames[0]
-    usernames = list(map(lambda x: '&discordUserName=' + parse_username(x)[-1], usernames))
+    usernames = ['&discordUserName=' + parse_username(username)[-1] for username in usernames]
     url = f"{API_BASE_URL}/tower/leaderboard?seasonOffset=0"
     for username in usernames: url += username
 
