@@ -8,6 +8,18 @@ from .utils import (
 )
 
 class Result(TypedDict):
+    """
+    Represents the result of a ticket scratching operation.
+
+    Attributes:
+        balance (int): The balance after the ticket scratching operation.
+        inventories (List[InventoryObject]): The list of inventory objects.
+        loreDust (int): The amount of lore dust.
+        loreFragment (int): The amount of lore fragments.
+        luckyLink (List[str]): The list of lucky links.
+        userBanner (bool): Indicates if the user has a banner.
+        nbrTicketScratched (int): The number of tickets scratched.
+    """
     balance: int
     inventories: List[InventoryObject]
     loreDust: int
@@ -17,6 +29,12 @@ class Result(TypedDict):
     nbrTicketScratched: int
 
 class AutoGratting:
+    """
+        Initializes a Ticket object.
+
+        Args:
+            url (str): The URL of the tickets.
+    """
 
     def __init__(self, url: str) -> None:
         self.base_url = f"{API_BASE_URL}/lucky"
@@ -43,6 +61,19 @@ class AutoGratting:
         }
 
     async def gratting(self, ticket_type: Literal['LR', 'RO', 'ZR'] = 'LR') -> Result|str:
+        """
+        Perform the gratting operation for the specified ticket type.
+
+        Args:
+            ticket_type (Literal['LR', 'RO', 'ZR'], optional): The type of ticket to grat. Defaults to 'LR'.
+
+        Returns:
+            Union[Result, str]: The result of the gratting operation or an error message.
+
+        Raises:
+            None
+
+        """
         datas: TicketCounts|ExpiredLinkOrNoTicket = get_datas(f"{self.base_url}/{self.ticket_code}/count")
 
         if all(key in datas for key in ExpiredLinkOrNoTicket.__annotations__.keys()):

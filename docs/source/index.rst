@@ -13,6 +13,7 @@ Welcome to pyZUnivers's documentation!
    utils
    vortex
    user
+   tickets
 
 Indices and tables
 ==================
