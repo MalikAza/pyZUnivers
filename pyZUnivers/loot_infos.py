@@ -8,6 +8,15 @@ from .utils import (
 )
 
 class UserLootInfos:
+    """
+    Reflects the loot infos of a user.
+
+    Attributes:
+        name (str): The name of the user.
+        bonus (bool): If the user has the bonus.
+        bonus_when (date): When the user will have the bonus.
+        journa (bool): If the user has the journa.
+    """
 
     def __init__(self, username: str) -> None:
         self.name, self.__parsed_name = parse_username(username)

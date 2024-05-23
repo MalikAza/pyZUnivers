@@ -19,6 +19,7 @@ Welcome to pyZUnivers's documentation!
    pins
    pack
    overview
+   loot_infos
 
 Indices and tables
 ==================
