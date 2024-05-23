@@ -13,6 +13,19 @@ class _FloorIndexError(Exception):
         return f'Floor number must be between 1 and 6.'
 
 class _FloorsDropRates:
+    """
+    Represents the drop rates for different rarities in a floor.
+
+    Attributes:
+        rarity_one_normal (str): Returns the drop rate for rarity one normal cards.
+        rarity_two_normal (str): Returns the drop rate for rarity two normal cards.
+        rarity_three_normal (str): Returns the drop rate for rarity three normal cards.
+        rarity_four_normal (str): Returns the drop rate for rarity four normal cards.
+        rarity_one_golden (str): Returns the drop rate for rarity one golden cards.
+        rarity_two_golden (str): Returns the drop rate for rarity two golden cards.
+        rarity_three_golden (str): Returns the drop rate for rarity three golden cards.
+        rarity_four_golden (str): Returns the drop rate for rarity four golden cards.
+    """
 
     def __init__(self, payload) -> None:
         self.__drop_rates = payload['dropRates']
@@ -51,6 +64,22 @@ class _FloorsDropRates:
     
 
 class Vortex:
+    """
+    Represents a Vortex in the game.
+
+    Attributes:
+        name (str): Returns the name of the vortex.
+        pack_name (str): Returns the name of the pack associated with the vortex.
+        pack_year (int): Returns the year of the pack associated with the vortex.
+        reputation_name (str): Returns the name of the reputation associated with the vortex.
+        begin_date (datetime): Returns the begin date of the vortex season.
+        end_date (datetime): Returns the end date of the vortex season.
+
+    Methods:
+        get_floor_drop_rates(floor_number: int) -> _FloorsDropRates:
+            Returns the drop rates for a specific floor in the vortex tower.
+
+    """
 
     def __init__(self) -> None:
         self.__season: Season = get_datas(f'{API_BASE_URL}/tower/season')
@@ -81,6 +110,18 @@ class Vortex:
         return datetime.strptime(self.__season['endDate'], DATE_FORMAT)
     
     def get_floor_drop_rates(self, floor_number : int) -> _FloorsDropRates:
+        """
+        Returns the drop rates for a specific floor in the vortex tower.
+
+        Args:
+            floor_number (int): The number of the floor (1-5).
+
+        Returns:
+            _FloorsDropRates: The drop rates for the specified floor.
+
+        Raises:
+            _FloorIndexError: If the floor number is invalid.
+        """
         floor_number = abs(floor_number-1)
 
         if floor_number > 5: raise _FloorIndexError

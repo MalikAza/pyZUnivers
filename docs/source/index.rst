@@ -11,6 +11,7 @@ Welcome to pyZUnivers's documentation!
    :caption: Contents:
 
    utils
+   vortex
 
 Indices and tables
 ==================
