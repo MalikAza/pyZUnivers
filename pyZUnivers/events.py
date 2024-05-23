@@ -9,6 +9,19 @@ from .utils import (
 )
 
 class Event:
+    """
+    A current Event.
+
+    Attributes:
+        name (str): The name of the event.
+        pack_name (str): The name of the pack for this event.
+        balance_cost (int): The balance cost of the event.
+        dust_cost (int): The lore dust cost of the event.
+        is_onetime (bool): If the event is one time.
+        begin_date (datetime): The begin date of the event.
+        end_date (datetime): The end date of the event.
+        is_active (bool): If the event is active.
+    """
     def __init__(self, payload: EventType) -> None:
         self.__datas = payload
 
@@ -48,12 +61,21 @@ class Event:
     
 
 class Events:
+    """
+    All current events.
+    """
     def __init__(self) -> None:
         self.__datas: List[EventType]|List = get_datas(f"{API_BASE_URL}/event/current")
     
     def get(self) -> List[Event]|List:
-        tmp = []
-        for event_payload in self.__datas:
-            tmp.append(Event(event_payload))
+            """
+            Retrieves a list of Event objects.
 
-        return tmp
+            Returns:
+                List[Event]: A list of Event objects.
+            """
+            tmp = []
+            for event_payload in self.__datas:
+                tmp.append(Event(event_payload))
+
+            return tmp
