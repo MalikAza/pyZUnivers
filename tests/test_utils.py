@@ -186,3 +186,55 @@ class GetAscensionLeaderboardTest(unittest.TestCase):
         result = utils.get_ascension_leaderboard(*usernames)
 
         self.assertEqual(result, mock_response["users"])
+        
+class GetInventoryTest(unittest.TestCase):
+
+    @patch('pyZUnivers.utils.get_datas')
+    def test_get_inventory_without_search(self, mock_get_datas):
+        mock_response = [
+            {
+                "item": {
+                    "id": 1,
+                    "name": "Item 1",
+                    "score": 10,
+                    "isGolden": False
+                },
+                "quantity": 5
+            },
+            {
+                "item": {
+                    "id": 2,
+                    "name": "Item 2",
+                    "score": 20,
+                    "isGolden": True
+                },
+                "quantity": 3
+            }
+        ]
+        mock_get_datas.return_value = mock_response
+
+        username = "john#123"
+        result = utils.get_inventory(username)
+
+        self.assertEqual(result, mock_response)
+
+    @patch('pyZUnivers.utils.get_datas')
+    def test_get_inventory_with_search(self, mock_get_datas):
+        mock_response = [
+            {
+                "item": {
+                    "id": 1,
+                    "name": "Item 1",
+                    "score": 10,
+                    "isGolden": False
+                },
+                "quantity": 5
+            }
+        ]
+        mock_get_datas.return_value = mock_response
+
+        username = "john#123"
+        search = "Item 1"
+        result = utils.get_inventory(username, search)
+
+        self.assertEqual(result, mock_response)
