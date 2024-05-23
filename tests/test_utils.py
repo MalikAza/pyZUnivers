@@ -238,3 +238,144 @@ class GetInventoryTest(unittest.TestCase):
         result = utils.get_inventory(username, search)
 
         self.assertEqual(result, mock_response)
+        
+class BestInventoryTest(unittest.TestCase):
+
+    @patch('pyZUnivers.utils.get_inventory')
+    def test_best_inventory_with_default_limit(self, mock_get_inventory):
+        mock_response = [
+            {
+                "item": {
+                    "id": 1,
+                    "name": "Item 1",
+                    "score": 10,
+                    "scoreGolden": 20
+                },
+                "quantity": 5,
+                "isGolden": False
+
+            },
+            {
+                "item": {
+                    "id": 2,
+                    "name": "Item 2",
+                    "score": 20,
+                    "scoreGolden": 40
+                },
+                "quantity": 3,
+                "isGolden": True
+            },
+            {
+                "item": {
+                    "id": 3,
+                    "name": "Item 3",
+                    "score": 15,
+                    "scoreGolden": 30
+                },
+                "quantity": 2,
+                "isGolden": False
+            }
+        ]
+        mock_get_inventory.return_value = mock_response
+
+        username = "john#123"
+        result = utils.best_inventory(username)
+
+        expected = [
+            {
+                "item": {
+                    "id": 2,
+                    "name": "Item 2",
+                    "score": 20,
+                    "scoreGolden": 40
+                },
+                "quantity": 3,
+                "isGolden": True
+            },
+            {
+                "item": {
+                    "id": 3,
+                    "name": "Item 3",
+                    "score": 15,
+                    "scoreGolden": 30
+                },
+                "quantity": 2,
+                "isGolden": False
+            },
+            {
+                "item": {
+                    "id": 1,
+                    "name": "Item 1",
+                    "score": 10,
+                    "scoreGolden": 20
+                },
+                "quantity": 5,
+                "isGolden": False
+            }
+        ]
+
+        self.assertEqual(result, expected)
+
+    @patch('pyZUnivers.utils.get_inventory')
+    def test_best_inventory_with_custom_limit(self, mock_get_inventory):
+        mock_response = [
+            {
+                "item": {
+                    "id": 1,
+                    "name": "Item 1",
+                    "score": 10,
+                },
+                "quantity": 5,
+                "isGolden": False
+            },
+            {
+                "item": {
+                    "id": 2,
+                    "name": "Item 2",
+                    "score": 20,
+                    "scoreGolden": 40
+                },
+                "quantity": 3,
+                "isGolden": True
+            },
+            {
+                "item": {
+                    "id": 3,
+                    "name": "Item 3",
+                    "score": 15,
+                    "scoreGolden": 30
+                },
+                "quantity": 2,
+                "isGolden": False
+            }
+        ]
+        mock_get_inventory.return_value = mock_response
+
+        username = "john#123"
+        limit = 2
+        result = utils.best_inventory(username, limit)
+
+        expected = [
+            {
+                "item": {
+                    "id": 2,
+                    "name": "Item 2",
+                    "score": 20,
+                    "scoreGolden": 40
+                },
+                "quantity": 3,
+                "isGolden": True
+            },
+            {
+                "item": {
+                    "id": 3,
+                    "name": "Item 3",
+                    "score": 15,
+                    "scoreGolden": 30
+                },
+                "isGolden": False,
+                "quantity": 2
+            }
+        ]
+
+        self.assertEqual(result, expected)
