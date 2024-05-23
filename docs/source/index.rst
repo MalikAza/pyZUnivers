@@ -17,6 +17,7 @@ Welcome to pyZUnivers's documentation!
    subscription
    reputation
    pins
+   pack
 
 Indices and tables
 ==================

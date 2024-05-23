@@ -1,6 +1,15 @@
 from typing import Union
 
 class Pack:
+    """
+    Reflects a cards pack.
+
+    Attributes:
+        id: str
+        name: str
+        year: Union[None, int]
+        slug: str
+    """
 
     def __init__(self, payload) -> None:
         self.__payload = payload
