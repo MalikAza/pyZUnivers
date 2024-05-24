@@ -2,6 +2,8 @@
 
 # pyZUnivers
 ZUnivers API python wrapper
+
+[Documentation](https://malikaza.github.io/pyZUnivers/)
 ## Installation
 Copy the `pyZUnivers` folder inside your Python `site-packages` folder.
 And don't forget to install dependencies:
