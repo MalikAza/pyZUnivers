@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>user &#8212; pyZUnivers  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="tickets" href="tickets.html" />
+    <link rel="prev" title="vortex" href="vortex.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-pyZUnivers.user">
+<span id="user"></span><h1>user<a class="headerlink" href="#module-pyZUnivers.user" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyZUnivers.user.User">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyZUnivers.user.</span></span><span class="sig-name descname"><span class="pre">User</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyZUnivers.user.User" title="Link to this definition">¶</a></dt>
+<dd><p>Represents a ZUnivers player and contains various information about the player.</p>
+<p>All methods (static or not) make an additional API request.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyZUnivers.user.User.url">
+<span class="sig-name descname"><span class="pre">url</span></span><a class="headerlink" href="#pyZUnivers.user.User.url" title="Link to this definition">¶</a></dt>
+<dd><p>The URL to the ZUnivers player page.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyZUnivers.user.User.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#pyZUnivers.user.User.id" title="Link to this definition">¶</a></dt>
+<dd><p>The ZUnivers player identification.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyZUnivers.user.User.discord_id">
+<span class="sig-name descname"><span class="pre">discord_id</span></span><a class="headerlink" href="#pyZUnivers.user.User.discord_id" title="Link to this definition">¶</a></dt>
+<dd><p>The Discord user identification.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyZUnivers.user.User.discord_avatar">
+<span class="sig-name descname"><span class="pre">discord_avatar</span></span><a class="headerlink" href="#pyZUnivers.user.User.discord_avatar" title="Link to this definition">¶</a></dt>
+<dd><p>The URL to the Discord user avatar.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyZUnivers.user.User.balance">
+<span class="sig-name descname"><span class="pre">balance</span></span><a class="headerlink" href="#pyZUnivers.user.User.balance" title="Link to this definition">¶</a></dt>
+<dd><p>The amount of ZUMonnaie the player has.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyZUnivers.user.User.lore_dust">
+<span class="sig-name descname"><span class="pre">lore_dust</span></span><a class="headerlink" href="#pyZUnivers.user.User.lore_dust" title="Link to this definition">¶</a></dt>
+<dd><p>The amount of Poudre créatrice the player has.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyZUnivers.user.User.lore_fragment">
+<span class="sig-name descname"><span class="pre">lore_fragment</span></span><a class="headerlink" href="#pyZUnivers.user.User.lore_fragment" title="Link to this definition">¶</a></dt>
+<dd><p>The amount of Cristal d’histoire the player has.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyZUnivers.user.User.upgrade_dust">
+<span class="sig-name descname"><span class="pre">upgrade_dust</span></span><a class="headerlink" href="#pyZUnivers.user.User.upgrade_dust" title="Link to this definition">¶</a></dt>
+<dd><p>The amount of Eclat d’étoile the player has.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyZUnivers.user.User.rank">
+<span class="sig-name descname"><span class="pre">rank</span></span><a class="headerlink" href="#pyZUnivers.user.User.rank" title="Link to this definition">¶</a></dt>
+<dd><p>The ZUnivers rank name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyZUnivers.user.User.banner">
+<span class="sig-name descname"><span class="pre">banner</span></span><a class="headerlink" href="#pyZUnivers.user.User.banner" title="Link to this definition">¶</a></dt>
+<dd><p>The UserBanner object for the user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="banners.html#pyZUnivers.banners.UserBanner" title="pyZUnivers.banners.UserBanner">UserBanner</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyZUnivers.user.User.is_active">
+<span class="sig-name descname"><span class="pre">is_active</span></span><a class="headerlink" href="#pyZUnivers.user.User.is_active" title="Link to this definition">¶</a></dt>
+<dd><p>True if the ZUniver player have done a command in the last 30 days, False otherwise.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyZUnivers.user.User.leaderboards">
+<span class="sig-name descname"><span class="pre">leaderboards</span></span><a class="headerlink" href="#pyZUnivers.user.User.leaderboards" title="Link to this definition">¶</a></dt>
+<dd><p>The UserLeaderboards object for the user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="leaderboards.html#pyZUnivers.leaderboards.UserLeaderboards" title="pyZUnivers.leaderboards.UserLeaderboards">UserLeaderboards</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyZUnivers.user.User.cards">
+<span class="sig-name descname"><span class="pre">cards</span></span><a class="headerlink" href="#pyZUnivers.user.User.cards" title="Link to this definition">¶</a></dt>
+<dd><p>The number of cards the player owns.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyZUnivers.user.User.unique_cards">
+<span class="sig-name descname"><span class="pre">unique_cards</span></span><a class="headerlink" href="#pyZUnivers.user.User.unique_cards" title="Link to this definition">¶</a></dt>
+<dd><p>The number of unique cards the player owns. (format: unique_cards/possible_unique_cards)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyZUnivers.user.User.unique_golden_cards">
+<span class="sig-name descname"><span class="pre">unique_golden_cards</span></span><a class="headerlink" href="#pyZUnivers.user.User.unique_golden_cards" title="Link to this definition">¶</a></dt>
+<dd><p>The number of unique golden cards the player owns. (format: unique_golden_cards/possible_unique_golden_cards)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyZUnivers.user.User.unique_constellation_cards">
+<span class="sig-name descname"><span class="pre">unique_constellation_cards</span></span><a class="headerlink" href="#pyZUnivers.user.User.unique_constellation_cards" title="Link to this definition">¶</a></dt>
+<dd><p>The number of unique constellation cards the player owns. (format: unique_constellation_cards/possible_unique_constellation_cards)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyZUnivers.user.User.unique_golden_constellation_cards">
+<span class="sig-name descname"><span class="pre">unique_golden_constellation_cards</span></span><a class="headerlink" href="#pyZUnivers.user.User.unique_golden_constellation_cards" title="Link to this definition">¶</a></dt>
+<dd><p>The number of unique golden constellation cards the player owns. (format: unique_golden_constellation_cards/possible_unique_golden_constellation_cards)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyZUnivers.user.User.tickets">
+<span class="sig-name descname"><span class="pre">tickets</span></span><a class="headerlink" href="#pyZUnivers.user.User.tickets" title="Link to this definition">¶</a></dt>
+<dd><p>The number of tickets the player have scratched.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyZUnivers.user.User.achievements">
+<span class="sig-name descname"><span class="pre">achievements</span></span><a class="headerlink" href="#pyZUnivers.user.User.achievements" title="Link to this definition">¶</a></dt>
+<dd><p>The number of achievements the player have done. (format: achievements_done/achievements_possible)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyZUnivers.user.User.subscription">
+<span class="sig-name descname"><span class="pre">subscription</span></span><a class="headerlink" href="#pyZUnivers.user.User.subscription" title="Link to this definition">¶</a></dt>
+<dd><p>The Subscription object for the player if they have one, False otherwise.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool|<a class="reference internal" href="subscription.html#pyZUnivers.subscription.Subscription" title="pyZUnivers.subscription.Subscription">Subscription</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyZUnivers.user.User.tradeless">
+<span class="sig-name descname"><span class="pre">tradeless</span></span><a class="headerlink" href="#pyZUnivers.user.User.tradeless" title="Link to this definition">¶</a></dt>
+<dd><p>True if the player has never made a trade, False otherwise.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyZUnivers.user.User.today_trades">
+<span class="sig-name descname"><span class="pre">today_trades</span></span><a class="headerlink" href="#pyZUnivers.user.User.today_trades" title="Link to this definition">¶</a></dt>
+<dd><p>The number of trades the player have made today. (format: trades_made_today/trade_possible_today)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyZUnivers.user.User.subscription_bonus">
+<span class="sig-name descname"><span class="pre">subscription_bonus</span></span><a class="headerlink" href="#pyZUnivers.user.User.subscription_bonus" title="Link to this definition">¶</a></dt>
+<dd><p>The number of player subscription bonus. (format: subscription_bonus_obtained/subscription_bonus_possible)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyZUnivers.user.User.get_advent_calendar">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_advent_calendar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyZUnivers.user.User.get_advent_calendar" title="Link to this definition">¶</a></dt>
+<dd><p>Checks if a user has opened their advent calendar for the
+current day.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>username</strong> (<em>str</em>) – The username of the user.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>True if the user has opened the advent calendar for the current day,</dt><dd><p>False otherwise.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyZUnivers.user.User.get_advent_score">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_advent_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#pyZUnivers.user.User.get_advent_score" title="Link to this definition">¶</a></dt>
+<dd><p>Calculates the advent score for a given username by retrieving
+calendar data and calculating the score based on various criteria.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>username</strong> (<em>str</em>) – The username of the user.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The advent score for the user.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyZUnivers.user.User.get_challenge">
+<span class="sig-name descname"><span class="pre">get_challenge</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="challenges.html#pyZUnivers.challenges.Challenges" title="pyZUnivers.challenges.Challenges"><span class="pre">Challenges</span></a></span></span><a class="headerlink" href="#pyZUnivers.user.User.get_challenge" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the Challenges object for the user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The Challenges object.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="challenges.html#pyZUnivers.challenges.Challenges" title="pyZUnivers.challenges.Challenges">Challenges</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyZUnivers.user.User.get_checker">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_checker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="utils.html#pyZUnivers.utils.Checker" title="pyZUnivers.utils.Checker"><span class="pre">Checker</span></a></span></span><a class="headerlink" href="#pyZUnivers.user.User.get_checker" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a dictionary of boolean containing information
+about user journa, bonus and advent calendar.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>username</strong> (<em>str</em>) – The username of the user.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary containing information about user journa, bonus, and advent calendar.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyZUnivers.user.User.get_insomniaque">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_insomniaque</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="insomniaque.html#pyZUnivers.insomniaque.Insomniaque" title="pyZUnivers.insomniaque.Insomniaque"><span class="pre">Insomniaque</span></a></span></span><a class="headerlink" href="#pyZUnivers.user.User.get_insomniaque" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the Insomniaque object for the given username.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>username</strong> (<em>str</em>) – The username of the user.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The Insomniaque object.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="insomniaque.html#pyZUnivers.insomniaque.Insomniaque" title="pyZUnivers.insomniaque.Insomniaque">Insomniaque</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyZUnivers.user.User.get_inventory">
+<span class="sig-name descname"><span class="pre">get_inventory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">search</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">UserInventoryObject</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pyZUnivers.user.User.get_inventory" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the inventory of the user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>search</strong> (<em>str</em><em>, </em><em>optional</em>) – A search query to filter the inventory. Defaults to None.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The inventory of the user.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[UserInventoryObject]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyZUnivers.user.User.get_journa">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_journa</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#pyZUnivers.user.User.get_journa" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a boolean indicating whether the user
+have done the journa command or not.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>username</strong> (<em>str</em>) – The username of the user.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the user has done the journa command, False otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyZUnivers.user.User.get_loot_infos">
+<span class="sig-name descname"><span class="pre">get_loot_infos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="loot_infos.html#pyZUnivers.loot_infos.UserLootInfos" title="pyZUnivers.loot_infos.UserLootInfos"><span class="pre">UserLootInfos</span></a></span></span><a class="headerlink" href="#pyZUnivers.user.User.get_loot_infos" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the UserLootInfos object for the user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The UserLootInfos object.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="loot_infos.html#pyZUnivers.loot_infos.UserLootInfos" title="pyZUnivers.loot_infos.UserLootInfos">UserLootInfos</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyZUnivers.user.User.get_overview">
+<span class="sig-name descname"><span class="pre">get_overview</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="overview.html#pyZUnivers.overview.UserOverview" title="pyZUnivers.overview.UserOverview"><span class="pre">UserOverview</span></a></span></span><a class="headerlink" href="#pyZUnivers.user.User.get_overview" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the UserOverview object for the user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The UserOverview object.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="overview.html#pyZUnivers.overview.UserOverview" title="pyZUnivers.overview.UserOverview">UserOverview</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyZUnivers.user.User.get_reputation">
+<span class="sig-name descname"><span class="pre">get_reputation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="reputation.html#pyZUnivers.reputation.UserReputation" title="pyZUnivers.reputation.UserReputation"><span class="pre">UserReputation</span></a></span></span><a class="headerlink" href="#pyZUnivers.user.User.get_reputation" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the UserReputation object for the user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The UserReputation object.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="reputation.html#pyZUnivers.reputation.UserReputation" title="pyZUnivers.reputation.UserReputation">UserReputation</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyZUnivers.user.User.get_yearly">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_yearly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyZUnivers.user.User.get_yearly" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the number of days left for the user to complete a yearful
+looting or False if it’s complete.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>username</strong> (<em>str</em>) – The username of the user.</p></li>
+<li><p><strong>year</strong> (<em>int</em>) – The year for which to check the yearly looting.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>The number of days left for the user to complete the yearly looting,</dt><dd><p>or False if it’s already complete.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int|bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">pyZUnivers</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="utils.html">utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vortex.html">vortex</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">user</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pyZUnivers.user.User"><code class="docutils literal notranslate"><span class="pre">User</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tickets.html">tickets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="subscription.html">subscription</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reputation.html">reputation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pins.html">pins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pack.html">pack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loot_infos.html">loot_infos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="leaderboards.html">leaderboards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="insomniaque.html">insomniaque</a></li>
+<li class="toctree-l1"><a class="reference internal" href="events.html">events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="challenges.html">challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="banners.html">banners</a></li>
+<li class="toctree-l1"><a class="reference internal" href="achievements.html">achievements</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="vortex.html" title="previous chapter">vortex</a></li>
+      <li>Next: <a href="tickets.html" title="next chapter">tickets</a></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, MalikAza.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/user.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

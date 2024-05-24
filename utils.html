@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>utils &#8212; pyZUnivers  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="vortex" href="vortex.html" />
+    <link rel="prev" title="Welcome to pyZUnivers’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-pyZUnivers.utils">
+<span id="utils"></span><h1>utils<a class="headerlink" href="#module-pyZUnivers.utils" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyZUnivers.utils.Checker">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyZUnivers.utils.</span></span><span class="sig-name descname"><span class="pre">Checker</span></span><a class="headerlink" href="#pyZUnivers.utils.Checker" title="Link to this definition">¶</a></dt>
+<dd><p>Represents a checker object with boolean properties.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyZUnivers.utils.Checker.journa">
+<span class="sig-name descname"><span class="pre">journa</span></span><a class="headerlink" href="#pyZUnivers.utils.Checker.journa" title="Link to this definition">¶</a></dt>
+<dd><p>Indicates if the journa property is True or False.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyZUnivers.utils.Checker.bonus">
+<span class="sig-name descname"><span class="pre">bonus</span></span><a class="headerlink" href="#pyZUnivers.utils.Checker.bonus" title="Link to this definition">¶</a></dt>
+<dd><p>Indicates if the bonus property is True or False.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyZUnivers.utils.Checker.advent">
+<span class="sig-name descname"><span class="pre">advent</span></span><a class="headerlink" href="#pyZUnivers.utils.Checker.advent" title="Link to this definition">¶</a></dt>
+<dd><p>Indicates if the advent property is True or False.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="pyZUnivers.utils.ZUniversAPIError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyZUnivers.utils.</span></span><span class="sig-name descname"><span class="pre">ZUniversAPIError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyZUnivers.utils.ZUniversAPIError" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyZUnivers.utils.best_inventory">
+<span class="sig-prename descclassname"><span class="pre">pyZUnivers.utils.</span></span><span class="sig-name descname"><span class="pre">best_inventory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">UserInventoryObject</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pyZUnivers.utils.best_inventory" title="Link to this definition">¶</a></dt>
+<dd><p>Retrieves the best inventory items for a given username.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>username</strong> (<em>str</em>) – The username for which to retrieve the inventory.</p></li>
+<li><p><strong>limit</strong> (<em>int</em><em>, </em><em>optional</em>) – The maximum number of items to return. Defaults to 10.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of the best inventory items, sorted by score.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[UserInventoryObject]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyZUnivers.utils.get_ascension_leaderboard">
+<span class="sig-prename descclassname"><span class="pre">pyZUnivers.utils.</span></span><span class="sig-name descname"><span class="pre">get_ascension_leaderboard</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">usernames</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyZUnivers.utils.get_ascension_leaderboard" title="Link to this definition">¶</a></dt>
+<dd><p>Retrieves the ascension leaderboard for the given usernames.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>*usernames</strong> (<em>str</em>) – Variable number of usernames to retrieve the leaderboard for.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A sorted list of users in the ascension leaderboard, sorted by maxFloorIndex and towerLogCount.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyZUnivers.utils.get_correct_datetime_format">
+<span class="sig-prename descclassname"><span class="pre">pyZUnivers.utils.</span></span><span class="sig-name descname"><span class="pre">get_correct_datetime_format</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pyZUnivers.utils.get_correct_datetime_format" title="Link to this definition">¶</a></dt>
+<dd><p>Checks if the given date string is in the format %Y-%m-%dT%H:%M:%S.%f or %Y-%m-%dT%H:%M:%S.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>date</strong> (<em>str</em>) – The date string to be checked.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The appropriate datetime format string based on the presence of milliseconds.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyZUnivers.utils.get_datas">
+<span class="sig-prename descclassname"><span class="pre">pyZUnivers.utils.</span></span><span class="sig-name descname"><span class="pre">get_datas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Dict</span></span></span><a class="headerlink" href="#pyZUnivers.utils.get_datas" title="Link to this definition">¶</a></dt>
+<dd><p>Fetches data from the specified URL and returns it as a list or dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>url</strong> (<em>str</em>) – The URL to fetch data from.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The fetched data as a list or dictionary.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Union[List, Dict]</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#pyZUnivers.utils.ZUniversAPIError" title="pyZUnivers.utils.ZUniversAPIError"><strong>ZUniversAPIError</strong></a> – If there is an error decoding the JSON response.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyZUnivers.utils.get_inventory">
+<span class="sig-prename descclassname"><span class="pre">pyZUnivers.utils.</span></span><span class="sig-name descname"><span class="pre">get_inventory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">search</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">UserInventoryObject</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pyZUnivers.utils.get_inventory" title="Link to this definition">¶</a></dt>
+<dd><p>Retrieve the inventory of a user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>username</strong> (<em>str</em>) – The username of the user.</p></li>
+<li><p><strong>search</strong> (<em>str</em><em>, </em><em>optional</em>) – The search query to filter the inventory. Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of UserInventoryObject representing the user’s inventory.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[UserInventoryObject]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyZUnivers.utils.is_advent_calendar">
+<span class="sig-prename descclassname"><span class="pre">pyZUnivers.utils.</span></span><span class="sig-name descname"><span class="pre">is_advent_calendar</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#pyZUnivers.utils.is_advent_calendar" title="Link to this definition">¶</a></dt>
+<dd><p>Check if the current date is within the Advent calendar period.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if the current date is between December 1st and December 25th (inclusive), False otherwise.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyZUnivers.utils.parse_username">
+<span class="sig-prename descclassname"><span class="pre">pyZUnivers.utils.</span></span><span class="sig-name descname"><span class="pre">parse_username</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pyZUnivers.utils.parse_username" title="Link to this definition">¶</a></dt>
+<dd><p>Parses the given username and returns a tuple containing the original username and the parsed name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>username</strong> (<em>str</em>) – The username to be parsed.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A tuple containing the original username and the parsed name.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple[str, str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyZUnivers.utils.post_datas">
+<span class="sig-prename descclassname"><span class="pre">pyZUnivers.utils.</span></span><span class="sig-name descname"><span class="pre">post_datas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Dict</span></span></span><a class="headerlink" href="#pyZUnivers.utils.post_datas" title="Link to this definition">¶</a></dt>
+<dd><p>Sends a POST request to the specified URL and returns the response data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>url</strong> (<em>str</em>) – The URL to send the POST request to.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The response data as a list or dictionary.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Union[List, Dict]</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="#pyZUnivers.utils.ZUniversAPIError" title="pyZUnivers.utils.ZUniversAPIError"><strong>ZUniversAPIError</strong></a> – If there is an error decoding the response data as JSON.</p></li>
+<li><p><strong>Exception</strong> – If there is any other exception during the request.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">pyZUnivers</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">utils</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pyZUnivers.utils.Checker"><code class="docutils literal notranslate"><span class="pre">Checker</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pyZUnivers.utils.ZUniversAPIError"><code class="docutils literal notranslate"><span class="pre">ZUniversAPIError</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pyZUnivers.utils.best_inventory"><code class="docutils literal notranslate"><span class="pre">best_inventory()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pyZUnivers.utils.get_ascension_leaderboard"><code class="docutils literal notranslate"><span class="pre">get_ascension_leaderboard()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pyZUnivers.utils.get_correct_datetime_format"><code class="docutils literal notranslate"><span class="pre">get_correct_datetime_format()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pyZUnivers.utils.get_datas"><code class="docutils literal notranslate"><span class="pre">get_datas()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pyZUnivers.utils.get_inventory"><code class="docutils literal notranslate"><span class="pre">get_inventory()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pyZUnivers.utils.is_advent_calendar"><code class="docutils literal notranslate"><span class="pre">is_advent_calendar()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pyZUnivers.utils.parse_username"><code class="docutils literal notranslate"><span class="pre">parse_username()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pyZUnivers.utils.post_datas"><code class="docutils literal notranslate"><span class="pre">post_datas()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="vortex.html">vortex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user.html">user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tickets.html">tickets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="subscription.html">subscription</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reputation.html">reputation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pins.html">pins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pack.html">pack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loot_infos.html">loot_infos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="leaderboards.html">leaderboards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="insomniaque.html">insomniaque</a></li>
+<li class="toctree-l1"><a class="reference internal" href="events.html">events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="challenges.html">challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="banners.html">banners</a></li>
+<li class="toctree-l1"><a class="reference internal" href="achievements.html">achievements</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to pyZUnivers’s documentation!</a></li>
+      <li>Next: <a href="vortex.html" title="next chapter">vortex</a></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, MalikAza.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/utils.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

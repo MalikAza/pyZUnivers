@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>tickets &#8212; pyZUnivers  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="subscription" href="subscription.html" />
+    <link rel="prev" title="user" href="user.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-pyZUnivers.tickets">
+<span id="tickets"></span><h1>tickets<a class="headerlink" href="#module-pyZUnivers.tickets" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyZUnivers.tickets.AutoGratting">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyZUnivers.tickets.</span></span><span class="sig-name descname"><span class="pre">AutoGratting</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyZUnivers.tickets.AutoGratting" title="Link to this definition">¶</a></dt>
+<dd><p>Initializes a Ticket object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>url</strong> (<em>str</em>) – The URL of the tickets.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyZUnivers.tickets.AutoGratting.gratting">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">gratting</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ticket_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'LR'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'RO'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'ZR'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'LR'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pyZUnivers.tickets.Result" title="pyZUnivers.tickets.Result"><span class="pre">Result</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></span><a class="headerlink" href="#pyZUnivers.tickets.AutoGratting.gratting" title="Link to this definition">¶</a></dt>
+<dd><p>Perform the gratting operation for the specified ticket type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ticket_type</strong> (<em>Literal</em><em>[</em><em>'LR'</em><em>, </em><em>'RO'</em><em>, </em><em>'ZR'</em><em>]</em><em>, </em><em>optional</em>) – The type of ticket to grat. Defaults to ‘LR’.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The result of the gratting operation or an error message.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Union[<a class="reference internal" href="#pyZUnivers.tickets.Result" title="pyZUnivers.tickets.Result">Result</a>, str]</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>None</strong> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyZUnivers.tickets.Result">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyZUnivers.tickets.</span></span><span class="sig-name descname"><span class="pre">Result</span></span><a class="headerlink" href="#pyZUnivers.tickets.Result" title="Link to this definition">¶</a></dt>
+<dd><p>Represents the result of a ticket scratching operation.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyZUnivers.tickets.Result.balance">
+<span class="sig-name descname"><span class="pre">balance</span></span><a class="headerlink" href="#pyZUnivers.tickets.Result.balance" title="Link to this definition">¶</a></dt>
+<dd><p>The balance after the ticket scratching operation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyZUnivers.tickets.Result.inventories">
+<span class="sig-name descname"><span class="pre">inventories</span></span><a class="headerlink" href="#pyZUnivers.tickets.Result.inventories" title="Link to this definition">¶</a></dt>
+<dd><p>The list of inventory objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[InventoryObject]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyZUnivers.tickets.Result.loreDust">
+<span class="sig-name descname"><span class="pre">loreDust</span></span><a class="headerlink" href="#pyZUnivers.tickets.Result.loreDust" title="Link to this definition">¶</a></dt>
+<dd><p>The amount of lore dust.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyZUnivers.tickets.Result.loreFragment">
+<span class="sig-name descname"><span class="pre">loreFragment</span></span><a class="headerlink" href="#pyZUnivers.tickets.Result.loreFragment" title="Link to this definition">¶</a></dt>
+<dd><p>The amount of lore fragments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyZUnivers.tickets.Result.luckyLink">
+<span class="sig-name descname"><span class="pre">luckyLink</span></span><a class="headerlink" href="#pyZUnivers.tickets.Result.luckyLink" title="Link to this definition">¶</a></dt>
+<dd><p>The list of lucky links.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyZUnivers.tickets.Result.userBanner">
+<span class="sig-name descname"><span class="pre">userBanner</span></span><a class="headerlink" href="#pyZUnivers.tickets.Result.userBanner" title="Link to this definition">¶</a></dt>
+<dd><p>Indicates if the user has a banner.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyZUnivers.tickets.Result.nbrTicketScratched">
+<span class="sig-name descname"><span class="pre">nbrTicketScratched</span></span><a class="headerlink" href="#pyZUnivers.tickets.Result.nbrTicketScratched" title="Link to this definition">¶</a></dt>
+<dd><p>The number of tickets scratched.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">pyZUnivers</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="utils.html">utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vortex.html">vortex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user.html">user</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">tickets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pyZUnivers.tickets.AutoGratting"><code class="docutils literal notranslate"><span class="pre">AutoGratting</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pyZUnivers.tickets.Result"><code class="docutils literal notranslate"><span class="pre">Result</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="subscription.html">subscription</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reputation.html">reputation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pins.html">pins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pack.html">pack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loot_infos.html">loot_infos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="leaderboards.html">leaderboards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="insomniaque.html">insomniaque</a></li>
+<li class="toctree-l1"><a class="reference internal" href="events.html">events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="challenges.html">challenges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="banners.html">banners</a></li>
+<li class="toctree-l1"><a class="reference internal" href="achievements.html">achievements</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="user.html" title="previous chapter">user</a></li>
+      <li>Next: <a href="subscription.html" title="next chapter">subscription</a></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, MalikAza.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/tickets.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
