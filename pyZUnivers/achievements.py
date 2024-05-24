@@ -20,6 +20,12 @@ class _YearError(Exception):
         return f'Year number must be between 1 and 3.'
 
 class Achievements:
+    """
+    User achievements.
+
+    Attributes:
+        name (str): The name of the user.
+    """
 
     def __init__(self, username: str) -> None:
         self.name, self.__parsed_name = parse_username(username)
@@ -28,6 +34,19 @@ class Achievements:
         return get_datas(f"{CATEGORY_BASE_URL}/{self.__parsed_name}/{category_id}")
 
     def get_yearly(self, year: int) -> bool|int:
+        """
+        Get the number of days left to complete the yearly achievement for the given year.
+
+        Args:
+            year (int): How many year(s) for the achievement.
+
+        Returns:
+            bool|int: The number of days left to complete the yearly achievement. Returns False if the achievement is not unlocked.
+
+        Raises:
+            _YearError: If the year is not within the valid range (1-3).
+
+        """
         if 0 > year > 3:
             raise _YearError()
         

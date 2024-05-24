@@ -25,6 +25,7 @@ Welcome to pyZUnivers's documentation!
    events
    challenges
    banners
+   achievements
 
 Indices and tables
 ==================
