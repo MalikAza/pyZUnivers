@@ -24,26 +24,26 @@ class CorporationTest(unittest.TestCase):
                 {
                     'amount': 100,
                     'date': '2022-01-01T10:00:00',
-                    'user': {'discordUsername': 'User1', 'discordId': 123},
+                    'user': {'discordUserName': 'User1', 'discordId': 123},
                     'role': 'ADMIN'
                 },
                 {
                     'amount': 200,
                     'date': '2022-01-02T10:00:00',
-                    'user': {'discordUsername': 'User2', 'discordId': 456},
+                    'user': {'discordUserName': 'User2', 'discordId': 456},
                     'role': 'MEMBER'
                 }
             ],
             'userCorporations': [
                 {
-                    'user': {'discordId': 123, 'discordUsername': 'User1'},
+                    'user': {'discordId': 123, 'discordUserName': 'User1'},
                     'role': 'ADMIN',
                     'joinedDate': '2022-01-01T00:00:00',
                     'giveToday': 50,
                     'giveTotal': 150
                 },
                 {
-                    'user': {'discordId': 456, 'discordUsername': 'User2'},
+                    'user': {'discordId': 456, 'discordUserName': 'User2'},
                     'role': 'MEMBER',
                     'joinedDate': '2022-01-02T00:00:00',
                     'giveToday': 100,

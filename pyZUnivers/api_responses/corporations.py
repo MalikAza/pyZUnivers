@@ -30,7 +30,7 @@ class CorporationBonus(TypedDict):
 class CorporationUserMoreInfos(TypedDict):
     discordAvatar: str
     discordId: str
-    discordUsername: str
+    discordUserName: str
     discordGlobalName: str
     isActive: bool
 
