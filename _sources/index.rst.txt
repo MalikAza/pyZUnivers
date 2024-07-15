@@ -26,6 +26,7 @@ Welcome to pyZUnivers's documentation!
    challenges
    banners
    achievements
+   corporations
 
 Indices and tables
 ==================
