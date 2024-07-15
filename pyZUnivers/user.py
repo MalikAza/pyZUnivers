@@ -2,6 +2,7 @@ from datetime import datetime
 import pytz
 from typing import List
 
+from .corporations import UserCorporation
 from .banners import UserBanner
 from .leaderboards import UserLeaderboards
 from .subscription import Subscription
@@ -54,6 +55,7 @@ class User:
         tradeless (bool): True if the player has never made a trade, False otherwise.
         today_trades (str): The number of trades the player have made today. (format: trades_made_today/trade_possible_today)
         subscription_bonus (str): The number of player subscription bonus. (format: subscription_bonus_obtained/subscription_bonus_possible)
+        corporation (UserCorporation|None): The UserCorporation object for the player if they are in a corporation, None otherwise.
     """
 
     def __init__(self, username : str) -> None:
@@ -157,6 +159,12 @@ class User:
     @property
     def subscription_bonus(self) -> str:
         return f"{self.__base_infos['subscriptionBonusCount']}/{self.__base_infos['subscriptionBonusLimit']}"
+    
+    @property
+    def corporation(self) -> UserCorporation|None:
+        if not 'userCorporation' in self.__base_infos: return None
+
+        return UserCorporation(self.__base_infos['userCorporation'])
 
     @staticmethod
     def get_yearly(username: str, year: int):
