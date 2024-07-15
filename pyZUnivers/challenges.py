@@ -23,8 +23,14 @@ class _ChallengeAtrb:
 
     def __init__(self, payload) -> None:
         self.__challenge_item = payload['challenge']
-        achieved = payload['challengeLog']
-        progress = payload['progress']
+        try:
+            achieved = payload['challengeLog']
+        except KeyError:
+            achieved = None
+        try:
+            progress = payload['progress']
+        except KeyError:
+            progress = None
 
         self.progress = '0/1'
         self.achieved_date = None
