@@ -23,14 +23,12 @@ class UserOverviewTest(unittest.TestCase):
             self.assertIsInstance(pin.type, str)
             self.assertIsInstance(pin.rarity, int)
             self.assertIsInstance(pin.identifier, int)
-            self.assertIsInstance(pin.description, Union[str, None])
-            self.assertIsInstance(pin.reference, Union[str, None])
             self.assertIsInstance(pin.pack, Pack)
             self.assertIsInstance(pin.image_urls, List)
             for url in pin.image_urls:
                 self.assertIsInstance(url, str)
+            self.assertIsInstance(pin.shiny_level, str)
             self.assertIsInstance(pin.score, int)
-            self.assertIsInstance(pin.score_golden, int)
             self.assertIsInstance(pin.is_recyclable, bool)
             self.assertIsInstance(pin.is_tradable, bool)
             self.assertIsInstance(pin.is_counting, bool)
@@ -39,6 +37,7 @@ class UserOverviewTest(unittest.TestCase):
             self.assertIsInstance(pin.is_goldable, bool)
             self.assertIsInstance(pin.is_upgradable, bool)
             self.assertIsInstance(pin.is_golden, bool)
+            self.assertIsInstance(pin.is_shiny, bool)
 
     def test_invocations_before_pity(self) -> None:
         self.assertIsInstance(self.overview_powaza.invocations_before_pity, int)
