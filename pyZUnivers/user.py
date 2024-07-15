@@ -140,7 +140,7 @@ class User:
     
     @property
     def subscription(self) -> bool|Subscription:
-        sub = self.__base_infos['subscription']
+        sub = self.__base_infos['subscription'] if 'subscription' in self.__base_infos else None
 
         if not sub: return False
         return Subscription(sub)
