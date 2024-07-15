@@ -54,7 +54,7 @@ class Achievements:
         achievement = [x for x in category if x["achievement"]["id"] == YEARLY_ACHIEVEMENT_IDS[year-1]][0]
 
         # achievement unlocked
-        progress = achievement['progress']
+        progress = achievement['progress'] if 'progress' in achievement else None
         if not progress: return False
 
         # achievement locked
