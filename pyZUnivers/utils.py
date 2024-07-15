@@ -73,6 +73,8 @@ def get_datas(url) -> List | Dict:
 
     """
     with requests.get(url) as resp:
+        if resp.status_code == 404: return []
+        
         try:
             datas = resp.json()
         except Exception as e:
