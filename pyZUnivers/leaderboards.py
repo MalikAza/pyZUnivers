@@ -39,7 +39,7 @@ class _LeaderBoard:
     def __init__(self, payload) -> None:
         self.position = payload['position']
         self.score = payload['score']
-        if payload['data']:
+        if 'data' in payload:
             self.data = _LeaderBoardData(payload['data'])
 
 class UserLeaderboards:
@@ -91,10 +91,6 @@ class UserLeaderboards:
     @property
     def inventory_unique_golden(self) -> _LeaderBoard:
         return _LeaderBoard(getattr(self, '__INVENTORY_UNIQUE_GOLDEN'))
-    
-    @property
-    def inventory(self) -> _LeaderBoard:
-        return _LeaderBoard(getattr(self, '__INVENTORY'))
     
     @property
     def constellations(self) -> Union[bool, _LeaderBoard]:
