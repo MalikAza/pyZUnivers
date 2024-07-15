@@ -348,5 +348,6 @@ class User:
             List[UserInventoryObject]: The inventory of the user.
         """
         return get_inventory(self.__parsed_name, search)
+    
     def best_inventory(self, limit: int = 10) -> List[UserInventoryObject]:
         return best_inventory(self.__parsed_name, limit=limit)

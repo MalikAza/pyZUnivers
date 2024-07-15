@@ -220,6 +220,9 @@ class CorporationMember:
 
     @property
     def today_donations(self) -> int:
+        if 'giveToday' not in self.__payload:
+            return 0
+        
         return self.__payload['giveToday']
 
     @property
