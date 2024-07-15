@@ -2,7 +2,7 @@ import unittest
 from datetime import datetime
 from pyZUnivers.vortex import Vortex, _FloorsDropRates, _FloorIndexError
 
-class UserReputationTest(unittest.TestCase):
+class VortexTest(unittest.TestCase):
 
     def __init__(self, methodName: str = "runTest") -> None:
         super().__init__(methodName)
@@ -15,7 +15,7 @@ class UserReputationTest(unittest.TestCase):
         self.assertIsInstance(self.__vortex.pack_name, str)
 
     def test_pack_year(self) -> None:
-        self.assertIsInstance(self.__vortex.pack_year, int)
+        self.assertIsInstance(self.__vortex.pack_year, int|None)
 
     def test_reputation_name(self) -> None:
         self.assertIsInstance(self.__vortex.reputation_name, str)

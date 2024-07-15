@@ -70,7 +70,7 @@ class Vortex:
     Attributes:
         name (str): Returns the name of the vortex.
         pack_name (str): Returns the name of the pack associated with the vortex.
-        pack_year (int): Returns the year of the pack associated with the vortex.
+        pack_year (Union[int, None]): Returns the year, if there is one, of the pack associated with the vortex.
         reputation_name (str): Returns the name of the reputation associated with the vortex.
         begin_date (datetime): Returns the begin date of the vortex season.
         end_date (datetime): Returns the end date of the vortex season.
@@ -94,8 +94,13 @@ class Vortex:
         return self.__tower['pack']['name']
     
     @property
-    def pack_year(self) -> int:
-        return self.__tower['pack']['year']
+    def pack_year(self) -> int|None:
+        try:
+            year = self.__tower['pack']['year']
+        except KeyError:
+            year = None
+
+        return year
 
     @property
     def reputation_name(self) -> str:
