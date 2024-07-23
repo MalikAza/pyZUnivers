@@ -42,28 +42,28 @@ class UserOverview:
     
     @property
     def vortex_name(self) -> str:
-        if self.__vortex_stats == Vortex:
+        if isinstance(self.__vortex_stats, Vortex):
             return self.__vortex_stats.name
         
         return self.__vortex_stats['towerName']
     
     @property
     def vortex_begin_date(self) -> datetime:
-        if self.__vortex_stats == Vortex:
+        if isinstance(self.__vortex_stats, Vortex):
             return self.__vortex_stats.begin_date
 
         return datetime.strptime(self.__vortex_stats['towerSeasonBeginDate'], DATE_FORMAT)
 
     @property
     def vortex_end_date(self) -> datetime:
-        if self.__vortex_stats == Vortex:
+        if isinstance(self.__vortex_stats, Vortex):
             return self.__vortex_stats.end_date
 
         return datetime.strptime(self.__vortex_stats['towerSeasonEndDate'], DATE_FORMAT)
 
     @property
     def vortex_floor(self) -> int:
-        if self.__vortex_stats == Vortex or not self.__vortex_stats['maxFloorIndex']:
+        if isinstance(self.__vortex_stats, Vortex) or not self.__vortex_stats['maxFloorIndex']:
             return 0
         
         if self.__vortex_stats['maxFloorIndex'] == 0:
@@ -73,7 +73,7 @@ class UserOverview:
     
     @property
     def vortex_tries(self) -> int:
-        if self.__vortex_stats == Vortex:
+        if isinstance(self.__vortex_stats, Vortex):
             return 0
         
         return self.__vortex_stats['towerLogCount']
