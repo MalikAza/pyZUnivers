@@ -9,6 +9,10 @@ import urllib.parse
 
 API_BASE_URL = "https://zunivers-api.zerator.com/public"
 PLAYER_BASE_URL = "https://zunivers.zerator.com/joueur"
+ZU_HEADER = {
+    "X-ZUnivers-RuleSetType": "NORMAL",
+}
+
 DATE_FORMAT = '%Y-%m-%d'
 DATE_TIME_FORMAT = "%Y-%m-%dT%H:%M:%S"
 FULL_DATE_TIME_FORMAT = f"{DATE_TIME_FORMAT}.%f"
@@ -73,7 +77,7 @@ def get_datas(url) -> List | Dict:
         ZUniversAPIError: If there is an error decoding the JSON response.
 
     """
-    with requests.get(url) as resp:
+    with requests.get(url, headers=ZU_HEADER) as resp:
         if resp.status_code == 404: return []
         
         try:
@@ -99,7 +103,7 @@ def post_datas(url) -> List | Dict:
         Exception: If there is any other exception during the request.
 
     """
-    with requests.post(url) as resp:
+    with requests.post(url, headers=ZU_HEADER) as resp:
         try:
             datas = resp.json()
         except Exception as e:
