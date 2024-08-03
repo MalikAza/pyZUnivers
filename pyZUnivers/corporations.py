@@ -170,7 +170,7 @@ class CorporationDonation:
     
     @property
     def user_id(self) -> int:
-        return self.__payload['user']['discordId']
+        return int(self.__payload['user']['discordId'])
     
     @property
     def user_role(self) -> str:
@@ -198,7 +198,7 @@ class CorporationMember:
 
     @property
     def id(self) -> int:
-        return self.__payload['user']['discordId']
+        return int(self.__payload['user']['discordId'])
     
     @property
     def name(self) -> str:
