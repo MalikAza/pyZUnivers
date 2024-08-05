@@ -62,7 +62,10 @@ class User:
 
     def __init__(self, username : str) -> None:
         self.name, self.__parsed_name = parse_username(username)
-        self.__base_infos: Base = get_datas(f"{API_BASE_URL}/user/{self.__parsed_name}")
+        try:
+            self.__base_infos: Base = get_datas(f"{API_BASE_URL}/user/{self.__parsed_name}")
+        except ResourceNotFoundError:
+            raise UserNotFound(self.name)
         self.__user = self.__base_infos['user']
         self.__leaderboards = self.__base_infos['leaderboards']
 
