@@ -7,6 +7,10 @@ from .utils import (
     parse_username
 )
 
+class LastBonusTooFarError(Exception):
+    def __str__(self) -> str:
+        return f'The last bonus is too far away (364+ days) to predict the next one.'
+
 class UserLootInfos:
     """
     Reflects the loot infos of a user.
@@ -33,8 +37,11 @@ class UserLootInfos:
             if loot['count'] >= 2000:
                 bonus_index = index
                 break
-
-        last_bonus = last_loots[:bonus_index]
+        
+        try:
+            last_bonus = last_loots[:bonus_index]
+        except UnboundLocalError:
+            raise LastBonusTooFarError()
         journa_count = 0
         for loot in last_bonus:
             if loot['count'] == 0: continue
