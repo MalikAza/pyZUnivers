@@ -8,6 +8,7 @@ from .events import Events
 from .achievements import Achievements
 from .tickets import AutoGratting
 from .corporations import Corporation
+from .errors import *
 from .utils import (
     ZUniversAPIError,
     DISCORD_DATE_FORMAT,
