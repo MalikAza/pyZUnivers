@@ -12,11 +12,13 @@ from .challenges import Challenges
 from .reputation import UserReputation
 from .insomniaque import Insomniaque
 from .achievements import Achievements
+from .errors import UserNotFound
 from .api_responses import AdventCalendar as AdventCalendarType, LootInfos, Base
 from .api_responses.items import UserInventoryObject
 from .utils import (
     PLAYER_BASE_URL,
     API_BASE_URL,
+    ResourceNotFoundError,
     get_datas, 
     is_advent_calendar,
     Checker, 
@@ -197,7 +199,10 @@ class User:
         """
         username, parsed_username = parse_username(username)
 
-        calendar_datas: AdventCalendarType = get_datas(f"{API_BASE_URL}/calendar/{parsed_username}")
+        try:
+            calendar_datas: AdventCalendarType = get_datas(f"{API_BASE_URL}/calendar/{parsed_username}")
+        except ResourceNotFoundError:
+            raise UserNotFound(username)
         calendar = calendar_datas["calendars"]
         calendar.sort(key=lambda x: x["index"])
 
@@ -222,7 +227,10 @@ class User:
         """
         username, parsed_username = parse_username(username)
 
-        calendar_datas: AdventCalendarType = get_datas(f"{API_BASE_URL}/calendar/{parsed_username}")
+        try:
+            calendar_datas: AdventCalendarType = get_datas(f"{API_BASE_URL}/calendar/{parsed_username}")
+        except ResourceNotFoundError:
+            raise UserNotFound(username)
         calendar = calendar_datas['calendars']
         calendar.sort(key=lambda x: x["index"])
 
@@ -257,7 +265,10 @@ class User:
         """
         username, parsed_username = parse_username(username)
 
-        loot_datas: LootInfos = get_datas(f"{API_BASE_URL}/loot/{parsed_username}")
+        try:
+            loot_datas: LootInfos = get_datas(f"{API_BASE_URL}/loot/{parsed_username}")
+        except ResourceNotFoundError:
+            raise UserNotFound(username)
 
         return loot_datas["lootInfos"][364]["count"] != 0
 

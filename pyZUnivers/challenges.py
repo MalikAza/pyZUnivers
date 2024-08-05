@@ -1,9 +1,11 @@
 from datetime import datetime
 from typing import List
 
+from .errors import UserNotFound
 from .api_responses import Challenge as ChallengeType
 from .utils import (
     API_BASE_URL,
+    ResourceNotFoundError,
     get_correct_datetime_format,
     get_datas,
     parse_username
@@ -70,7 +72,9 @@ class Challenges:
 
     def __init__(self, username : str = None) -> None:
         self.name, self.__parsed_name = parse_username(username) if username else ('', '')
-        self.__infos: List[ChallengeType] = get_datas(f'{API_BASE_URL}/challenge/{self.__parsed_name}')
+        try:
+            self.__infos: List[ChallengeType] = get_datas(f'{API_BASE_URL}/challenge/{self.__parsed_name}')
+        except ResourceNotFoundError: raise UserNotFound(self.name)
 
     @property
     def first(self) -> _ChallengeAtrb:

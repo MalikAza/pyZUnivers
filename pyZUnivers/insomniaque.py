@@ -1,7 +1,9 @@
 from typing import List
 
 from .api_responses import Achievement
+from .errors import UserNotFound
 from .utils import (
+    ResourceNotFoundError,
     get_datas, 
     API_BASE_URL,
     parse_username
@@ -21,8 +23,11 @@ class Insomniaque: # TODO: Refacto with achievements.py
     """
 
     def __init__(self, username: str) -> None:
-        _, self.__parsed_name = parse_username(username)
-        datas : List[Achievement] = get_datas(f"{API_BASE_URL}/achievement/{self.__parsed_name}/8e260bf0-f945-44b2-a9d9-92bf839ee917")
+        parsed_username, self.__parsed_name = parse_username(username)
+        try:
+            datas : List[Achievement] = get_datas(f"{API_BASE_URL}/achievement/{self.__parsed_name}/8e260bf0-f945-44b2-a9d9-92bf839ee917")
+        except ResourceNotFoundError:
+            raise UserNotFound(parsed_username)
         self.__datas = datas[2]
 
     @property

@@ -12,6 +12,7 @@ from .api_responses import (
 from datetime import datetime
 from .utils import (
     API_BASE_URL,
+    ResourceNotFoundError,
     get_correct_datetime_format,
     get_datas
 )
@@ -366,9 +367,9 @@ class Corporation:
             Corporation: Representing the corporation.
         """
         url = f"{API_BASE_URL}/corporation/{corporation_id}"
-        corporation: CorporationAPIResponse = get_datas(url)
-        
-        if not corporation:
+        try:
+            corporation: CorporationAPIResponse = get_datas(url)
+        except ResourceNotFoundError:
             raise ValueError(f"Corporation with ID <{corporation_id}> not found.")
 
         return Corporation(corporation)

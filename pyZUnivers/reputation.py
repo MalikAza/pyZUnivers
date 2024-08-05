@@ -1,6 +1,8 @@
+from .errors import UserNotFound
 from .api_responses import Tower
 from .utils import (
     API_BASE_URL,
+    ResourceNotFoundError,
     get_datas,
     parse_username
 )
@@ -46,7 +48,10 @@ class UserReputation:
 
     def __init__(self, username: str) -> None:
         self.name, self.__parsed_name = parse_username(username)
-        datas: Tower = get_datas(f"{API_BASE_URL}/tower/{self.__parsed_name}")
+        try:
+            datas: Tower = get_datas(f"{API_BASE_URL}/tower/{self.__parsed_name}")
+        except ResourceNotFoundError:
+            raise UserNotFound(self.name)
         self.__infos = datas['reputations']
 
     @property

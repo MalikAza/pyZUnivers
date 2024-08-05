@@ -62,6 +62,14 @@ class ZUniversAPIError(Exception):
 
     def __str__(self) -> str:
         return f'{self.message} EndPoint: {self.url}'
+    
+class ResourceNotFoundError(Exception):
+    def __init__(self, url) -> None:
+        self.url = url
+        self.message = 'Resource not found.'
+
+    def __str__(self) -> str:
+        return f'{self.message} EndPoint: {self.url}'
 
 def get_datas(url) -> List | Dict:
     """
@@ -78,7 +86,7 @@ def get_datas(url) -> List | Dict:
 
     """
     with requests.get(url, headers=ZU_HEADER) as resp:
-        if resp.status_code == 404: return []
+        if resp.status_code == 404: raise ResourceNotFoundError(url)
         
         try:
             datas = resp.json()

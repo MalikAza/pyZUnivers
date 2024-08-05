@@ -1,7 +1,9 @@
 from datetime import datetime, timedelta, date
 
 from .api_responses import LootInfos
+from .errors import UserNotFound
 from .utils import (
+    ResourceNotFoundError,
     get_datas,
     API_BASE_URL,
     parse_username
@@ -24,7 +26,10 @@ class UserLootInfos:
 
     def __init__(self, username: str) -> None:
         self.name, self.__parsed_name = parse_username(username)
-        datas: LootInfos = get_datas(f"{API_BASE_URL}/loot/{self.__parsed_name}")
+        try:
+            datas: LootInfos = get_datas(f"{API_BASE_URL}/loot/{self.__parsed_name}")
+        except ResourceNotFoundError:
+            raise UserNotFound(self.name)
         self.loot_infos = datas['lootInfos']
         self.__last_loot_count = self.loot_infos[-1]['count']
         self.__last_date_looted = None

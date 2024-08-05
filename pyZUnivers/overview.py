@@ -4,7 +4,9 @@ from datetime import datetime
 from .api_responses import Overview
 from .pins import UserPin
 from .vortex import Vortex
+from .errors import UserNotFound
 from .utils import (
+    ResourceNotFoundError,
     get_datas,
     API_BASE_URL,
     DATE_FORMAT,
@@ -28,7 +30,10 @@ class UserOverview:
 
     def __init__(self, username: str) -> None:
         self.name, self.__parsed_name = parse_username(username)
-        self.__infos: Overview = get_datas(f"{API_BASE_URL}/user/{self.__parsed_name}/overview")
+        try:
+            self.__infos: Overview = get_datas(f"{API_BASE_URL}/user/{self.__parsed_name}/overview")
+        except ResourceNotFoundError:
+            raise UserNotFound(self.name)
         self.__pins = self.__infos['pins']
         self.__vortex_stats = self.__infos['towerStat'] if 'towerStat' in self.__infos else Vortex() # Vortex stats are not always available.
 
