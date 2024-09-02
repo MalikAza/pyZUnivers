@@ -68,7 +68,7 @@ class UserOverview:
 
     @property
     def vortex_floor(self) -> int:
-        if isinstance(self.__vortex_stats, Vortex) or not self.__vortex_stats['maxFloorIndex']:
+        if isinstance(self.__vortex_stats, Vortex) or not 'maxFloorIndex' in self.__vortex_stats:
             return 0
         
         if self.__vortex_stats['maxFloorIndex'] == 0:
