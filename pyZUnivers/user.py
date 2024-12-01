@@ -214,7 +214,7 @@ class User:
         index_date = int(datetime.now(pytz.timezone('Europe/Paris')).strftime("%d")) - 1
         today_calendar = calendar[index_date]
 
-        return today_calendar["openedDate"] != None
+        return 'openedDate' in today_calendar
 
     @staticmethod
     def get_advent_score(username: str) -> int:
