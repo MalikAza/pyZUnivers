@@ -73,7 +73,10 @@ class UserLootInfosTest(unittest.TestCase):
         now = datetime.now(pytz.timezone('Europe/Paris')).strftime('%Y-%m-%d')
         loot_infos_stub.bonus_when.strftime.return_value = now
 
-        with patch('pyZUnivers.user.UserLootInfos', return_value=loot_infos_stub):
+        with (
+            patch('pyZUnivers.user.UserLootInfos', return_value=loot_infos_stub),
+            patch('pyZUnivers.user.is_advent_calendar', return_value=False)
+            ):
             result = pyZUnivers.User.get_checker('powaza')
 
         self.assertEqual(result, {'journa': False, 'bonus': False, 'advent': None})
