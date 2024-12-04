@@ -103,7 +103,7 @@ class AutoGratting:
             # Those are single possibilities, they can't exists with another result at the same time.
             if any(key in result for key in ['inventories', 'luckyLink', 'userBanner']):
                 if 'inventories' in result:
-                    self.inventories.append(result['inventories'][0])
+                    for item in result['inventories']: self.inventories.append(item)
                 elif 'luckyLink' in result and 'quantity' in result:
                     count += 1
                     self.nbr_ticket_scratched += 1
