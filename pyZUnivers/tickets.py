@@ -100,24 +100,21 @@ class AutoGratting:
 
             result: GrattingResult = post_datas(f"{self.base_url}/{ticket_id}")
 
-            # Those are single possibilities, they can't exists with another result at the same time.
-            if any(key in result for key in ['inventories', 'luckyLink', 'userBanner']):
-                if 'inventories' in result:
-                    for item in result['inventories']: self.inventories.append(item)
-                elif 'luckyLink' in result and 'quantity' in result:
-                    count += 1
-                    self.nbr_ticket_scratched += 1
-                elif 'luckyLink' in result:
-                    self.luckyLink.append(result['luckyLink'])
-                elif 'userBanner' in result:
-                    self.userBanner = True
-            else: # Those can exists with another result at the same time.
-                if 'balance' in result:
-                    self.balance += result['balance']
-                if 'loreDust' in result:
-                    self.loreDust += result['loreDust']
-                if 'loreFragment' in result:
-                    self.loreFragment += result['loreFragment']
+            if 'inventories' in result:
+                for item in result['inventories']: self.inventories.append(item)
+            if 'luckyLink' in result and 'quantity' in result:
+                count += 1
+                self.nbr_ticket_scratched += 1
+            elif 'luckyLink' in result:
+                self.luckyLink.append(result['luckyLink'])
+            if 'userBanner' in result:
+                self.userBanner = True
+            if 'balance' in result:
+                self.balance += result['balance']
+            if 'loreDust' in result:
+                self.loreDust += result['loreDust']
+            if 'loreFragment' in result:
+                self.loreFragment += result['loreFragment']
 
             count -= 1
 
