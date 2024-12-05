@@ -41,12 +41,13 @@ class AscensionUser(TypedDict):
 
 class CountByRarity(TypedDict):
     rarity: int
-    isGolden: bool
+    shinyLevel: int
     upgradeLevel: int
     inventoryCount: int
     inventoryUniqueCount: int
     itemCount: int
     upgradableItemCount: int
+    chromaItemCount: int
 
 class Overview(TypedDict):
     countByRarity: List[CountByRarity]

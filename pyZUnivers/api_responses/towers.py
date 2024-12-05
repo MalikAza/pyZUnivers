@@ -35,7 +35,7 @@ class Reputation(TypedDict):
 class DropRate(TypedDict):
     id: str
     rarity: int
-    isGolden: bool
+    shinyLevel: bool
     rate: int
 
 class TowerFloor(TypedDict):

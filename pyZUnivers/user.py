@@ -217,44 +217,6 @@ class User:
         return 'openedDate' in today_calendar
 
     @staticmethod
-    def get_advent_score(username: str) -> int:
-        """
-        Calculates the advent score for a given username by retrieving
-        calendar data and calculating the score based on various criteria.
-        
-        Args:
-            username (str): The username of the user.
-        
-        Returns:
-            int: The advent score for the user.
-        """
-        username, parsed_username = parse_username(username)
-
-        try:
-            calendar_datas: AdventCalendarType = get_datas(f"{API_BASE_URL}/calendar/{parsed_username}")
-        except ResourceNotFoundError:
-            raise UserNotFound(username)
-        calendar = calendar_datas['calendars']
-        calendar.sort(key=lambda x: x["index"])
-
-        index_date = int(datetime.now(pytz.timezone('Europe/Paris')).strftime("%d"))
-        calendar_till_today = calendar[:index_date]
-
-        score = 0
-        for calendar in calendar_till_today:
-            if calendar['itemMetadata']:
-                rarity = f'{calendar["itemMetadata"]["item"]["rarity"]}*'
-                if calendar['itemMetadata']['isGolden']: rarity += '+'
-                score += ADVENT_INDEX[rarity]
-            if calendar['banner']: score += ADVENT_INDEX['banner']
-            if calendar['loreDust']: score += ADVENT_INDEX['dust']
-            if calendar['loreFragment']: score += ADVENT_INDEX['fragment']
-            if calendar['balance']: score += ADVENT_INDEX['balance']
-            if calendar['luckyType']: score += ADVENT_INDEX['ticket']
-
-        return score
-
-    @staticmethod
     def get_journa(username: str) -> bool:
         """
         Returns a boolean indicating whether the user

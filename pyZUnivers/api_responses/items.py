@@ -2,6 +2,9 @@ from typing import TypedDict, List
 
 from .packs import Pack
 
+ShinyLevels = TypedDict("ShinyLevels", {0: bool, 1: bool, 2: bool})
+ShinyScores = TypedDict("ShinyScores", {0: int, 1: int, 2: int})
+
 class Item(TypedDict):
     id: str
     name: str
@@ -13,8 +16,8 @@ class Item(TypedDict):
     reference: None|str
     pack: Pack
     urls: List[str]
-    score: int
-    scoreGolden: int
+    scores: ShinyScores
+    shinyLevels: ShinyLevels
     isRecyclable: bool
     isTradable: bool
     isCounting: bool
@@ -25,7 +28,7 @@ class Item(TypedDict):
 
 class __ItemMoreInfos(TypedDict):
     item: Item
-    isGolden: bool
+    shinyLevel: int
     upgradeLevel: int
 
 class ItemMetaData(__ItemMoreInfos):

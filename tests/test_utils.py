@@ -206,7 +206,7 @@ class GetInventoryTest(unittest.TestCase):
                     "id": 2,
                     "name": "Item 2",
                     "score": 20,
-                    "isGolden": True
+                    "shinyLevel": 1
                 },
                 "quantity": 3
             }
@@ -248,32 +248,40 @@ class BestInventoryTest(unittest.TestCase):
                 "item": {
                     "id": 1,
                     "name": "Item 1",
-                    "score": 10,
-                    "scoreGolden": 20
+                    "scores": {
+                        "0": 10,
+                        "1": 20,
+                        "2": 30
+                    }
                 },
                 "quantity": 5,
-                "isGolden": False
-
+                "shinyLevel": 0
             },
             {
                 "item": {
                     "id": 2,
                     "name": "Item 2",
-                    "score": 20,
-                    "scoreGolden": 40
+                    "scores": {
+                        "0": 20,
+                        "1": 40,
+                        "2": 60
+                    },
                 },
                 "quantity": 3,
-                "isGolden": True
+                "shinyLevel": 1
             },
             {
                 "item": {
                     "id": 3,
                     "name": "Item 3",
-                    "score": 15,
-                    "scoreGolden": 30
+                    "scores": {
+                        "0": 15,
+                        "1": 30,
+                        "2": 45
+                    }
                 },
                 "quantity": 2,
-                "isGolden": False
+                "shinyLevel": 0
             }
         ]
         mock_get_inventory.return_value = mock_response
@@ -286,31 +294,40 @@ class BestInventoryTest(unittest.TestCase):
                 "item": {
                     "id": 2,
                     "name": "Item 2",
-                    "score": 20,
-                    "scoreGolden": 40
+                    "scores": {
+                        "0": 20,
+                        "1": 40,
+                        "2": 60
+                    },
                 },
                 "quantity": 3,
-                "isGolden": True
+                "shinyLevel": 1
             },
             {
                 "item": {
                     "id": 3,
                     "name": "Item 3",
-                    "score": 15,
-                    "scoreGolden": 30
+                    "scores": {
+                        "0": 15,
+                        "1": 30,
+                        "2": 45
+                    }
                 },
                 "quantity": 2,
-                "isGolden": False
+                "shinyLevel": 0
             },
             {
                 "item": {
                     "id": 1,
                     "name": "Item 1",
-                    "score": 10,
-                    "scoreGolden": 20
+                    "scores": {
+                        "0": 10,
+                        "1": 20,
+                        "2": 30
+                    }
                 },
                 "quantity": 5,
-                "isGolden": False
+                "shinyLevel": 0
             }
         ]
 
@@ -323,30 +340,40 @@ class BestInventoryTest(unittest.TestCase):
                 "item": {
                     "id": 1,
                     "name": "Item 1",
-                    "score": 10,
+                    "scores": {
+                        "0": 10,
+                        "1": 20,
+                        "2": 30
+                    },
                 },
                 "quantity": 5,
-                "isGolden": False
+                "shinyLevel": 0
             },
             {
                 "item": {
                     "id": 2,
                     "name": "Item 2",
-                    "score": 20,
-                    "scoreGolden": 40
+                    "scores": {
+                        "0": 20,
+                        "1": 40,
+                        "2": 60
+                    },
                 },
                 "quantity": 3,
-                "isGolden": True
+                "shinyLevel": 1
             },
             {
                 "item": {
                     "id": 3,
                     "name": "Item 3",
-                    "score": 15,
-                    "scoreGolden": 30
+                    "scores": {
+                        "0": 15,
+                        "1": 30,
+                        "2": 45
+                    },
                 },
                 "quantity": 2,
-                "isGolden": False
+                "shinyLevel": 0
             }
         ]
         mock_get_inventory.return_value = mock_response
@@ -360,21 +387,27 @@ class BestInventoryTest(unittest.TestCase):
                 "item": {
                     "id": 2,
                     "name": "Item 2",
-                    "score": 20,
-                    "scoreGolden": 40
+                    "scores": {
+                        "0": 20,
+                        "1": 40,
+                        "2": 60
+                    },
                 },
                 "quantity": 3,
-                "isGolden": True
+                "shinyLevel": 1
             },
             {
                 "item": {
                     "id": 3,
                     "name": "Item 3",
-                    "score": 15,
-                    "scoreGolden": 30
+                    "scores": {
+                        "0": 15,
+                        "1": 30,
+                        "2": 45
+                    },
                 },
-                "isGolden": False,
-                "quantity": 2
+                "quantity": 2,
+                "shinyLevel": 0
             }
         ]
 

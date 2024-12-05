@@ -206,8 +206,8 @@ def best_inventory(username: str, limit: int = 10) -> List[UserInventoryObject]:
     inventory = get_inventory(username)
 
     def sorted_callback(x: UserInventoryObject) -> int:
-        if x["isGolden"]: return x["item"]["scoreGolden"]
-        return x["item"]["score"]
+        shiny_level = x["shinyLevel"]
+        return x["item"]['scores'][str(shiny_level)]
     
     inventory = sorted(inventory, key=sorted_callback, reverse=True)
 
