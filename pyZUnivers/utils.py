@@ -9,9 +9,6 @@ import urllib.parse
 
 API_BASE_URL = "https://zunivers-api.zerator.com/public"
 PLAYER_BASE_URL = "https://zunivers.zerator.com/joueur"
-ZU_HEADER = {
-    "X-ZUnivers-RuleSetType": "NORMAL",
-}
 
 DATE_FORMAT = '%Y-%m-%d'
 DATE_TIME_FORMAT = "%Y-%m-%dT%H:%M:%S"
@@ -71,7 +68,14 @@ class ResourceNotFoundError(Exception):
     def __str__(self) -> str:
         return f'{self.message} EndPoint: {self.url}'
 
-def get_datas(url) -> List | Dict:
+def get_header(hardcore: bool = False):
+    mode = "HARDCORE" if hardcore else "NORMAL"
+
+    return {
+        "X-ZUnivers-RuleSetType": mode
+    }
+
+def get_datas(url, hardcore: bool = False) -> List | Dict:
     """
     Fetches data from the specified URL and returns it as a list or dictionary.
 
@@ -85,7 +89,7 @@ def get_datas(url) -> List | Dict:
         ZUniversAPIError: If there is an error decoding the JSON response.
 
     """
-    with requests.get(url, headers=ZU_HEADER) as resp:
+    with requests.get(url, headers=get_header(hardcore)) as resp:
         if resp.status_code == 404: raise ResourceNotFoundError(url)
         
         try:
@@ -96,7 +100,7 @@ def get_datas(url) -> List | Dict:
 
     return datas
 
-def post_datas(url) -> List | Dict:
+def post_datas(url, hardcore: bool = False) -> List | Dict:
     """
     Sends a POST request to the specified URL and returns the response data.
 
@@ -111,7 +115,7 @@ def post_datas(url) -> List | Dict:
         Exception: If there is any other exception during the request.
 
     """
-    with requests.post(url, headers=ZU_HEADER) as resp:
+    with requests.post(url, headers=get_header(hardcore)) as resp:
         try:
             datas = resp.json()
         except Exception as e:
