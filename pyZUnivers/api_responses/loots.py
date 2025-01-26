@@ -1,8 +1,17 @@
-from typing import TypedDict, List
+from enum import Enum
+from typing import Dict, TypedDict, List
+
+class LootType(Enum):
+    DAILY = 'DAILY'
+    WEEKLY = 'WEEKLY'
 
 class Loot(TypedDict):
+    amount: int
+    baseAmount: int
+    corporationAmount: int
+    subscriptionAmount: int
+    corporationBonusLevel: int
+    type: LootType
     date: str
-    count: int
 
-class LootInfos(TypedDict):
-    lootInfos: List[Loot]
+LootInfos = Dict[str, List[Loot]]

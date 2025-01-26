@@ -3,14 +3,17 @@ Babel==2.15.0
 certifi==2024.2.2
 charset-normalizer==3.3.2
 docutils==0.21.2
+freezegun==1.5.1
 idna==3.7
 imagesize==1.4.1
 Jinja2==3.1.4
 MarkupSafe==2.1.5
 packaging==24.0
 Pygments==2.18.0
+python-dateutil==2.9.0.post0
 pytz==2024.1
 requests==2.31.0
+six==1.17.0
 snowballstemmer==2.2.0
 Sphinx==7.3.7
 sphinxcontrib-applehelp==1.0.8

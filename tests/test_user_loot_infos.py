@@ -1,8 +1,12 @@
 import unittest
 from unittest.mock import patch, MagicMock
+
+from freezegun import freeze_time
 import pyZUnivers
 from datetime import date, datetime
 import pytz
+
+import pyZUnivers.api_responses
 
 class UserLootInfosTest(unittest.TestCase):
 
@@ -19,49 +23,43 @@ class UserLootInfosTest(unittest.TestCase):
     def test_bonus_when(self) -> None:
         self.assertIsInstance(self.loot_infos_powaza.bonus_when, date)
 
+    @freeze_time('2024-04-29')
     def test_bonus_true_missing_journa(self) -> None:
-        self.loot_infos_powaza.loot_infos = [
-            {'date': '2024-04-21', 'count': 2000},
-            {'date': '2024-04-22', 'count': 0},
-            {'date': '2024-04-23', 'count': 0},
-            {'date': '2024-04-24', 'count': 0},
-            {'date': '2024-04-25', 'count': 0},
-            {'date': '2024-04-26', 'count': 0},
-            {'date': '2024-04-27', 'count': 0},
-            {'date': '2024-04-28', 'count': 0},
-            {'date': '2024-04-29', 'count': 1000},
-        ]
+        self.loot_infos_powaza.loot_infos = {
+            '2024-04-21': [{'type': pyZUnivers.api_responses.LootType.DAILY.value}, {'type': pyZUnivers.api_responses.LootType.WEEKLY.value}],
+            '2024-04-29': [{'type': pyZUnivers.api_responses.LootType.DAILY.value}],
+        }
 
         self.assertTrue(self.loot_infos_powaza.bonus)
         self.assertEqual('2024-05-05', self.loot_infos_powaza.bonus_when.strftime('%Y-%m-%d'))
 
+    @freeze_time('2024-04-29')
     def test_bonus_true_when_journa_not_done_yet(self) -> None:
-        self.loot_infos_powaza.__last_loot_count = 0
-        self.loot_infos_powaza.loot_infos = [
-            {'date': '2024-04-22', 'count': 2000},
-            {'date': '2024-04-23', 'count': 1000},
-            {'date': '2024-04-24', 'count': 1000},
-            {'date': '2024-04-25', 'count': 1000},
-            {'date': '2024-04-26', 'count': 1000},
-            {'date': '2024-04-27', 'count': 1000},
-            {'date': '2024-04-28', 'count': 1000},
-            {'date': '2024-04-29', 'count': 0},
-        ]
+        self.loot_infos_powaza.loot_infos = {
+            '2024-04-22': [{'type': pyZUnivers.api_responses.LootType.DAILY.value}, {'type': pyZUnivers.api_responses.LootType.WEEKLY.value}],
+            '2024-04-23': [{'type': pyZUnivers.api_responses.LootType.DAILY.value}],
+            '2024-04-24': [{'type': pyZUnivers.api_responses.LootType.DAILY.value}],
+            '2024-04-25': [{'type': pyZUnivers.api_responses.LootType.DAILY.value}],
+            '2024-04-26': [{'type': pyZUnivers.api_responses.LootType.DAILY.value}],
+            '2024-04-27': [{'type': pyZUnivers.api_responses.LootType.DAILY.value}],
+            '2024-04-28': [{'type': pyZUnivers.api_responses.LootType.DAILY.value}],
+        }
 
         self.assertTrue(self.loot_infos_powaza.bonus)
         self.assertEqual('2024-04-29', self.loot_infos_powaza.bonus_when.strftime('%Y-%m-%d'))
 
+    @freeze_time('2024-04-29')
     def test_bonus_false_when_journa_is_done(self) -> None:
-        self.loot_infos_powaza.loot_infos = [
-            {'date': '2024-04-22', 'count': 2000},
-            {'date': '2024-04-23', 'count': 1000},
-            {'date': '2024-04-24', 'count': 1000},
-            {'date': '2024-04-25', 'count': 1000},
-            {'date': '2024-04-26', 'count': 1000},
-            {'date': '2024-04-27', 'count': 1000},
-            {'date': '2024-04-28', 'count': 1000},
-            {'date': '2024-04-29', 'count': 1000},
-        ]
+        self.loot_infos_powaza.loot_infos = {
+            '2024-04-22': [{'type': pyZUnivers.api_responses.LootType.DAILY.value}, {'type': pyZUnivers.api_responses.LootType.WEEKLY.value}],
+            '2024-04-23': [{'type': pyZUnivers.api_responses.LootType.DAILY.value}],
+            '2024-04-24': [{'type': pyZUnivers.api_responses.LootType.DAILY.value}],
+            '2024-04-25': [{'type': pyZUnivers.api_responses.LootType.DAILY.value}],
+            '2024-04-26': [{'type': pyZUnivers.api_responses.LootType.DAILY.value}],
+            '2024-04-27': [{'type': pyZUnivers.api_responses.LootType.DAILY.value}],
+            '2024-04-28': [{'type': pyZUnivers.api_responses.LootType.DAILY.value}],
+            '2024-04-29': [{'type': pyZUnivers.api_responses.LootType.DAILY.value}],
+        }
 
         self.assertFalse(self.loot_infos_powaza.bonus)
         self.assertEqual('2024-04-29', self.loot_infos_powaza.bonus_when.strftime('%Y-%m-%d'))

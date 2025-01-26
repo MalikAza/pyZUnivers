@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta, date
 
-from .api_responses import LootInfos
+from .api_responses import LootInfos, LootType
 from .errors import UserNotFound
 from .utils import (
     ResourceNotFoundError,
@@ -30,41 +30,66 @@ class UserLootInfos:
             datas: LootInfos = get_datas(f"{API_BASE_URL}/loot/{self.__parsed_name}")
         except ResourceNotFoundError:
             raise UserNotFound(self.name)
-        self.loot_infos = datas['lootInfos']
-        self.__last_loot_count = self.loot_infos[-1]['count']
-        self.__last_date_looted = None
-
-    def __get_journa_count(self) -> int:
-        last_loots = self.loot_infos[::-1]
-        for index, loot in enumerate(last_loots):
-            if loot['count'] > 0 and not self.__last_date_looted:
-                self.__last_date_looted = datetime.strptime(loot['date'], "%Y-%m-%d").date()
-            if loot['count'] >= 2000:
-                bonus_index = index
-                break
         
-        try:
-            last_bonus = last_loots[:bonus_index]
-        except UnboundLocalError:
-            raise LastBonusTooFarError()
-        journa_count = 0
-        for loot in last_bonus:
-            if loot['count'] == 0: continue
-            journa_count += 1
+        self.loot_infos = datas
 
-        return journa_count
+    def __today_key(self) -> str:
+        return datetime.now().strftime("%Y-%m-%d")
+    
+    def __days_before_key(self, days_before: int) -> str:
+        today = datetime.now()
+        delta = timedelta(days=days_before)
+        datetime_before = today - delta
+
+        return datetime_before.strftime("%Y-%m-%d")
+    
+    def __is_today_key_presents(self) -> bool:
+        return self.__today_key() in self.loot_infos.keys()
+    
+    def __is_loot_type_present_in_day(self, loot_type: LootType, day: str) -> bool:
+        loots_day = self.loot_infos.get(day)
+
+        for loot in loots_day:
+            if loot["type"] == loot_type.value:
+                return True
+            
+        return False
+    
+    def __daily_count_since_last_weekly(self) -> int:
+        daily_count = 0
+
+        for days_ago in range(len(self.loot_infos)):
+            day_key = self.__days_before_key(days_ago)
+
+            if day_key not in self.loot_infos: continue
+
+            if self.__is_loot_type_present_in_day(LootType.WEEKLY, day_key):
+                break
+
+            if self.__is_loot_type_present_in_day(LootType.DAILY, day_key):
+                daily_count += 1
+
+        return daily_count
+    
+    def __last_day_looted(self) -> date:
+        for days_ago in range(len(self.loot_infos)):
+            day_key = self.__days_before_key(days_ago)
+
+            if day_key in self.loot_infos:
+                return datetime.strptime(day_key, '%Y-%m-%d').date()
 
     @property
     def bonus(self) -> bool:
-        return not self.__get_journa_count() >= 7
+        return not (self.__daily_count_since_last_weekly() >= 7)
 
     @property
     def bonus_when(self) -> date:
-        when_days = timedelta(days=7-self.__get_journa_count())
+        when_days = timedelta(days= 7 - self.__daily_count_since_last_weekly())
 
-        return self.__last_date_looted + when_days
+        return self.__last_day_looted() + when_days
 
     @property
     def journa(self) -> bool:
-        if self.__last_loot_count == 0: return False
-        return True
+        if not self.__is_today_key_presents(): return False
+
+        return self.__is_loot_type_present_in_day(LootType.DAILY, self.__today_key())
