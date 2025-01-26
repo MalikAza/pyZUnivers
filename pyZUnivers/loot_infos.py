@@ -1,5 +1,7 @@
 from datetime import datetime, timedelta, date
 
+import pytz
+
 from .api_responses import LootInfos, LootType
 from .errors import UserNotFound
 from .utils import (
@@ -34,10 +36,10 @@ class UserLootInfos:
         self.loot_infos = datas
 
     def __today_key(self) -> str:
-        return datetime.now().strftime("%Y-%m-%d")
+        return datetime.now(pytz.timezone('Europe/Paris')).strftime("%Y-%m-%d")
     
     def __days_before_key(self, days_before: int) -> str:
-        today = datetime.now()
+        today = datetime.now(pytz.timezone('Europe/Paris'))
         delta = timedelta(days=days_before)
         datetime_before = today - delta
 
