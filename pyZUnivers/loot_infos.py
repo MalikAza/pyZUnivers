@@ -73,19 +73,19 @@ class UserLootInfos:
 
         return daily_count
     
-    def __last_day_looted(self) -> date:
+    def __last_day_looted(self) -> datetime:
         for days_ago in range(len(self.loot_infos)):
             day_key = self.__days_before_key(days_ago)
 
             if day_key in self.loot_infos:
-                return datetime.strptime(day_key, '%Y-%m-%d').date()
+                return datetime.strptime(day_key, '%Y-%m-%d')
 
     @property
     def bonus(self) -> bool:
         return not (self.__daily_count_since_last_weekly() >= 7)
 
     @property
-    def bonus_when(self) -> date:
+    def bonus_when(self) -> datetime:
         when_days = timedelta(days= 7 - self.__daily_count_since_last_weekly())
 
         return self.__last_day_looted() + when_days
