@@ -96,7 +96,12 @@ class AutoGratting:
         self.nbr_ticket_scratched = count
         while count > 0:
             ticket: Ticket = get_datas(f"{self.base_url}/{self.ticket_code}?type={ticket_type}")
-            ticket_id = ticket['id']
+            try:
+                ticket_id = ticket['id']
+            except KeyError:
+                self.nbr_ticket_scratched -= count
+                count = 0
+                continue
 
             result: GrattingResult = post_datas(f"{self.base_url}/{ticket_id}")
 
