@@ -228,14 +228,7 @@ class User:
         Returns:
             bool: True if the user has done the journa command, False otherwise.
         """
-        username, parsed_username = parse_username(username)
-
-        try:
-            loot_datas: LootInfos = get_datas(f"{API_BASE_URL}/loot/{parsed_username}")
-        except ResourceNotFoundError:
-            raise UserNotFound(username)
-
-        return loot_datas["lootInfos"][364]["count"] != 0
+        return UserLootInfos(username).journa
 
     @staticmethod
     def get_checker(username: str) -> Checker:
